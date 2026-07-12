@@ -1,6 +1,6 @@
 # frlegends-skeleton-key
 
-***ETA: 1-2 weeks, almost done ;)***
+***ETA: End of July almost done ;)***
 
 ---
 
