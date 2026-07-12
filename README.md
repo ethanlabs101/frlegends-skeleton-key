@@ -1,6 +1,6 @@
 # frlegends-skeleton-key
 
-***ETA: End of July almost done ;)***
+***ETA: End of July to mid-August almost done ;)***
 
 ---
 
