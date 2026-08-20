@@ -1,7 +1,4 @@
 ![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/git-header.png)
-# frlegends-skeleton-key
-
-***ETA: End of July to mid-August almost done ;)***
 
 ---
 
