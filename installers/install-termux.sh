@@ -25,8 +25,10 @@ printf '\n[*] Checking proot-distro...\n'
 if ! command -v proot-distro >/dev/null 2>&1; then
     printf '[!] proot-distro is not installed.\n'
     printf '[*] Installing proot-distro...\n'
+
     pkg update -y
     pkg install -y proot-distro
+
     printf '[+] proot-distro installed.\n'
 else
     printf '[+] proot-distro detected.\n'
@@ -70,10 +72,12 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
                 printf '\n[*] Removing existing Debian environment...\n'
                 proot-distro remove debian
+
                 printf '[+] Existing Debian environment removed.\n'
 
                 printf '\n[*] Installing fresh Debian environment...\n'
                 proot-distro install debian
+
                 printf '[+] Debian installed successfully.\n'
                 break
                 ;;
@@ -96,7 +100,9 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 else
     printf '[*] Debian is not installed.\n'
     printf '[*] Installing Debian...\n'
+
     proot-distro install debian
+
     printf '[+] Debian installed successfully.\n'
 fi
 
@@ -127,7 +133,9 @@ printf "\n"
 printf "[*] Updating Debian package lists...\n"
 apt-get update
 
-printf "\n[*] Installing required system packages...\n"
+printf "\n"
+printf "[*] Installing required system packages...\n"
+
 apt-get install -y \
     curl \
     ca-certificates \
@@ -159,32 +167,23 @@ npm --version
 
 printf '\n[+] Debian runtime prepared.\n'
 
-printf '\n[*] Copying FR Legends Skeleton Key into Debian...\n'
+printf '\n[*] Preparing Debian application directory...\n'
 
-TEMP_SOURCE="/tmp/frlegends-skeleton-key-vault"
-
-rm -rf "$TEMP_SOURCE"
-
-cp -a "$VAULT_DIR" "$TEMP_SOURCE"
-
-printf '[+] Vault source prepared for Debian.\n'
-
-printf '\n[*] Installing Vault into Debian...\n'
-
-proot-distro login debian -- bash -c "
+proot-distro login debian -- bash -c '
 set -e
 
-rm -rf /root/frlegends-skeleton-key
+mkdir -p /root/frlegends-skeleton-key/skeleton-key-vault
+'
 
-mkdir -p /root/frlegends-skeleton-key
+printf '[+] Debian application directory ready.\n'
 
-"
+printf '\n[*] Copying FR Legends Skeleton Key into Debian...\n'
 
-proot-distro copy "$TEMP_SOURCE" debian:/root/frlegends-skeleton-key/skeleton-key-vault
+proot-distro copy \
+    "$VAULT_DIR" \
+    debian:/root/frlegends-skeleton-key/skeleton-key-vault
 
-rm -rf "$TEMP_SOURCE"
-
-printf '[+] Vault copied into Debian.\n'
+printf '[+] Vault source copied into Debian.\n'
 
 printf '\n[*] Installing Node.js dependencies inside Debian...\n'
 
@@ -242,7 +241,7 @@ printf '  The Termux repository is only the bootstrap/source copy.\n'
 printf '  The actual runtime is inside the Debian proot environment.\n'
 printf '\n'
 
-printf 'You may delete the Termux copy later if you want to save space:\n'
+printf 'You may delete the Termux repository later if you want to save space:\n'
 printf '  %s\n' "$REPO_ROOT"
 printf '\n'
 
