@@ -5,10 +5,10 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-REPO_URL="https://github.com/ethanlabs101/frlegends-skeleton-key.git"
-DEBIAN_NAME="debian"
-DEBIAN_ROOT="/root/frlegends-skeleton-key"
-VAULT_DIR="$DEBIAN_ROOT/skeleton-key-vault"
+GITHUB_REPO="https://github.com/ethanlabs101/frlegends-skeleton-key.git"
+DEBIAN_ROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs/debian"
+INSTALL_ROOT="/root/frlegends-skeleton-key"
+VAULT_DIR="$INSTALL_ROOT/skeleton-key-vault"
 
 printf '\n'
 printf '%s\n' '============================================================'
@@ -38,36 +38,20 @@ else
     printf '[+] proot-distro detected.\n'
 fi
 
-printf '\n[*] Checking Git...\n'
+printf '\n[*] Checking Debian environment...\n'
 
-if ! command -v git >/dev/null 2>&1; then
-    printf '[*] Git is not installed in Termux.\n'
-    printf '[*] Installing Git...\n'
-
-    pkg install -y git
-
-    printf '[+] Git installed.\n'
-else
-    printf '[+] Git detected: '
-    git --version
-fi
-
-printf '\n'
-printf '%s\n' '============================================================'
-printf '%s\n' '                    DEBIAN ENVIRONMENT'
-printf '%s\n' '============================================================'
-printf '\n'
-
-DEBIAN_EXISTS=0
-
-if proot-distro list 2>/dev/null | grep -Eq '^[[:space:]]*debian[[:space:]]'; then
+if [ -d "$DEBIAN_ROOTFS" ]; then
     DEBIAN_EXISTS=1
+else
+    DEBIAN_EXISTS=0
 fi
 
 if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
-    printf '[+] Debian already exists.\n'
+    printf '[+] Debian container detected.\n'
+    printf '    %s\n' "$DEBIAN_ROOTFS"
     printf '\n'
+
     printf 'Choose how to continue:\n'
     printf '\n'
     printf '  1) Fresh Debian installation\n'
@@ -83,11 +67,10 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
             1)
                 printf '\n'
-                printf '[!] WARNING: This removes the entire Debian environment.\n'
+                printf '[!] WARNING: This removes the entire Debian proot environment.\n'
                 printf '[!] Anything stored inside Debian will be deleted.\n'
-                printf '[!] Make sure you have backups before continuing.\n'
                 printf '\n'
-                printf '[>] Type REINSTALL to continue: '
+                printf '[>] Type REINSTALL to confirm: '
                 read -r CONFIRM
 
                 if [ "$CONFIRM" != "REINSTALL" ]; then
@@ -97,35 +80,32 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
                 printf '\n[*] Removing existing Debian environment...\n'
 
-                proot-distro remove "$DEBIAN_NAME"
-
-                printf '[+] Remove command completed.\n'
-
-                printf '[*] Verifying Debian was removed...\n'
-
-                DEBIAN_STILL_EXISTS=0
-
-                if proot-distro list 2>/dev/null | grep -Eq '^[[:space:]]*debian[[:space:]]'; then
-                    DEBIAN_STILL_EXISTS=1
-                fi
-
-                if [ "$DEBIAN_STILL_EXISTS" -eq 1 ]; then
-                    printf '[!] Debian still appears to exist.\n'
-                    printf '[!] The installer will not attempt to install over it.\n'
-                    printf '[!] Please run:\n'
-                    printf '    proot-distro remove debian\n'
-                    printf '[!] Then run this installer again.\n'
+                if ! proot-distro remove debian; then
+                    printf '[!] Failed to remove the existing Debian environment.\n'
                     exit 1
                 fi
 
-                printf '[+] Debian successfully removed.\n'
+                if [ -d "$DEBIAN_ROOTFS" ]; then
+                    printf '[!] Debian container still exists after removal.\n'
+                    printf '[!] Installation stopped to prevent a container conflict.\n'
+                    exit 1
+                fi
+
+                printf '[+] Existing Debian environment removed.\n'
 
                 printf '\n[*] Installing fresh Debian environment...\n'
 
-                proot-distro install "$DEBIAN_NAME"
+                if ! proot-distro install debian; then
+                    printf '[!] Debian installation failed.\n'
+                    exit 1
+                fi
+
+                if [ ! -d "$DEBIAN_ROOTFS" ]; then
+                    printf '[!] Debian installation reported success, but the container was not found.\n'
+                    exit 1
+                fi
 
                 printf '[+] Fresh Debian environment installed.\n'
-
                 break
                 ;;
 
@@ -147,33 +127,36 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
 else
 
-    printf '[*] Debian is not installed.\n'
+    printf '[*] Debian container not found.\n'
     printf '[*] Installing Debian...\n'
 
-    proot-distro install "$DEBIAN_NAME"
+    if ! proot-distro install debian; then
+        printf '[!] Debian installation failed.\n'
+        exit 1
+    fi
+
+    if [ ! -d "$DEBIAN_ROOTFS" ]; then
+        printf '[!] Debian installation reported success, but the container was not found.\n'
+        exit 1
+    fi
 
     printf '[+] Debian installed successfully.\n'
 
 fi
 
-printf '\n'
-printf '%s\n' '============================================================'
-printf '%s\n' '                 PREPARING DEBIAN'
-printf '%s\n' '============================================================'
-printf '\n'
+printf '\n[*] Preparing Debian environment...\n'
 
-proot-distro login "$DEBIAN_NAME" -- bash -c '
+proot-distro login debian -- bash -c '
 set -e
 
 printf "\n"
 printf "[*] Updating Debian package lists...\n"
-
 apt-get update
 
 printf "\n"
-printf "[*] Installing required packages...\n"
+printf "[*] Installing required system packages...\n"
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+apt-get install -y \
     ca-certificates \
     curl \
     git \
@@ -186,7 +169,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
     nodejs \
     npm
 
-printf "\n[+] Debian system dependencies installed.\n"
+printf "\n"
+printf "[+] Debian system dependencies installed.\n"
 
 printf "[+] Node.js version: "
 node --version
@@ -196,60 +180,49 @@ npm --version
 
 printf "[+] Git version: "
 git --version
+
+printf "[+] Debian environment prepared.\n"
 '
 
 printf '\n[+] Debian environment prepared.\n'
 
-printf '\n'
-printf '%s\n' '============================================================'
-printf '%s\n' '                 INSTALLING FRL SKELETON KEY'
-printf '%s\n' '============================================================'
-printf '\n'
+printf '\n[*] Checking for existing FRL Vault installation...\n'
 
-printf '[*] Checking for existing FRL Vault installation...\n'
+EXISTING_VAULT=0
 
-INSTALL_EXISTS=0
-
-if proot-distro login "$DEBIAN_NAME" -- bash -c \
-    "[ -f '$VAULT_DIR/package.json' ] && [ -f '$VAULT_DIR/cli.js' ]" \
-    >/dev/null 2>&1; then
-
-    INSTALL_EXISTS=1
-
+if proot-distro login debian -- bash -c "[ -f '$VAULT_DIR/package.json' ] && [ -f '$VAULT_DIR/cli.js' ]"; then
+    EXISTING_VAULT=1
 fi
 
-if [ "$INSTALL_EXISTS" -eq 1 ]; then
+if [ "$EXISTING_VAULT" -eq 1 ]; then
 
     printf '[+] Existing FRL Vault installation detected.\n'
+    printf '    %s\n' "$VAULT_DIR"
     printf '\n'
-    printf 'The Debian installation already contains:\n'
-    printf '  %s\n' "$VAULT_DIR"
-    printf '\n'
+
     printf 'Choose how to continue:\n'
     printf '\n'
-    printf '  1) Keep existing installation\n'
-    printf '  2) Replace application with fresh Git clone\n'
+    printf '  1) Replace application files\n'
+    printf '  2) Keep existing installation\n'
     printf '  3) Cancel\n'
     printf '\n'
 
     while true; do
         printf '[>] Select: '
-        read -r INSTALL_CHOICE
+        read -r VAULT_CHOICE
 
-        case "$INSTALL_CHOICE" in
+        case "$VAULT_CHOICE" in
 
             1)
-                printf '[+] Existing FRL Vault installation will be kept.\n'
-                break
-                ;;
-
-            2)
                 printf '\n'
-                printf '[!] WARNING: Replacing the application directory can remove\n'
-                printf '[!] application files inside the Debian environment.\n'
-                printf '[!] Your vault data must be preserved separately.\n'
+                printf '[!] WARNING: Application files will be replaced.\n'
+                printf '[!] User data should be preserved before continuing.\n'
+                printf '[!] Keep these files/directories:\n'
+                printf '    .vault.lock\n'
+                printf '    identity_vault.db\n'
+                printf '    fr_legends_payloads/\n'
                 printf '\n'
-                printf '[>] Type REPLACE to continue: '
+                printf '[>] Type REPLACE to confirm: '
                 read -r CONFIRM
 
                 if [ "$CONFIRM" != "REPLACE" ]; then
@@ -259,11 +232,57 @@ if [ "$INSTALL_EXISTS" -eq 1 ]; then
 
                 printf '\n[*] Removing existing application directory...\n'
 
-                proot-distro login "$DEBIAN_NAME" -- bash -c "
-                    rm -rf '$DEBIAN_ROOT'
+                proot-distro login debian -- bash -c "
+                    set -e
+
+                    mkdir -p '$INSTALL_ROOT'
+
+                    if [ -d '$VAULT_DIR/fr_legends_payloads' ]; then
+                        cp -a '$VAULT_DIR/fr_legends_payloads' /tmp/frl_payloads_backup
+                    else
+                        rm -rf /tmp/frl_payloads_backup
+                    fi
+
+                    if [ -f '$VAULT_DIR/.vault.lock' ]; then
+                        cp -a '$VAULT_DIR/.vault.lock' /tmp/frl_vault_lock_backup
+                    else
+                        rm -f /tmp/frl_vault_lock_backup
+                    fi
+
+                    if [ -f '$VAULT_DIR/identity_vault.db' ]; then
+                        cp -a '$VAULT_DIR/identity_vault.db' /tmp/frl_identity_vault_backup
+                    else
+                        rm -f /tmp/frl_identity_vault_backup
+                    fi
+
+                    rm -rf '$VAULT_DIR'
+
+                    git clone '$GITHUB_REPO' '$INSTALL_ROOT/frlegends-skeleton-key'
+
+                    if [ -d /tmp/frl_payloads_backup ]; then
+                        rm -rf '$VAULT_DIR/fr_legends_payloads'
+                        cp -a /tmp/frl_payloads_backup '$VAULT_DIR/fr_legends_payloads'
+                    fi
+
+                    if [ -f /tmp/frl_vault_lock_backup ]; then
+                        cp -a /tmp/frl_vault_lock_backup '$VAULT_DIR/.vault.lock'
+                    fi
+
+                    if [ -f /tmp/frl_identity_vault_backup ]; then
+                        cp -a /tmp/frl_identity_vault_backup '$VAULT_DIR/identity_vault.db'
+                    fi
+
+                    rm -rf /tmp/frl_payloads_backup
+                    rm -f /tmp/frl_vault_lock_backup
+                    rm -f /tmp/frl_identity_vault_backup
                 "
 
-                printf '[+] Existing application directory removed.\n'
+                printf '[+] Application replaced successfully.\n'
+                break
+                ;;
+
+            2)
+                printf '[+] Existing installation will be used.\n'
                 break
                 ;;
 
@@ -278,101 +297,104 @@ if [ "$INSTALL_EXISTS" -eq 1 ]; then
         esac
     done
 
-fi
-
-INSTALL_EXISTS_AFTER_CHECK=0
-
-if proot-distro login "$DEBIAN_NAME" -- bash -c \
-    "[ -f '$VAULT_DIR/package.json' ] && [ -f '$VAULT_DIR/cli.js' ]" \
-    >/dev/null 2>&1; then
-
-    INSTALL_EXISTS_AFTER_CHECK=1
-
-fi
-
-if [ "$INSTALL_EXISTS_AFTER_CHECK" -eq 0 ]; then
-
-    printf '\n[*] Cloning FR Legends Skeleton Key inside Debian...\n'
-    printf '[*] Repository:\n'
-    printf '    %s\n' "$REPO_URL"
-    printf '\n'
-
-    proot-distro login "$DEBIAN_NAME" -- bash -c "
-        set -e
-
-        rm -rf '$DEBIAN_ROOT'
-
-        git clone '$REPO_URL' '$DEBIAN_ROOT'
-
-        printf '\n[+] Repository cloned successfully.\n'
-    "
-
 else
 
-    printf '\n[+] Existing FRL Vault installation retained.\n'
+    printf '[*] No existing FRL Vault installation detected.\n'
+
+    printf '[*] Cloning FR Legends Skeleton Key inside Debian...\n'
+    printf '    Repository: %s\n' "$GITHUB_REPO"
+    printf '\n'
+
+    proot-distro login debian -- bash -c "
+        set -e
+
+        mkdir -p '$INSTALL_ROOT'
+
+        if [ -e '$VAULT_DIR' ]; then
+            printf '[!] Target directory already exists.\n'
+            printf '    %s\n' '$VAULT_DIR'
+            exit 1
+        fi
+
+        git clone '$GITHUB_REPO' '$VAULT_DIR'
+    "
+
+    printf '[+] Repository cloned successfully.\n'
 
 fi
 
 printf '\n[*] Checking Vault application...\n'
 
-if ! proot-distro login "$DEBIAN_NAME" -- bash -c \
-    "[ -f '$VAULT_DIR/package.json' ] && [ -f '$VAULT_DIR/cli.js' ]"; then
-
+if ! proot-distro login debian -- bash -c "[ -f '$VAULT_DIR/package.json' ] && [ -f '$VAULT_DIR/cli.js' ]"; then
     printf '[!] Vault application files were not found.\n'
-    printf '    Expected:\n'
-    printf '    %s/package.json\n' "$VAULT_DIR"
-    printf '    %s/cli.js\n' "$VAULT_DIR"
     exit 1
 fi
 
 printf '[+] Vault application found.\n'
 
-printf '\n'
-printf '%s\n' '============================================================'
-printf '%s\n' '              INSTALLING NODE DEPENDENCIES'
-printf '%s\n' '============================================================'
+printf '\n[*] Installing Node.js dependencies inside Debian...\n'
+printf '    This may take a moment.\n'
 printf '\n'
 
-proot-distro login "$DEBIAN_NAME" -- bash -c "
-    set -e
+proot-distro login debian -- bash -c "
+set -e
 
-    cd '$VAULT_DIR'
+cd '$VAULT_DIR'
 
-    printf '[*] Cleaning npm cache...\n'
-    npm cache clean --force || true
+rm -rf node_modules
 
-    printf '[*] Installing dependencies...\n'
+npm cache verify || true
 
-    if [ -f package-lock.json ]; then
-        npm ci --prefer-online
-    else
-        npm install --prefer-online
-    fi
+if [ -f package-lock.json ]; then
+    npm ci
+else
+    npm install
+fi
 
-    printf '\n[+] Node.js dependencies installed.\n'
+printf '\n[+] Node.js dependencies installed.\n'
 "
 
-printf '\n'
-printf '[*] Testing better-sqlite3...\n'
+printf '\n[*] Testing better-sqlite3...\n'
 
-proot-distro login "$DEBIAN_NAME" -- bash -c "
-    set -e
+proot-distro login debian -- bash -c "
+set -e
 
-    cd '$VAULT_DIR'
+cd '$VAULT_DIR'
 
-    node -e '
-        const Database = require(\"better-sqlite3\");
-        const db = new Database(\":memory:\");
-        const result = db.prepare(\"SELECT 1 AS test\").get();
+node -e '
+const Database = require(\"better-sqlite3\");
+const db = new Database(\":memory:\");
+db.prepare(\"SELECT 1\").get();
+db.close();
+console.log(\"[+] better-sqlite3 SQLite test passed.\");
+'
+"
 
-        if (result.test !== 1) {
-            throw new Error(\"SQLite test returned an unexpected result.\");
-        }
+printf '\n[*] Checking Vault data...\n'
 
-        db.close();
+proot-distro login debian -- bash -c "
+set -e
 
-        console.log(\"[+] better-sqlite3 SQLite test passed.\");
-    '
+cd '$VAULT_DIR'
+
+if [ -e .vault.lock ]; then
+    printf '[+] Found: .vault.lock\n'
+else
+    printf '[*] Not present yet: .vault.lock\n'
+fi
+
+if [ -e identity_vault.db ]; then
+    printf '[+] Found: identity_vault.db\n'
+else
+    printf '[*] Not present yet: identity_vault.db\n'
+fi
+
+if [ -d fr_legends_payloads ]; then
+    printf '[+] Found: fr_legends_payloads/\n'
+else
+    printf '[*] Creating fr_legends_payloads/\n'
+    mkdir -p fr_legends_payloads
+fi
 "
 
 printf '\n'
@@ -399,23 +421,21 @@ printf '  The Termux repository is only the bootstrap/source copy.\n'
 printf '  The actual runtime is inside the Debian proot environment.\n'
 printf '\n'
 
-printf 'LOCAL VAULT DATA:\n'
-printf '  Preserve these files/directories when updating:\n'
-printf '  .vault_lock\n'
+printf 'You may delete the Termux repository later if you want to save space:\n'
+printf '  %s\n' "$REPO_ROOT"
+printf '\n'
+
+printf 'DO NOT delete the Debian copy:\n'
+printf '  %s\n' "$INSTALL_ROOT"
+printf '\n'
+
+printf 'KEEP YOUR LOCAL VAULT DATA WHEN UPDATING:\n'
+printf '  .vault.lock\n'
 printf '  identity_vault.db\n'
 printf '  fr_legends_payloads/\n'
 printf '\n'
 
-printf 'The Debian application is located at:\n'
-printf '  %s\n' "$VAULT_DIR"
-printf '\n'
-
-printf 'The original Termux repository can be removed later if desired:\n'
-printf '  rm -rf \"%s\"\n' "$REPO_ROOT"
-printf '\n'
-
-printf 'DO NOT remove the Debian installation if you want to keep the\n'
-printf 'installed FRL Skeleton Key runtime and its local data.\n'
+printf 'When updating or replacing the application, preserve those files.\n'
 printf '\n'
 
 printf '%s\n' '============================================================'
