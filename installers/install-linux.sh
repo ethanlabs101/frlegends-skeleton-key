@@ -4,7 +4,7 @@ set -e
 
 INSTALLER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$INSTALLER_DIR/.." && pwd)"
-VAULT_DIR="$PROJECT_ROOT"
+VAULT_DIR="$PROJECT_ROOT/skeleton-key-vault"
 
 printf '\n'
 printf '%s\n' '============================================================'
