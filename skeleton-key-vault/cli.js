@@ -8,6 +8,7 @@ import { writeFile, readFile, mkdir } from "node:fs/promises";
 import { PlayFabClient } from "./src/client.js";
 import { decodePd, encodePd } from "./src/pd.js";
 import { runSplashScreen } from './src/splash.js';
+import { checkForUpdates } from "./src/update.js";
 import { activeAccountState } from './src/state.js';
 import { syncTelemetry as telemetrySync } from "./src/telemetry.js";
 import { handleCredentialAuthentication } from './src/auth.js';
@@ -359,6 +360,41 @@ async function mainLoop() {
     const MASTER_KEY = await runSplashScreen(rl);
     await validateFileSystem(rl);
 
+    const update = await checkForUpdates();
+
+    if(update.checked && update.available) {
+        console.clear();
+        drawInterfaceFrame("Update Available", activeAccountState);
+
+        console.log(box.top());
+        box.drawRow(`${theme.warn("UPDATE AVAILABLE")}`);
+        box.drawRow(`${theme.bwhite("Current Version: ")}${theme.bpurple(update.localVersion)}`);
+        box.drawRow(`${theme.bwhite("Latest Version: ")}${theme.bcyan(update.remoteVersion)}`);
+        console.log(box.mid());
+
+        if(update.message) {
+            box.drawRow(`${theme.bwhite(update.message)}`);
+            console.log(box.mid());
+        }
+
+        box.drawRow(`${theme.bcyan("IMPORTANT: PRESERVE YOUR LOCAL DATA BEFORE UPDATING.")}`);
+        box.drawRow(`${theme.bwhite("Keep your ")}${theme.bpurple("fr_legends_payloads/")}${theme.bwhite(" directory.")}`);
+        box.drawRow(`${theme.bwhite("Keep your ")}${theme.bpurple(".vault.lock")}${theme.bwhite(" file.")}`);
+        box.drawRow(`${theme.bwhite("Keep your ")}${theme.bpurple("identity_vault.db")}${theme.bwhite(" file.")}`);
+        console.log(box.mid());
+
+        box.drawRow(`${theme.warn("WARNING: ")}${theme.bwhite("Replacing or deleting these files may cause")}`);
+        box.drawRow(`${theme.bwhite("loss of saved accounts, vault access, payloads, or backups.")}`);
+        box.drawRow(`${theme.bwhite("After updating, you may need to restore file permissions")}`);
+        box.drawRow(`${theme.bwhite("or use chmod/chown so the Vault can write to its database.")}`);
+        console.log(box.mid());
+
+        box.drawRow(`${theme.bwhite("Repo URL: ")}`);
+        box.drawRow(`${theme.bcyan(update.releaseUrl)}`);
+        console.log(box.bottom());
+
+        await rl.question(`\n${theme.bpurple("[")}${theme.bwhite(">")}${theme.bpurple("] ")}${theme.bwhite("Press Enter To Continue")}${theme.bpurple("...")}`);
+    }
     while (true) {
         drawInterfaceFrame("Main Navigation", activeAccountState);
         console.log(box.top());
