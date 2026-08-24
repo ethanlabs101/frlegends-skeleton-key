@@ -6,6 +6,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 VAULT_DIR="$REPO_ROOT/skeleton-key-vault"
 
+DEBIAN_VAULT="/root/frlegends-skeleton-key/skeleton-key-vault"
+
 printf '\n'
 printf '%s\n' '============================================================'
 printf '%s\n' '        FR LEGENDS SKELETON KEY VAULT INSTALLER'
@@ -36,10 +38,10 @@ fi
 
 printf '\n[*] Checking Debian environment...\n'
 
-if proot-distro login debian -- true >/dev/null 2>&1; then
+DEBIAN_EXISTS=0
+
+if proot-distro list 2>/dev/null | grep -q '^debian'; then
     DEBIAN_EXISTS=1
-else
-    DEBIAN_EXISTS=0
 fi
 
 if [ "$DEBIAN_EXISTS" -eq 1 ]; then
@@ -71,11 +73,13 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
                 fi
 
                 printf '\n[*] Removing existing Debian environment...\n'
+
                 proot-distro remove debian
 
                 printf '[+] Existing Debian environment removed.\n'
 
                 printf '\n[*] Installing fresh Debian environment...\n'
+
                 proot-distro install debian
 
                 printf '[+] Debian installed successfully.\n'
@@ -99,7 +103,7 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
     done
 
 else
-    printf '[+] Debian is not installed.\n'
+    printf '[*] Debian is not installed.\n'
     printf '[*] Installing Debian...\n'
 
     proot-distro install debian
@@ -145,7 +149,8 @@ apt-get install -y \
     make \
     g++ \
     pkg-config \
-    libsqlite3-dev
+    libsqlite3-dev \
+    tar
 
 printf "\n[+] Debian system dependencies installed.\n"
 
@@ -170,34 +175,39 @@ printf '\n[+] Debian runtime prepared.\n'
 
 printf '\n[*] Preparing Debian application directory...\n'
 
-proot-distro login debian -- bash -c '
+proot-distro login debian -- bash -c "
 set -e
 
-mkdir -p /root/frlegends-skeleton-key
-'
+mkdir -p '$DEBIAN_VAULT'
+"
 
 printf '[+] Debian application directory ready.\n'
 
 printf '\n[*] Copying FR Legends Skeleton Key into Debian...\n'
+printf '[*] Source: %s\n' "$VAULT_DIR"
+printf '[*] Destination: %s\n' "$DEBIAN_VAULT"
+printf '[*] Merging application files while preserving existing Vault data...\n'
 
-proot-distro login debian -- bash -c '
-rm -rf /root/frlegends-skeleton-key/skeleton-key-vault
-mkdir -p /root/frlegends-skeleton-key/skeleton-key-vault
-'
+tar \
+    --exclude='./node_modules' \
+    --exclude='./.git' \
+    -C "$VAULT_DIR" \
+    -cf - . | \
+proot-distro login debian -- bash -c "
+set -e
 
-proot-distro copy \
-    --recursive \
-    "$VAULT_DIR/." \
-    debian:/root/frlegends-skeleton-key/skeleton-key-vault
+mkdir -p '$DEBIAN_VAULT'
+tar -C '$DEBIAN_VAULT' -xf -
+"
 
-printf '[+] Vault source copied into Debian.\n'
+printf '[+] Vault source merged into Debian.\n'
 
 printf '\n[*] Installing Node.js dependencies inside Debian...\n'
 
-proot-distro login debian -- bash -c '
+proot-distro login debian -- bash -c "
 set -e
 
-cd /root/frlegends-skeleton-key/skeleton-key-vault
+cd '$DEBIAN_VAULT'
 
 if [ -f package-lock.json ]; then
     npm ci
@@ -205,24 +215,24 @@ else
     npm install
 fi
 
-printf "\n[+] Node.js dependencies installed.\n"
-'
+printf '\n[+] Node.js dependencies installed.\n'
+"
 
 printf '\n[*] Testing better-sqlite3...\n'
 
-proot-distro login debian -- bash -c '
+proot-distro login debian -- bash -c "
 set -e
 
-cd /root/frlegends-skeleton-key/skeleton-key-vault
+cd '$DEBIAN_VAULT'
 
-node -e "
+node -e '
 const Database = require(\"better-sqlite3\");
 const db = new Database(\":memory:\");
 db.prepare(\"SELECT 1\").get();
 db.close();
 console.log(\"[+] better-sqlite3 SQLite test passed.\");
-"
 '
+"
 
 printf '\n'
 printf '%s\n' '============================================================'
@@ -234,12 +244,12 @@ printf 'FRL Skeleton Key is installed inside Debian proot.\n'
 printf '\n'
 
 printf 'Vault location inside Debian:\n'
-printf '  /root/frlegends-skeleton-key/skeleton-key-vault\n'
+printf '  %s\n' "$DEBIAN_VAULT"
 printf '\n'
 
 printf 'Launch command:\n'
 printf '  proot-distro login debian\n'
-printf '  cd /root/frlegends-skeleton-key/skeleton-key-vault\n'
+printf '  cd %s\n' "$DEBIAN_VAULT"
 printf '  node cli.js\n'
 printf '\n'
 
