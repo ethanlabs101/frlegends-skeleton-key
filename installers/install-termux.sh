@@ -6,6 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 GITHUB_REPO="https://github.com/ethanlabs101/frlegends-skeleton-key.git"
+
 DEBIAN_ROOT="/root/frlegends-skeleton-key"
 DEBIAN_REPO="$DEBIAN_ROOT/frlegends-skeleton-key"
 DEBIAN_VAULT="$DEBIAN_REPO/skeleton-key-vault"
@@ -42,14 +43,15 @@ printf '\n[*] Checking Debian environment...\n'
 
 DEBIAN_EXISTS=0
 
-if proot-distro list 2>/dev/null | grep -Eq '^[[:space:]]*debian[[:space:]]'; then
+if proot-distro login debian -- true >/dev/null 2>&1; then
     DEBIAN_EXISTS=1
 fi
 
 if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
-    printf '[+] Debian is already installed.\n'
+    printf '[+] Debian environment detected.\n'
     printf '\n'
+
     printf 'Choose how to continue:\n'
     printf '\n'
     printf '  1) Fresh Debian installation\n'
@@ -65,8 +67,9 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
             1)
                 printf '\n'
-                printf '[!] WARNING: Fresh installation removes the existing Debian container.\n'
-                printf '[!] Everything stored inside that Debian container will be deleted.\n'
+                printf '[!] WARNING: This removes the existing Debian container.\n'
+                printf '[!] Everything stored inside that Debian container will be lost.\n'
+                printf '[!] This includes any existing FRL Vault installation inside it.\n'
                 printf '\n'
                 printf '[>] Type REINSTALL to continue: '
                 read -r CONFIRM
@@ -109,7 +112,7 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
 
 else
 
-    printf '[+] Debian is not installed.\n'
+    printf '[+] Debian environment not found.\n'
     printf '[*] Installing Debian...\n'
 
     proot-distro install debian
@@ -144,7 +147,7 @@ apt-get install -y \
     nodejs \
     npm
 
-printf "\n[+] Debian packages installed.\n"
+printf "\n[+] Debian system dependencies installed.\n"
 
 printf "[+] Node.js version: "
 node --version
@@ -158,21 +161,17 @@ git --version
 
 printf '\n[+] Debian environment prepared.\n'
 
-printf '\n[*] Checking FR Legends Skeleton Key installation...\n'
+printf '\n[*] Checking for existing FRL Vault installation...\n'
 
-if proot-distro login debian -- test -d "$DEBIAN_VAULT"; then
+if proot-distro login debian -- test -d "$DEBIAN_VAULT" >/dev/null 2>&1; then
 
-    printf '[+] Existing Vault installation detected.\n'
-    printf '\n'
-
-    printf '[!] An existing FR Legends Skeleton Key installation is already present.\n'
-    printf '[!] The installer will NOT overwrite it automatically.\n'
+    printf '[+] Existing FRL Skeleton Key installation detected.\n'
     printf '\n'
 
     printf 'Choose how to continue:\n'
     printf '\n'
     printf '  1) Keep existing installation\n'
-    printf '  2) Remove application and perform fresh clone\n'
+    printf '  2) Fresh clone\n'
     printf '  3) Cancel\n'
     printf '\n'
 
@@ -189,11 +188,12 @@ if proot-distro login debian -- test -d "$DEBIAN_VAULT"; then
 
             2)
                 printf '\n'
-                printf '[!] WARNING: This removes the existing application directory.\n'
-                printf '[!] Vault data inside that directory may also be removed.\n'
-                printf '[!] Back up .vault.lock, identity_vault.db, and fr_legends_payloads/ first.\n'
+                printf '[!] WARNING: A fresh clone replaces the application files.\n'
+                printf '[!] Preserve these first if they contain user data:\n'
+                printf '    .vault.lock\n'
+                printf '    identity_vault.db\n'
+                printf '    fr_legends_payloads/\n'
                 printf '\n'
-
                 printf '[>] Type FRESHCLONE to continue: '
                 read -r CONFIRM
 
@@ -202,7 +202,7 @@ if proot-distro login debian -- test -d "$DEBIAN_VAULT"; then
                     exit 1
                 fi
 
-                printf '\n[*] Removing existing FRL Skeleton Key installation...\n'
+                printf '\n[*] Removing existing FRL application...\n'
 
                 proot-distro login debian -- bash -c "
                     rm -rf '$DEBIAN_REPO'
@@ -218,6 +218,7 @@ if proot-distro login debian -- test -d "$DEBIAN_VAULT"; then
                 "
 
                 printf '[+] Repository cloned successfully.\n'
+
                 break
                 ;;
 
@@ -234,7 +235,7 @@ if proot-distro login debian -- test -d "$DEBIAN_VAULT"; then
 
 else
 
-    printf '[*] No existing Vault installation detected.\n'
+    printf '[*] No existing FRL Vault installation detected.\n'
     printf '[*] Cloning FR Legends Skeleton Key inside Debian...\n'
 
     proot-distro login debian -- bash -c "
@@ -246,17 +247,17 @@ else
 
 fi
 
-printf '\n[*] Locating Vault application...\n'
+printf '\n[*] Checking Vault application...\n'
 
 if ! proot-distro login debian -- test -f "$DEBIAN_VAULT/package.json"; then
-    printf '[!] package.json was not found inside the cloned repository.\n'
+    printf '[!] package.json was not found.\n'
     printf '    Expected:\n'
     printf '    %s/package.json\n' "$DEBIAN_VAULT"
     exit 1
 fi
 
 if ! proot-distro login debian -- test -f "$DEBIAN_VAULT/cli.js"; then
-    printf '[!] cli.js was not found inside the cloned repository.\n'
+    printf '[!] cli.js was not found.\n'
     printf '    Expected:\n'
     printf '    %s/cli.js\n' "$DEBIAN_VAULT"
     exit 1
@@ -296,7 +297,7 @@ console.log(\"[+] better-sqlite3 SQLite test passed.\");
 '
 "
 
-printf '\n[*] Checking Vault data directories...\n'
+printf '\n[*] Checking Vault data...\n'
 
 proot-distro login debian -- bash -c "
 set -e
