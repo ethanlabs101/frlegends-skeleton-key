@@ -180,6 +180,7 @@ printf '[+] Debian application directory ready.\n'
 printf '\n[*] Copying FR Legends Skeleton Key into Debian...\n'
 
 proot-distro copy \
+    --recursive \
     "$VAULT_DIR" \
     debian:/root/frlegends-skeleton-key/skeleton-key-vault
 
