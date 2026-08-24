@@ -36,10 +36,10 @@ fi
 
 printf '\n[*] Checking Debian environment...\n'
 
-DEBIAN_EXISTS=0
-
-if proot-distro list 2>/dev/null | grep -q '^debian'; then
+if proot-distro login debian -- true >/dev/null 2>&1; then
     DEBIAN_EXISTS=1
+else
+    DEBIAN_EXISTS=0
 fi
 
 if [ "$DEBIAN_EXISTS" -eq 1 ]; then
@@ -97,8 +97,9 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
                 ;;
         esac
     done
+
 else
-    printf '[*] Debian is not installed.\n'
+    printf '[+] Debian is not installed.\n'
     printf '[*] Installing Debian...\n'
 
     proot-distro install debian
@@ -172,16 +173,21 @@ printf '\n[*] Preparing Debian application directory...\n'
 proot-distro login debian -- bash -c '
 set -e
 
-mkdir -p /root/frlegends-skeleton-key/skeleton-key-vault
+mkdir -p /root/frlegends-skeleton-key
 '
 
 printf '[+] Debian application directory ready.\n'
 
 printf '\n[*] Copying FR Legends Skeleton Key into Debian...\n'
 
+proot-distro login debian -- bash -c '
+rm -rf /root/frlegends-skeleton-key/skeleton-key-vault
+mkdir -p /root/frlegends-skeleton-key/skeleton-key-vault
+'
+
 proot-distro copy \
     --recursive \
-    "$VAULT_DIR" \
+    "$VAULT_DIR/." \
     debian:/root/frlegends-skeleton-key/skeleton-key-vault
 
 printf '[+] Vault source copied into Debian.\n'
