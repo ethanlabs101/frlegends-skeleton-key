@@ -1,0 +1,252 @@
+{
+    "carName": "S13",
+    "modelName": "S13",
+    "carSynID": 415,
+    "parts": [
+        {
+            "path": "S13/S13_LIGHT_HEAD_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_LIGHT_TAIL_L.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_FRONT_FACE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_FRONT_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_REAR_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_HOOD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_SPOILER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_MIRROR_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_FENDER_L.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_FENDER_R.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_BODY_ROOF_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_EXHAUST_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "S13/S13_FRAME_DOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/steeringwheel/S13_STEER_WHEEL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/speedometer/S13_SPEEDOMETER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/shifter/STOCK_SHIFTER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/handbrake/STOCK_HANDBRAKE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/seat/SEAT_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Lugs/LUGS_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Dampers/DAMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Brakes/WHEEL_BRAKE_0.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        }
+    ],
+    "mainBody": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "trunkDoor": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "tire": {
+        "tireName": "Stock",
+        "side": 2,
+        "health": 100
+    },
+    "rimFL": {
+        "path": "_Rims/STOCK_S13.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimFR": {
+        "path": "_Rims/STOCK_S13.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRL": {
+        "path": "_Rims/STOCK_S13.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRR": {
+        "path": "_Rims/STOCK_S13.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "color": {
+        "matType": 0,
+        "matPath": "",
+        "body": {
+            "r": 240,
+            "g": 236,
+            "b": 236,
+            "a": 255
+        },
+        "hose": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        },
+        "rollGage": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        }
+    },
+    "leftRudder": true,
+    "appliqueData": {
+        "path": "",
+        "tiling": {
+            "x": 1,
+            "y": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "bodyDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "windowDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "liverySyn": 0,
+    "liveryUrl": "",
+    "hert_modified": false,
+    "config": {
+        "height": 0.20000000298023224,
+        "balance": 0,
+        "camberF": 0,
+        "camberR": 0,
+        "flangeF": 0,
+        "flangeR": 0
+    },
+    "engine": {
+        "engineName": "CA18DET",
+        "path": "_Engines/CA18.prefab",
+        "rpmMin": 1000,
+        "rpmMax": 7500,
+        "torque": 175,
+        "torqueMax": 175,
+        "torqueLimit": 250,
+        "mass": 120,
+        "torqueBase": 175,
+        "engineLevel": 0,
+        "camshaftsLevel": 0,
+        "transmissionLevel": 0,
+        "ecuLevel": 0,
+        "turboRatio": 1,
+        "intakeKit": {
+            "path": "_Engines/CA18_KIT0.prefab",
+            "AFLevel": 0,
+            "HSLevel": 0,
+            "ICLevel": 0,
+            "TurboLevel": 0
+        }
+    }
+}

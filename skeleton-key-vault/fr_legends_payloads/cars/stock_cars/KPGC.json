@@ -1,0 +1,240 @@
+{
+    "carName": "KPGC",
+    "modelName": "KPGC",
+    "carSynID": 359,
+    "parts": [
+        {
+            "path": "KPGC/KPGC10_Headlight_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_taillight.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_FRONT_BUMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_REAR_Bumper.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_HOOD_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_FENDER_FL_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_FENDER_FR_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_FENDER_RL_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_BODY_FENDER_RR_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_EXHAUST1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "KPGC/KPGC10_FRAME_DOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/steeringwheel/KPGC10_FRAME_STEERING_WHEEL_Level_2.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/speedometer/KPGC_DASHBOARD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/shifter/KPGC10_SHIFTER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/handbrake/KPGC10_FRAME_handbrake.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/seat/SEAT_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Lugs/LUGS_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Dampers/DAMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Brakes/WHEEL_BRAKE_0.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        }
+    ],
+    "mainBody": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "trunkDoor": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "tire": {
+        "tireName": "Stock",
+        "side": 0,
+        "health": 100
+    },
+    "rimFL": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimFR": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRL": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRR": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "color": {
+        "matType": 0,
+        "matPath": "",
+        "body": {
+            "r": 180,
+            "g": 180,
+            "b": 180,
+            "a": 219
+        },
+        "hose": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        },
+        "rollGage": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        }
+    },
+    "leftRudder": false,
+    "appliqueData": {
+        "path": "",
+        "tiling": {
+            "x": 1,
+            "y": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "bodyDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "windowDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "liverySyn": 0,
+    "liveryUrl": "",
+    "hert_modified": false,
+    "config": {
+        "height": 0.20000000298023224,
+        "balance": 0,
+        "camberF": 0,
+        "camberR": 0,
+        "flangeF": 0,
+        "flangeR": 0
+    },
+    "engine": {
+        "engineName": "S20",
+        "path": "_Engines/S20.prefab",
+        "rpmMin": 1000,
+        "rpmMax": 7500,
+        "torque": 160,
+        "torqueMax": 160,
+        "torqueLimit": 250,
+        "mass": 199,
+        "torqueBase": 160,
+        "engineLevel": 0,
+        "camshaftsLevel": 0,
+        "transmissionLevel": 0,
+        "ecuLevel": 0,
+        "turboRatio": 1,
+        "intakeKit": {
+            "path": "_Engines/S20_KIT0.prefab",
+            "AFLevel": 0,
+            "HSLevel": 0,
+            "ICLevel": 0,
+            "TurboLevel": 0
+        }
+    }
+}

@@ -1,0 +1,22 @@
+export const CAR_MODELS = [
+    "180SX",
+    "2105",
+    "AE86",
+    "ALTEZZA",
+    "E30",
+    "E36",
+    "FC3S",
+    "FC3SC",
+    "FD3S",
+    "GT86",
+    "JZX100CHASER",
+    "JZX100MKII",
+    "KPGC",
+    "MIATA",
+    "R32-2D",
+    "R32-4D",
+    "S13",
+    "S14KOUKI",
+    "S14ZENKI",
+    "S15"
+];

@@ -1,0 +1,240 @@
+{
+    "carName": "2105",
+    "modelName": "2105",
+    "carSynID": 335,
+    "parts": [
+        {
+            "path": "2105/2105_FRAME_HEADLIGHT.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_FRAME_TAILLIGHT.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2015_BODY_TRUNKDOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_BODY_FRONT_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_FRAME_REAR_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_BODY_HOOD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_BODY_MIRROR_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_BODY_FENDER_FL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_BODY_FENDER_FR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_EXHAUST_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "2105/2105_FRAME_DOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/steeringwheel/2105_STEER_WHEEL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/speedometer/2105_FRAME_DASHBOARD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/shifter/2105_SHIFTER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/handbrake/STOCK_HANDBRAKE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/seat/SEAT_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Lugs/LUGS_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Dampers/DAMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Brakes/WHEEL_BRAKE_0.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        }
+    ],
+    "mainBody": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "trunkDoor": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "tire": {
+        "tireName": "Stock",
+        "side": 2,
+        "health": 100
+    },
+    "rimFL": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimFR": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRL": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRR": {
+        "path": "_Rims/STOCK_STEEL1.prefab",
+        "size": 0,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "color": {
+        "matType": 0,
+        "matPath": "",
+        "body": {
+            "r": 180,
+            "g": 180,
+            "b": 180,
+            "a": 219
+        },
+        "hose": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        },
+        "rollGage": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        }
+    },
+    "leftRudder": true,
+    "appliqueData": {
+        "path": "",
+        "tiling": {
+            "x": 1,
+            "y": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "bodyDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "windowDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "liverySyn": 0,
+    "liveryUrl": "",
+    "hert_modified": false,
+    "config": {
+        "height": 0.20000000298023224,
+        "balance": 0,
+        "camberF": 0,
+        "camberR": 0,
+        "flangeF": 0,
+        "flangeR": 0
+    },
+    "engine": {
+        "engineName": "2105",
+        "path": "_Engines/2105.prefab",
+        "rpmMin": 1000,
+        "rpmMax": 7500,
+        "torque": 100,
+        "torqueMax": 100,
+        "torqueLimit": 250,
+        "mass": 110,
+        "torqueBase": 100,
+        "engineLevel": 0,
+        "camshaftsLevel": 0,
+        "transmissionLevel": 0,
+        "ecuLevel": 0,
+        "turboRatio": 1,
+        "intakeKit": {
+            "path": "_Engines/2105_KIT0.prefab",
+            "AFLevel": 0,
+            "HSLevel": 0,
+            "ICLevel": 0,
+            "TurboLevel": 0
+        }
+    }
+}

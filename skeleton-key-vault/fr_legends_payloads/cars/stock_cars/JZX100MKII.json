@@ -1,0 +1,246 @@
+{
+    "carName": "JZX100MKII",
+    "modelName": "JZX100MKII",
+    "carSynID": 128,
+    "parts": [
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_FRAME_HEAD_LIGHT.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_FRAME_TAIL_LIGHT_A.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_FRONT_FACE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_FRONT_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_REAR_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_HOOD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MIRROR_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_FENDER_FL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_BODY_FENDER_FR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_MARK_II_ROOF_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_FRAME_EXHAUST_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "JZX100MKII/JZX100_FRAME_DOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/steeringwheel/JZX100_FRAME_STEER_WHEEL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/speedometer/JZX100_FRAME_SPEEDO.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/shifter/STOCK_SHIFTER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/handbrake/STOCK_HANDBRAKE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/seat/SEAT_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Lugs/LUGS_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Dampers/DAMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Brakes/WHEEL_BRAKE_0.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        }
+    ],
+    "mainBody": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "trunkDoor": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "tire": {
+        "tireName": "Stock",
+        "side": 2,
+        "health": 100
+    },
+    "rimFL": {
+        "path": "_Rims/STOCK_JZX100.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimFR": {
+        "path": "_Rims/STOCK_JZX100.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRL": {
+        "path": "_Rims/STOCK_JZX100.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRR": {
+        "path": "_Rims/STOCK_JZX100.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "color": {
+        "matType": 0,
+        "matPath": "",
+        "body": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 0
+        },
+        "hose": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        },
+        "rollGage": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        }
+    },
+    "leftRudder": true,
+    "appliqueData": {
+        "path": "",
+        "tiling": {
+            "x": 1,
+            "y": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "bodyDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "windowDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "liverySyn": 0,
+    "liveryUrl": "",
+    "hert_modified": false,
+    "config": {
+        "height": 0.20000000298023224,
+        "balance": 0,
+        "camberF": 0,
+        "camberR": 0,
+        "flangeF": 0,
+        "flangeR": 0
+    },
+    "engine": {
+        "engineName": "1JZ",
+        "path": "_Engines/1JZ.prefab",
+        "rpmMin": 1000,
+        "rpmMax": 7500,
+        "torque": 275,
+        "torqueMax": 275,
+        "torqueLimit": 300,
+        "mass": 165,
+        "torqueBase": 275,
+        "engineLevel": 0,
+        "camshaftsLevel": 0,
+        "transmissionLevel": 0,
+        "ecuLevel": 0,
+        "turboRatio": 1,
+        "intakeKit": {
+            "path": "_Engines/1JZ_KIT0.prefab",
+            "AFLevel": 0,
+            "HSLevel": 0,
+            "ICLevel": 0,
+            "TurboLevel": 0
+        }
+    }
+}

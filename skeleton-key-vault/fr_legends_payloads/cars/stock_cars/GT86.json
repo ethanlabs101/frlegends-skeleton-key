@@ -1,0 +1,246 @@
+{
+    "carName": "GT86",
+    "modelName": "GT86",
+    "carSynID": 40,
+    "parts": [
+        {
+            "path": "GT86/86_frame_HEAD_LIGHT_L.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_frame_TAIL_LIGHT_L.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_REAR_BUMPER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_HOOD.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_SPOILER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_mirror_.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_FENDER_FL.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_FENDER_FR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_BODY_ROOF_ANTENNA_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_EXHAUST_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "GT86/86_frame_DOOR.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/steeringwheel/86_steelwheel.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/speedometer/86_frame_SPEEDOMETER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/shifter/STOCK_SHIFTER.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/handbrake/STOCK_HANDBRAKE.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Interior/seat/SEAT_1.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Lugs/LUGS_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Dampers/DAMPER_STOCK.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        },
+        {
+            "path": "_Brakes/WHEEL_BRAKE_0.prefab",
+            "health": 100,
+            "deforms": [],
+            "equipedPosition": 0
+        }
+    ],
+    "mainBody": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "trunkDoor": {
+        "path": "",
+        "health": 100,
+        "deforms": [],
+        "equipedPosition": 0
+    },
+    "tire": {
+        "tireName": "Stock",
+        "side": 2,
+        "health": 100
+    },
+    "rimFL": {
+        "path": "_Rims/STOCK_GT86.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimFR": {
+        "path": "_Rims/STOCK_GT86.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRL": {
+        "path": "_Rims/STOCK_GT86.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "rimRR": {
+        "path": "_Rims/STOCK_GT86.prefab",
+        "size": 1,
+        "ET": 0,
+        "colorIndex": 0
+    },
+    "color": {
+        "matType": 0,
+        "matPath": "",
+        "body": {
+            "r": 218,
+            "g": 90,
+            "b": 0,
+            "a": 255
+        },
+        "hose": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        },
+        "rollGage": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+        }
+    },
+    "leftRudder": true,
+    "appliqueData": {
+        "path": "",
+        "tiling": {
+            "x": 1,
+            "y": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "bodyDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "windowDecal": {
+        "revision": 0,
+        "capacity": 10,
+        "binary": []
+    },
+    "liverySyn": 0,
+    "liveryUrl": "",
+    "hert_modified": false,
+    "config": {
+        "height": 0.20000000298023224,
+        "balance": 0,
+        "camberF": 0,
+        "camberR": 0,
+        "flangeF": 0,
+        "flangeR": 0
+    },
+    "engine": {
+        "engineName": "FA20",
+        "path": "_Engines/FA20.prefab",
+        "rpmMin": 1000,
+        "rpmMax": 8000,
+        "torque": 200,
+        "torqueMax": 200,
+        "torqueLimit": 250,
+        "mass": 177,
+        "torqueBase": 200,
+        "engineLevel": 0,
+        "camshaftsLevel": 0,
+        "transmissionLevel": 0,
+        "ecuLevel": 0,
+        "turboRatio": 1,
+        "intakeKit": {
+            "path": "_Engines/FA20_KIT0.prefab",
+            "AFLevel": 0,
+            "HSLevel": 0,
+            "ICLevel": 0,
+            "TurboLevel": 0
+        }
+    }
+}
