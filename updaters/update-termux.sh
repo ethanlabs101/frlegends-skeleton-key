@@ -1,16 +1,13 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
 REPO_URL="https://github.com/ethanlabs101/frlegends-skeleton-key.git"
 
-TERMUX_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TERMUX_VAULT_DIR="$TERMUX_ROOT/skeleton-key-vault"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTALL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-DEBIAN_ROOT="/root/frlegends-skeleton-key"
-DEBIAN_SOURCE_DIR="$DEBIAN_ROOT/source"
-DEBIAN_VAULT_DIR="$DEBIAN_SOURCE_DIR/skeleton-key-vault"
-
+VAULT_DIR="$INSTALL_ROOT/skeleton-key-vault"
 TEMP_DIR="/tmp/frl-skeleton-key-update"
 
 printf '\n'
@@ -20,105 +17,138 @@ printf '%s\n' '                    Termux / Debian'
 printf '%s\n' '============================================================'
 printf '\n'
 
-if [ -z "$PREFIX" ] || [ ! -d "$PREFIX" ]; then
-    printf '[!] This updater must be run inside Termux.\n'
-    exit 1
-fi
+printf '[*] Checking runtime environment...\n'
 
-printf '[+] Termux environment detected.\n'
-
-printf '\n[*] Checking proot-distro...\n'
-
-if ! command -v proot-distro >/dev/null 2>&1; then
-    printf '[!] proot-distro is not installed.\n'
-    printf '[!] Run the Termux installer first.\n'
-    exit 1
-fi
-
-printf '[+] proot-distro detected.\n'
-
-printf '\n[*] Checking Debian environment...\n'
-
-if ! proot-distro login debian -- bash -c 'exit 0' >/dev/null 2>&1; then
-    printf '[!] Debian proot environment was not found.\n'
-    printf '[!] Run the Termux installer first.\n'
+if [ ! -f /etc/debian_version ]; then
+    printf '[!] This updater must be run inside the Debian proot environment.\n'
+    printf '\n'
+    printf '    Enter Debian first, then run:\n'
+    printf '    ./updaters/update-termux.sh\n'
+    printf '\n'
     exit 1
 fi
 
 printf '[+] Debian environment detected.\n'
 
-printf '\n[*] Checking installed FRL Vault...\n'
-
-if ! proot-distro login debian -- bash -c "test -f '$DEBIAN_VAULT_DIR/package.json'"; then
-    printf '[!] Installed Vault application was not found.\n'
-    printf '[!] Expected:\n'
-    printf '    %s/package.json\n' "$DEBIAN_VAULT_DIR"
-    printf '\n'
-    printf '[!] Run the Termux installer first.\n'
-    exit 1
-fi
-
-printf '[+] Installed Vault application found.\n'
-
 printf '\n[*] Checking Git...\n'
 
 if ! command -v git >/dev/null 2>&1; then
-    printf '[!] Git is not installed in Termux.\n'
+    printf '[!] Git is not installed.\n'
     printf '[*] Installing Git...\n'
-    pkg update -y
-    pkg install -y git
+
+    apt-get update
+    apt-get install -y git
+
+    printf '[+] Git installed.\n'
+else
+    printf '[+] Git detected: '
+    git --version
 fi
 
-printf '[+] Git detected: '
-git --version
+printf '\n[*] Checking current Vault installation...\n'
 
-printf '\n[*] Checking current installed version...\n'
-
-CURRENT_VERSION="$(
-    proot-distro login debian -- bash -c "
-        if [ -f '$DEBIAN_VAULT_DIR/version.json' ]; then
-            grep -oE '[0-9]{4}\.[0-9]{2}\.[0-9]{2}' '$DEBIAN_VAULT_DIR/version.json' | head -n 1
-        fi
-    "
-)"
-
-if [ -z "$CURRENT_VERSION" ]; then
-    CURRENT_VERSION="Unknown"
+if [ ! -f "$VAULT_DIR/package.json" ]; then
+    printf '[!] FRL Skeleton Key installation was not found.\n'
+    printf '\n'
+    printf '    Expected:\n'
+    printf '    %s\n' "$VAULT_DIR"
+    printf '\n'
+    printf '[!] Run the installer first.\n'
+    exit 1
 fi
 
-printf '[+] Current installed version: %s\n' "$CURRENT_VERSION"
+if [ ! -f "$VAULT_DIR/cli.js" ]; then
+    printf '[!] cli.js was not found.\n'
+    printf '    Expected: %s/cli.js\n' "$VAULT_DIR"
+    exit 1
+fi
 
-printf '\n[*] Downloading latest version information...\n'
+printf '[+] Existing Vault installation found.\n'
+
+printf 'Vault location:\n'
+printf '  %s\n' "$VAULT_DIR"
+
+printf '\n[*] Reading current version...\n'
+
+CURRENT_VERSION="Unknown"
+
+if [ -f "$VAULT_DIR/version.json" ]; then
+    CURRENT_VERSION="$(
+        grep -oE '[0-9]{4}\.[0-9]{2}\.[0-9]{2}' \
+        "$VAULT_DIR/version.json" | head -n 1
+    )"
+
+    if [ -z "$CURRENT_VERSION" ]; then
+        CURRENT_VERSION="Unknown"
+    fi
+fi
+
+printf '[+] Current version: %s\n' "$CURRENT_VERSION"
+
+printf '\n[*] Downloading latest repository...\n'
 
 rm -rf "$TEMP_DIR"
+
 mkdir -p "$TEMP_DIR"
 
-git clone --depth 1 "$REPO_URL" "$TEMP_DIR/source"
-
-LATEST_VERSION=""
-
-if [ -f "$TEMP_DIR/source/skeleton-key-vault/version.json" ]; then
-    LATEST_VERSION="$(
-        grep -oE '[0-9]{4}\.[0-9]{2}\.[0-9]{2}' \
-        "$TEMP_DIR/source/skeleton-key-vault/version.json" | head -n 1
-    )"
-fi
-
-if [ -z "$LATEST_VERSION" ]; then
-    LATEST_VERSION="Unknown"
-fi
-
-printf '[+] Latest available version: %s\n' "$LATEST_VERSION"
-
+printf '[*] Repository: %s\n' "$REPO_URL"
+printf '[*] Temporary location: %s\n' "$TEMP_DIR/repository"
 printf '\n'
 
-if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ] && [ "$CURRENT_VERSION" != "Unknown" ]; then
+git clone --depth 1 "$REPO_URL" "$TEMP_DIR/repository"
+
+printf '\n[+] Repository downloaded successfully.\n'
+
+LATEST_VAULT_DIR="$TEMP_DIR/repository/skeleton-key-vault"
+
+printf '\n[*] Checking downloaded Vault...\n'
+
+if [ ! -f "$LATEST_VAULT_DIR/package.json" ]; then
+    printf '[!] Downloaded repository does not contain:\n'
+    printf '    skeleton-key-vault/package.json\n'
+
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
+
+if [ ! -f "$LATEST_VAULT_DIR/cli.js" ]; then
+    printf '[!] Downloaded repository does not contain:\n'
+    printf '    skeleton-key-vault/cli.js\n'
+
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
+
+printf '[+] Downloaded Vault application found.\n'
+
+LATEST_VERSION="Unknown"
+
+if [ -f "$LATEST_VAULT_DIR/version.json" ]; then
+    LATEST_VERSION="$(
+        grep -oE '[0-9]{4}\.[0-9]{2}\.[0-9]{2}' \
+        "$LATEST_VAULT_DIR/version.json" | head -n 1
+    )"
+
+    if [ -z "$LATEST_VERSION" ]; then
+        LATEST_VERSION="Unknown"
+    fi
+fi
+
+printf '[+] Latest version: %s\n' "$LATEST_VERSION"
+
+if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ] &&
+   [ "$CURRENT_VERSION" != "Unknown" ]; then
+
+    printf '\n'
     printf '[+] FRL Skeleton Key is already up to date.\n'
+    printf '\n'
+
     rm -rf "$TEMP_DIR"
     exit 0
 fi
 
-printf '[!] An update is available.\n'
+printf '\n'
+printf '[!] Update available.\n'
 printf '\n'
 printf 'Current version: %s\n' "$CURRENT_VERSION"
 printf 'Latest version:  %s\n' "$LATEST_VERSION"
@@ -129,164 +159,133 @@ read -r CONFIRM
 
 if [ "$CONFIRM" != "UPDATE" ]; then
     printf '[!] Update cancelled.\n'
+
     rm -rf "$TEMP_DIR"
     exit 0
 fi
 
-printf '\n[*] Backing up persistent Vault data...\n'
+printf '\n'
+printf '[*] Creating persistent data backup...\n'
 
-mkdir -p "$TEMP_DIR/backup"
+BACKUP_DIR="/tmp/frl-vault-backup"
 
-proot-distro login debian -- bash -c "
-set -e
+rm -rf "$BACKUP_DIR"
+mkdir -p "$BACKUP_DIR"
 
-BACKUP_DIR='/tmp/frl-skeleton-key-persistent-backup'
-rm -rf \"\$BACKUP_DIR\"
-mkdir -p \"\$BACKUP_DIR\"
-
-if [ -f '$DEBIAN_VAULT_DIR/.vault.lock' ]; then
-    cp -a '$DEBIAN_VAULT_DIR/.vault.lock' \"\$BACKUP_DIR/.vault.lock\"
+if [ -f "$VAULT_DIR/.vault.lock" ]; then
+    cp -a "$VAULT_DIR/.vault.lock" "$BACKUP_DIR/"
+    printf '[+] Preserved: .vault.lock\n'
+else
+    printf '[*] Not present: .vault.lock\n'
 fi
 
-if [ -f '$DEBIAN_VAULT_DIR/identity_vault.db' ]; then
-    cp -a '$DEBIAN_VAULT_DIR/identity_vault.db' \"\$BACKUP_DIR/identity_vault.db\"
+if [ -f "$VAULT_DIR/identity_vault.db" ]; then
+    cp -a "$VAULT_DIR/identity_vault.db" "$BACKUP_DIR/"
+    printf '[+] Preserved: identity_vault.db\n'
+else
+    printf '[*] Not present: identity_vault.db\n'
 fi
 
-if [ -d '$DEBIAN_VAULT_DIR/fr_legends_payloads' ]; then
-    cp -a '$DEBIAN_VAULT_DIR/fr_legends_payloads' \"\$BACKUP_DIR/fr_legends_payloads\"
+if [ -d "$VAULT_DIR/fr_legends_payloads" ]; then
+    cp -a "$VAULT_DIR/fr_legends_payloads" "$BACKUP_DIR/"
+    printf '[+] Preserved: fr_legends_payloads/\n'
+else
+    printf '[*] Not present: fr_legends_payloads/\n'
 fi
-"
 
-proot-distro copy \
-    --recursive \
-    debian:/tmp/frl-skeleton-key-persistent-backup \
-    "$TEMP_DIR/backup/debian-backup"
+printf '[+] Persistent data backup complete.\n'
 
-proot-distro login debian -- bash -c '
-rm -rf /tmp/frl-skeleton-key-persistent-backup
-'
+printf '\n[*] Replacing application files...\n'
 
-printf '[+] Persistent Vault data backed up.\n'
+cd "$INSTALL_ROOT"
 
-printf '\n[*] Preparing updated application...\n'
+TEMP_VAULT="$TEMP_DIR/new-vault"
 
-proot-distro login debian -- bash -c "
-set -e
+cp -a "$LATEST_VAULT_DIR" "$TEMP_VAULT"
 
-rm -rf '$DEBIAN_SOURCE_DIR'
-mkdir -p '$DEBIAN_ROOT'
-"
+rm -rf "$VAULT_DIR"
 
-proot-distro copy \
-    --recursive \
-    "$TEMP_DIR/source" \
-    debian:"$DEBIAN_SOURCE_DIR"
+mv "$TEMP_VAULT" "$VAULT_DIR"
 
-printf '[+] Updated application copied into Debian.\n'
+printf '[+] Application files replaced.\n'
 
 printf '\n[*] Restoring persistent Vault data...\n'
 
-proot-distro login debian -- bash -c "
-set -e
-
-BACKUP_DIR='/tmp/frl-skeleton-key-restore'
-
-rm -rf \"\$BACKUP_DIR\"
-mkdir -p \"\$BACKUP_DIR\"
-"
-
-proot-distro copy \
-    --recursive \
-    "$TEMP_DIR/backup/debian-backup" \
-    debian:/tmp/frl-skeleton-key-restore
-
-proot-distro login debian -- bash -c "
-set -e
-
-RESTORE_DIR='/tmp/frl-skeleton-key-restore/frl-skeleton-key-persistent-backup'
-
-if [ -f \"\$RESTORE_DIR/.vault.lock\" ]; then
-    cp -a \"\$RESTORE_DIR/.vault.lock\" '$DEBIAN_VAULT_DIR/.vault.lock'
+if [ -f "$BACKUP_DIR/.vault.lock" ]; then
+    cp -a "$BACKUP_DIR/.vault.lock" "$VAULT_DIR/"
+    printf '[+] Restored: .vault.lock\n'
 fi
 
-if [ -f \"\$RESTORE_DIR/identity_vault.db\" ]; then
-    cp -a \"\$RESTORE_DIR/identity_vault.db\" '$DEBIAN_VAULT_DIR/identity_vault.db'
+if [ -f "$BACKUP_DIR/identity_vault.db" ]; then
+    cp -a "$BACKUP_DIR/identity_vault.db" "$VAULT_DIR/"
+    printf '[+] Restored: identity_vault.db\n'
 fi
 
-if [ -d \"\$RESTORE_DIR/fr_legends_payloads\" ]; then
-    rm -rf '$DEBIAN_VAULT_DIR/fr_legends_payloads'
-    cp -a \"\$RESTORE_DIR/fr_legends_payloads\" '$DEBIAN_VAULT_DIR/fr_legends_payloads'
-fi
+if [ -d "$BACKUP_DIR/fr_legends_payloads" ]; then
+    rm -rf "$VAULT_DIR/fr_legends_payloads"
 
-rm -rf /tmp/frl-skeleton-key-restore
-"
+    cp -a \
+        "$BACKUP_DIR/fr_legends_payloads" \
+        "$VAULT_DIR/"
+
+    printf '[+] Restored: fr_legends_payloads/\n'
+fi
 
 printf '[+] Persistent Vault data restored.\n'
 
 printf '\n[*] Installing updated Node.js dependencies...\n'
 
-proot-distro login debian -- bash -c "
-set -e
-
-cd '$DEBIAN_VAULT_DIR'
-
-rm -rf node_modules
-
-npm cache clean --force
+cd "$VAULT_DIR"
 
 if [ -f package-lock.json ]; then
-    npm install --cache /tmp/frl-npm-cache
+    npm ci
 else
-    npm install --cache /tmp/frl-npm-cache
+    npm install
 fi
 
-rm -rf /tmp/frl-npm-cache
-"
-
-printf '[+] Node.js dependencies updated.\n'
+printf '\n[+] Node.js dependencies installed.\n'
 
 printf '\n[*] Testing better-sqlite3...\n'
 
-proot-distro login debian -- bash -c "
-set -e
+node - <<'NODE'
+const Database = require("better-sqlite3");
 
-cd '$DEBIAN_VAULT_DIR'
+const db = new Database(":memory:");
 
-node -e \"
-const Database = require('better-sqlite3');
-const db = new Database(':memory:');
-db.prepare('SELECT 1').get();
+db.prepare("SELECT 1").get();
+
 db.close();
-console.log('[+] better-sqlite3 SQLite test passed.');
-\"
-"
 
-printf '\n[*] Checking persistent Vault data...\n'
+console.log("[+] better-sqlite3 SQLite test passed.");
+NODE
 
-proot-distro login debian -- bash -c "
-set -e
+printf '\n[*] Verifying preserved Vault data...\n'
 
-if [ -f '$DEBIAN_VAULT_DIR/.vault.lock' ]; then
-    printf '[+] Found: .vault.lock\n'
+if [ -f "$VAULT_DIR/.vault.lock" ]; then
+    printf '[+] Verified: .vault.lock\n'
 else
     printf '[*] Not present: .vault.lock\n'
 fi
 
-if [ -f '$DEBIAN_VAULT_DIR/identity_vault.db' ]; then
-    printf '[+] Found: identity_vault.db\n'
+if [ -f "$VAULT_DIR/identity_vault.db" ]; then
+    printf '[+] Verified: identity_vault.db\n'
 else
     printf '[*] Not present: identity_vault.db\n'
 fi
 
-if [ -d '$DEBIAN_VAULT_DIR/fr_legends_payloads' ]; then
-    printf '[+] Found: fr_legends_payloads/\n'
+if [ -d "$VAULT_DIR/fr_legends_payloads" ]; then
+    printf '[+] Verified: fr_legends_payloads/\n'
 else
-    printf '[!] fr_legends_payloads/ was not restored.\n'
+    printf '[!] fr_legends_payloads/ is missing.\n'
     exit 1
 fi
-"
+
+printf '\n[*] Cleaning temporary update files...\n'
 
 rm -rf "$TEMP_DIR"
+rm -rf "$BACKUP_DIR"
+
+printf '[+] Temporary files removed.\n'
 
 printf '\n'
 printf '%s\n' '============================================================'
@@ -294,24 +293,32 @@ printf '%s\n' '                    UPDATE COMPLETE'
 printf '%s\n' '============================================================'
 printf '\n'
 
-printf 'Previous version: %s\n' "$CURRENT_VERSION"
-printf 'Updated version:  %s\n' "$LATEST_VERSION"
+printf 'Previous version:\n'
+printf '  %s\n' "$CURRENT_VERSION"
+
 printf '\n'
 
-printf 'Vault location inside Debian:\n'
-printf '  %s\n' "$DEBIAN_VAULT_DIR"
+printf 'Installed version:\n'
+printf '  %s\n' "$LATEST_VERSION"
+
+printf '\n'
+
+printf 'Vault location:\n'
+printf '  %s\n' "$VAULT_DIR"
+
 printf '\n'
 
 printf 'Launch command:\n'
-printf '  proot-distro login debian\n'
-printf '  cd %s\n' "$DEBIAN_VAULT_DIR"
+printf '  cd "%s"\n' "$VAULT_DIR"
 printf '  node cli.js\n'
+
 printf '\n'
 
-printf 'Preserved Vault data:\n'
+printf 'Preserved:\n'
 printf '  .vault.lock\n'
 printf '  identity_vault.db\n'
 printf '  fr_legends_payloads/\n'
+
 printf '\n'
 
 printf '%s\n' '============================================================'
