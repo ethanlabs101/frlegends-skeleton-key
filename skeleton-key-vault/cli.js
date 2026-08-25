@@ -387,6 +387,8 @@ async function mainLoop() {
         box.drawRow(`${theme.bwhite("loss of saved accounts, vault access, payloads, or backups.")}`);
         box.drawRow(`${theme.bwhite("After updating, you may need to restore file permissions")}`);
         box.drawRow(`${theme.bwhite("or use chmod/chown so the Vault can write to its database.")}`);
+        box.drawRow(' ');
+        box.drawRow(`${theme.bwhite("Visit Repo URL & follow update instructions.")}`);
         console.log(box.mid());
 
         box.drawRow(`${theme.bwhite("Repo URL: ")}`);
