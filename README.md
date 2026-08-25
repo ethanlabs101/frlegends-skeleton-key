@@ -1,4 +1,4 @@
-![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/git-skull.png)
+![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/header.png)
 
 ---
 
