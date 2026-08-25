@@ -409,10 +409,10 @@ printf 'Vault location inside Debian:\n'
 printf '  %s\n' "$VAULT_DIR"
 printf '\n'
 
-printf 'Launch command:\n'
-printf '  proot-distro login debian\n'
-printf '  cd %s\n' "$VAULT_DIR"
-printf '  node cli.js\n'
+printf 'Launch commands:\n'
+printf '1.  proot-distro login debian\n'
+printf '2.  cd %s\n' "$VAULT_DIR"
+printf '3.  node cli.js\n'
 printf '\n'
 
 printf 'IMPORTANT:\n'
