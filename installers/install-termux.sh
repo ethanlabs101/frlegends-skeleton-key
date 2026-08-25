@@ -324,14 +324,31 @@ set -e
 
 cd '$VAULT_DIR'
 
+printf '[*] Preparing a fresh npm cache...\n'
+
+rm -rf /tmp/frl-npm-cache
+mkdir -p /tmp/frl-npm-cache
+
 rm -rf node_modules
 
-npm cache verify
+printf '[*] Installing dependencies from the npm registry...\n'
 
 if [ -f package-lock.json ]; then
-    npm ci
+    npm ci \
+        --cache /tmp/frl-npm-cache \
+        --prefer-online \
+        --fetch-retries=5 \
+        --fetch-retry-factor=2 \
+        --fetch-retry-mintimeout=1000 \
+        --fetch-retry-maxtimeout=30000
 else
-    npm install
+    npm install \
+        --cache /tmp/frl-npm-cache \
+        --prefer-online \
+        --fetch-retries=5 \
+        --fetch-retry-factor=2 \
+        --fetch-retry-mintimeout=1000 \
+        --fetch-retry-maxtimeout=30000
 fi
 
 printf '\n[+] Node.js dependencies installed.\n'
