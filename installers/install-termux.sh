@@ -6,8 +6,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 GITHUB_REPO="https://github.com/ethanlabs101/frlegends-skeleton-key.git"
+
 DEBIAN_APP_DIR="/root/frlegends-skeleton-key"
-VAULT_DIR="$DEBIAN_APP_DIR/skeleton-key-vault"
+SOURCE_DIR="$DEBIAN_APP_DIR/source"
+VAULT_DIR="$SOURCE_DIR/skeleton-key-vault"
 
 printf '\n'
 printf '%s\n' '============================================================'
@@ -88,6 +90,7 @@ if [ "$DEBIAN_EXISTS" -eq 1 ]; then
                 fi
 
                 printf '\n[*] Reinstalling Debian from scratch...\n'
+
                 proot-distro reset debian
 
                 printf '\n[+] Fresh Debian installation completed.\n'
@@ -174,7 +177,7 @@ if [ "$EXISTING_VAULT" -eq 1 ]; then
 
     printf '[+] Existing FRL Vault installation detected.\n'
     printf '\n'
-    printf 'The Debian installation already contains:\n'
+    printf 'Vault location:\n'
     printf '  %s\n' "$VAULT_DIR"
     printf '\n'
     printf 'Choose how to continue:\n'
@@ -191,8 +194,8 @@ if [ "$EXISTING_VAULT" -eq 1 ]; then
         case "$VAULT_CHOICE" in
             1)
                 printf '\n'
-                printf '[!] WARNING: This replaces the existing application directory.\n'
-                printf '[!] Local Vault data inside that directory may be deleted.\n'
+                printf '[!] WARNING: This replaces the existing FRL source directory.\n'
+                printf '[!] Local Vault data may be deleted.\n'
                 printf '\n'
                 printf '[!] Preserve these files before continuing:\n'
                 printf '    .vault.lock\n'
@@ -207,35 +210,28 @@ if [ "$EXISTING_VAULT" -eq 1 ]; then
                     exit 1
                 fi
 
-                printf '\n[*] Removing existing FRL application...\n'
+                printf '\n[*] Removing existing FRL source...\n'
 
                 proot-distro login debian -- bash -c "
-                    rm -rf '$DEBIAN_APP_DIR'
+                    rm -rf '$SOURCE_DIR'
                     mkdir -p '$DEBIAN_APP_DIR'
                 "
 
-                printf '[+] Existing application removed.\n'
+                printf '[+] Existing FRL source removed.\n'
                 break
                 ;;
 
             2)
                 printf '[+] Existing FRL Vault will be kept.\n'
                 printf '\n'
-                printf '[*] Skipping Git clone.\n'
-                printf '[*] Checking existing installation...\n'
 
                 proot-distro login debian -- bash -c "
+                    set -e
+
                     cd '$VAULT_DIR'
 
-                    printf '[+] Vault location: %s\n' '$VAULT_DIR'
-
-                    if [ -f package.json ]; then
-                        printf '[+] package.json found.\n'
-                    fi
-
-                    if [ -f cli.js ]; then
-                        printf '[+] cli.js found.\n'
-                    fi
+                    printf '[+] package.json found.\n'
+                    printf '[+] cli.js found.\n'
                 "
 
                 printf '\n'
@@ -243,15 +239,19 @@ if [ "$EXISTING_VAULT" -eq 1 ]; then
                 printf '%s\n' '                 INSTALLATION COMPLETE'
                 printf '%s\n' '============================================================'
                 printf '\n'
+
                 printf 'Existing FRL Skeleton Key installation preserved.\n'
                 printf '\n'
+
                 printf 'Enter Debian:\n'
                 printf '  proot-distro login debian\n'
                 printf '\n'
+
                 printf 'Launch:\n'
                 printf '  cd %s\n' "$VAULT_DIR"
                 printf '  node cli.js\n'
                 printf '\n'
+
                 printf '%s\n' '============================================================'
                 printf '\n'
 
@@ -277,6 +277,7 @@ fi
 
 printf '\n[*] Cloning FR Legends Skeleton Key inside Debian...\n'
 printf '[*] Repository: %s\n' "$GITHUB_REPO"
+printf '[*] Destination: %s\n' "$SOURCE_DIR"
 printf '\n'
 
 proot-distro login debian -- bash -c "
@@ -284,12 +285,12 @@ set -e
 
 mkdir -p '$DEBIAN_APP_DIR'
 
-cd '$DEBIAN_APP_DIR'
+rm -rf '$SOURCE_DIR'
 
-git clone '$GITHUB_REPO'
+git clone '$GITHUB_REPO' '$SOURCE_DIR'
 
 if [ ! -d '$VAULT_DIR' ]; then
-    printf '[!] Git clone completed but Vault directory was not found.\n'
+    printf '[!] Git clone completed but skeleton-key-vault was not found.\n'
     exit 1
 fi
 
@@ -416,5 +417,5 @@ printf '  identity_vault.db\n'
 printf '  fr_legends_payloads/\n'
 printf '\n'
 
-printf '============================================================'
+printf '%s\n' '============================================================'
 printf '\n'
