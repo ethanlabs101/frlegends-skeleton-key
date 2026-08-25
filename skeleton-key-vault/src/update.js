@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const LOCAL_VERSION = "2026.08.24";
+export const LOCAL_VERSION = "2026.08.25";
 
 const UPDATE_URL = "https://raw.githubusercontent.com/ethanlabs101/frlegends-skeleton-key/main/skeleton-key-vault/version.json";
 
