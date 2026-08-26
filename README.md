@@ -18,6 +18,22 @@ everything is designed to work together through the Vault.
 
 ---
 
+### What can it do?
+
+- 🔐 Manage multiple FR Legends accounts
+- 💾 Securely store account data in your local Vault
+- 🚗 Manage and inject vehicle assets
+- 🎨 Work with custom liveries
+- 📦 Browse and download assets from the Online Asset Manager
+- 🛠️ Modify supported player data
+- 💰 Manage supported game data
+- ♻️ Remotely clone and create accounts
+- 🔄 Safely update Skeleton Key without overwriting your Vault
+- 💻 Run on supported Linux and Termux/Debian environments
+
+---
+
+
 ## License
 
 - This project is licensed under the Apache License 2.0.
