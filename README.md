@@ -1,5 +1,7 @@
 ![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/header.png)
 
+> A powerful save management, account, asset, and customization toolkit for FR Legends.
+
 ---
 
 ## License
