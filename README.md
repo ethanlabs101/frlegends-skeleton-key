@@ -2,6 +2,8 @@
 
 > A powerful save management, account, asset, and customization toolkit for FR Legends.
 
+[Getting Started](...) • [Documentation](...) • [Asset Database](...) • [Releases](...)
+
 ---
 
 ## License
