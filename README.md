@@ -45,7 +45,7 @@ Follow the guide for your platform below.
 
 Install Skeleton Key through the Termux installer.
 
-[View Termux Installation Guide →](...)
+[View Termux Installation Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
 **Linux**
 
