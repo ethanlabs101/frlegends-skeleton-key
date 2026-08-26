@@ -33,6 +33,28 @@ everything is designed to work together through the Vault.
 
 ---
 
+## Getting Started
+
+New to Skeleton Key?
+
+Follow the guide for your platform below.
+
+### Choose your platform
+
+**Android / Termux**
+
+Install Skeleton Key through the Termux installer.
+
+[View Termux Installation Guide →](...)
+
+**Linux**
+
+Install Skeleton Key directly on your Linux system.
+
+[View Linux Installation Guide →](...)
+
+---
+
 
 ## License
 
