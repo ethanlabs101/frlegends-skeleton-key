@@ -48,7 +48,7 @@ Terminal
 
 You can also commonly open a terminal with:
 
-Ctrl + Alt + T or Win + Enter
+Ctrl + Alt + T
 
 You should now see a window containing a command prompt.
 
