@@ -1,6 +1,6 @@
 ![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/header.png)
 
-[Getting Started](...)   •   [Documentation](...)   •   [Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)   •   [Releases](...)
+[Getting Started](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/README.md#getting-started)   •   [Documentation](...)   •   [Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)   •   [Releases](...)
 
 ## What is FR Legends Skeleton Key?
 
