@@ -526,13 +526,13 @@ Instead, use the update procedure provided for your platform.
 
 For Linux:
 
-[Linux Installation →](./linux-installation.md)
+[Linux Installation →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
 
 [Linux Update Guide →](./linux-update.md)
 
 For Android/Termux:
 
-[Android Installation →](./android-installation.md)
+[Android Installation →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
 [Android Update Guide →](./android-update.md)
 
