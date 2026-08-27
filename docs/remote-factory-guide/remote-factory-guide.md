@@ -133,37 +133,7 @@ X
 
 The following warning and information screen will appear:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - PROVISIONING WARNINGS    ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║ WARNING: Accounts created here are external.               ║
-║ Be aware: If you use an email you don't own,               ║
-║ it can be claimed by others.                               ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║ INFO:                                                      ║
-║ FR Legends checks cheating based on money/coin values.     ║
-║                                                            ║
-║ This causes a 'tampered data' window pop-up to appear      ║
-║ occasionally which can be bypassed                         ║
-║ by closing and re-opening game.                            ║
-║                                                            ║
-║ This tool generates account safetly by keeping amounts at  ║
-║ 500k which is near the MAX 'safe' amount.                  ║
-║                                                            ║
-║ When modifying your account please make backups often.     ║
-║ Worse-case scenario you can recover your account           ║
-║ using the Account Recovery tool.                           ║
-╚════════════════════════════════════════════════════════════╝
-
-[>] Press [Enter] to return.
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/help-screen.png)
 
 Press:
 
