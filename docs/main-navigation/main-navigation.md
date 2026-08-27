@@ -310,7 +310,7 @@ You now understand the purpose of every Main Navigation option.
 
 Continue with the feature you want to use:
 
-[Authenticate →](./authentication.md)
+[Authenticate →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
 [Remote Factory →](./remote-factory.md)
 
