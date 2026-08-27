@@ -41,23 +41,35 @@ https://github.com/termux/termux-app/releases
 
 ### 1.2 Choose the Correct APK
 
-Open the latest **stable Termux release** (not a beta or pre-release) and scroll down to the **Assets** section.
+Open the latest **stable Termux release** (not a beta or other pre-release) and scroll down to the **Assets** section.
 
-You will see several APK files.
+You will see several APK files for different Android versions and CPU architectures.
 
-For most modern Android devices, use the **Android 7+** build.
+For most modern Android devices running **Android 7 or newer**, use one of the **Android 7+** builds.
 
-If you know your device uses ARM64, you can use:
+#### If your device uses ARM64
 
-`termux-app_...+apt-android-7..._arm64-v8a.apk`
+Most modern Android phones use ARM64. If you know your device is ARM64, download:
 
-If you are unsure which architecture your device uses, use the **Universal** Android 7+ APK instead.
+`termux-app_...+apt-android-7-github-debug_arm64-v8a.apk`
 
-> **When in doubt:** Use the Android 7+ Universal APK.
+#### If you are unsure
 
-Do **not** download a beta/pre-release version unless you specifically know that you need it.
+If you do not know your device's CPU architecture, use the **Universal Android 7+ APK**:
 
-For additional information about Termux APK variants and supported Android versions, see the official Termux installation documentation:
+`termux-app_...+apt-android-7-github-debug_universal.apk`
+
+The Universal APK is larger because it contains support for multiple CPU architectures, but it is the easiest option when you are unsure.
+
+> **When in doubt:** Use the **Android 7+ Universal APK**.
+
+### Important
+
+Do **not** download a beta or pre-release version unless you specifically know that you need it.
+
+Also, do not mix APK variants intended for different Android versions. For example, the `apt-android-7` builds are intended for **Android 7 and newer**, while `apt-android-5` builds are intended for **Android 5 and 6**.
+
+For the most current information about Termux APK variants, Android versions, and installation options, see the official Termux installation documentation:
 
 https://github.com/termux/termux-app#installation
 
