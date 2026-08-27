@@ -184,7 +184,7 @@ Use this option when you want to learn more about the system you are currently u
 
 The online documentation is organized into separate guides so that you can read only the information relevant to your current task.
 
-[Documentation Home →](../README.md)
+[Documentation Home →](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
 ---
 
