@@ -320,8 +320,8 @@ Continue with the feature you want to use:
 
 [Account Recovery →](./account-recovery.md)
 
-[Documentation Home →](../README.md)
+[Documentation Home →](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
 If you have not completed the first-launch process:
 
-[← First Launch Guide](./first-launch.md)
+[← First Launch Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)
