@@ -126,9 +126,9 @@ The installer handles the complicated environment setup for you.
 Before installing Skeleton Key, update Termux's package information.
 
 Enter:
-
+````md
 pkg update && pkg upgrade
-
+````
 Then press Enter.
 
 If Termux asks you to confirm an installation or upgrade, enter:
@@ -148,9 +148,9 @@ This may take several minutes depending on your device and internet connection.
 Skeleton Key uses Git to download and manage its repository.
 
 Install Git with:
-
+````md
 pkg install git
-
+````
 If Termux asks for confirmation, enter:
 
 y
@@ -158,9 +158,9 @@ y
 and press Enter.
 
 When the installation finishes, verify Git:
-
+````md
 git --version
-
+````
 You should see a Git version number.
 
 For example:
@@ -176,15 +176,15 @@ If you see a version number, Git is ready.
 ## 4.1 Clone the Repository
 
 Download the official FR Legends Skeleton Key repository with:
-
+````md
 git clone https://github.com/ethanlabs101/frlegends-skeleton-key.git
-
+````
 Git will download the Skeleton Key source files to your Termux home directory.
 
 When the download finishes, enter the repository:
-
+````md
 cd frlegends-skeleton-key
-
+````
 You are now inside the Skeleton Key repository.
 
 ---
@@ -192,9 +192,9 @@ You are now inside the Skeleton Key repository.
 ## 4.2 Verify the Repository
 
 You can verify your current location with:
-
+````md
 pwd
-
+````
 You should see a path ending in:
 
 /frlegends-skeleton-key
@@ -208,9 +208,9 @@ You should see a path ending in:
 Skeleton Key includes a dedicated Termux installer.
 
 Make the installer executable:
-
+````md
 chmod +x installers/install-termux.sh
-
+````
 This only needs to be done so Termux can execute the installer script.
 
 ---
@@ -218,9 +218,9 @@ This only needs to be done so Termux can execute the installer script.
 ## 5.2 Run the Installer
 
 Start the installer:
-
+````md
 ./installers/install-termux.sh
-
+````
 The Skeleton Key installer will now begin preparing your environment.
 
 From this point forward, the installer handles the majority of the installation process for you.
