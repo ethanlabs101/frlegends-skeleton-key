@@ -13,20 +13,22 @@ Follow the steps in order. Once you reach the end, Skeleton Key should be instal
 Before beginning, make sure you have:
 
 - A Linux computer
+- A Terminal
 - A working internet connection
 - Enough free storage for Skeleton Key and its dependencies
-- A user account with permission to install software and packages
 
 You do not need root access to run Skeleton Key itself.
 
-This guide assumes you are using a Debian-based Linux distribution such as:
+This guide assumes you are using a Debian/Arch-based Linux distribution such as:
 
 - Ubuntu
 - Linux Mint
 - Debian
 - Pop!_OS
 - Zorin OS
-- Other Debian/Ubuntu-based distributions
+- Arch Linux
+- Cachy OS
+- Other Debian/Ubuntu/Arch-based distributions
 
 If you are using a different Linux distribution, the Skeleton Key application may still work, but the package installation commands may be different.
 
@@ -69,14 +71,18 @@ Run:
 ```bash
 sudo apt update
 ```
+(For Debian/Ubuntu based systems) or,
 
-Enter your Linux password if requested.
+```bash
+sudo pacman -Syu
+```
+(For Arch systems)
 
-The password will normally not appear on screen while you type it.
+Enter your sudo password if requested.
 
 Press Enter after entering your password.
 
-Then upgrade installed packages:
+Then upgrade installed packages (Deb based only):
 
 ```bash
 sudo apt upgrade
@@ -100,10 +106,17 @@ This may take several minutes depending on your internet connection and how many
 
 Skeleton Key requires several standard Linux development and runtime tools.
 
-The easiest way to install the basic requirements on Debian-based distributions is:
+The installer will handle most dependencies, but install git so you can download this repos content.
 
+Here is how to do so in Debian and Arch-based distributions:
+
+Debian/Ubuntu-based
 ```bash
-sudo apt install git curl ca-certificates build-essential python3 make g++ pkg-config sqlite3
+sudo apt install git 
+```
+Or alternatively, on Arch-based systems,
+```bash
+sudo pacman -S git
 ```
 
 If prompted to continue, enter:
