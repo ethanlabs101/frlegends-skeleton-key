@@ -28,11 +28,13 @@ You should already have:
 - The Skeleton Key repository downloaded
 - The installation completed for your platform
 
-If you are coming from the Linux installation guide:
+If you skipped the installer documentation, please read:
+
+Linux:
 
 [← Linux Installation](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
 
-If you are coming from the Termux installation guide:
+Termux:
 
 [← Termux Installation](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
