@@ -89,11 +89,7 @@ You should now see a terminal window.
 
 It will look similar to:
 
-$
-
-You do not type the $ symbol when entering commands.
-
-The $ symbol represents the terminal prompt.
+![]()
 
 ---
 
