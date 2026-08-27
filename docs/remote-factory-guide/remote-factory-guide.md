@@ -43,36 +43,7 @@ From the Main Navigation menu, select:
 
 The Remote Factory menu will appear:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - REMOTE ACC FACTORY       ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║ WARNING: Creating accounts in rapid succession can flag    ║
-║ your device ID or IP. For optimal security, limit          ║
-║ provisioning to 5 accounts per 24hrs. Exceeding 5-10+      ║
-║ may result in automated bans.                              ║
-╠════════════════════════════════════════════════════════════╣
-║ INFO: All accounts come with 500k money and coins,         ║
-║ livery pass unlocked, and a modded                         ║
-║ Kirby Silvia S15 with 999999% tire health.                 ║
-╠════════════════════════════════════════════════════════════╣
-║ Select Provisioning Batch Size:                            ║
-║ [1] One                                                    ║
-║ [2] Two                                                    ║
-║ [3] Three                                                  ║
-║ [4] Four                                                   ║
-║ [5] Five                                                   ║
-║ [X] Info/Help                                              ║
-║ [Enter] Back                                               ║
-╚════════════════════════════════════════════════════════════╝
-
-[>] Selection:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory.png)
 
 ---
 
