@@ -356,9 +356,9 @@ Add or Link Account to Vault
 Authenticate
 ```
 
-The exact prompts and available options may change as Skeleton Key develops.
+Currently, new accounts provisioned also include coins, gems, livery pass, slots and more!
 
-If a remote account creation option is not present in your version, do not manually attempt to reproduce the process with unrelated commands.
+The exact prompts and available options may change as Skeleton Key develops.
 
 Use the workflow provided by the installed Skeleton Key release.
 
