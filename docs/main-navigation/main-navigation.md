@@ -116,7 +116,7 @@ Depending on the current version of Skeleton Key, this system may include workfl
 
 Remote Factory is separate from the basic authentication flow so that users who do not need remote functionality are not forced through those workflows.
 
-[Remote Factory Guide →](./remote-factory.md)
+[Remote Factory Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory-guide.md)
 
 ---
 
@@ -312,7 +312,7 @@ Continue with the feature you want to use:
 
 [Authenticate →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
-[Remote Factory →](./remote-factory.md)
+[Remote Factory →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory-guide.md)
 
 [Cloning Matrix →](./cloning-matrix.md)
 
