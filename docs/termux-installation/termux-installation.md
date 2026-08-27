@@ -39,7 +39,7 @@ https://github.com/termux/termux-app/releases
 
 ---
 
-### 1.2 Choose the Correct APK
+## 1.2 Choose the Correct APK
 
 Open the latest **stable Termux release** (not a beta or other pre-release) and scroll down to the **Assets** section.
 
