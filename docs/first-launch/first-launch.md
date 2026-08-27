@@ -696,8 +696,6 @@ Check your internet connection and read the complete authentication error.
 
 Do not repeatedly delete or recreate your Vault unless the documentation for your specific error tells you to.
 
-If the error contains account-specific information, avoid publicly posting credentials, tokens, passwords, or other private data when requesting support.
-
 ---
 
 ## Main Navigation Does Not Appear
