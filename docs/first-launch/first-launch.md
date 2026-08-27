@@ -281,6 +281,8 @@ Depending on the available Skeleton Key version and account state, the authentic
 - Authenticate an existing FR Legends account
 - Add an account to the local Vault
 - Work with an account already stored in the Vault
+- Manage and filter accounts alphabetically
+- Sign-in instantly next log in
 - Establish the active account session
 
 Follow the prompts shown by Skeleton Key.
