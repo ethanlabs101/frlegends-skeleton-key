@@ -1302,6 +1302,10 @@ From here, you can begin exploring Skeleton Key.
 
 ---
 
+# GIF Demo
+
+![]()
+
 # Continue Learning
 
 [First Launch Guide →]()
