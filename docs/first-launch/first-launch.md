@@ -168,15 +168,7 @@ The menu is divided into two important areas:
 
 The top section tells you the current state of your Skeleton Key session.
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - MAIN NAVIGATION          ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/status-header.png)
 
 Let's break this down.
 
