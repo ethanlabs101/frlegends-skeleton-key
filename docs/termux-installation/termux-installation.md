@@ -376,9 +376,9 @@ A warning does not automatically mean the installation failed.
 The important thing is whether npm successfully completes the installation.
 
 A successful installation will report something similar to:
-
+````bash
 [+] Node.js dependencies installed.
-
+````
 ---
 
 ## 9.2 npm Errors
@@ -408,9 +408,9 @@ Skeleton Key uses SQLite for persistent Vault data.
 The installer automatically tests the required better-sqlite3 dependency.
 
 A successful test will display:
-
+````bash
 [+] better-sqlite3 SQLite test passed.
-
+````
 This confirms that the native SQLite dependency is functioning inside the Debian environment.
 
 ---
