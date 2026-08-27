@@ -41,7 +41,7 @@ https://github.com/termux/termux-app/releases
 
 ## 1.2 Choose the Correct APK
 
-Open the latest stable Termux release (non-beta) and scroll down to the Assets section.
+Open the latest stable Termux release (non-beta) and scroll down and select the Assets section.
 
 You will see multiple APK files.
 
