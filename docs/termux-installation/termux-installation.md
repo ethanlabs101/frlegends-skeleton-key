@@ -819,8 +819,8 @@ From here, you can begin exploring Skeleton Key.
 
 # Continue Learning
 
-[First Launch Guide]()
+[First Launch Guide →]()
 
-[Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
+[→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
 
 ---
