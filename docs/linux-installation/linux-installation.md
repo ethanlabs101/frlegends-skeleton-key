@@ -910,7 +910,7 @@ and:
 npm --version
 ```
 
-If Skeleton Key reports that your Node.js version is unsupported, follow the version requirements reported by the installer or current Skeleton Key documentation.
+If a future version of the installer reports that your Node.js version is unsupported, follow the version requirements in the current Skeleton Key documentation.
 
 ---
 
