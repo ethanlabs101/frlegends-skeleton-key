@@ -669,6 +669,6 @@ Continue with the feature you need:
 
 [Account Recovery Guide →](./account-recovery.md)
 
-[Main Navigation Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
+[← Main Navigation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
 
 [← First Launch Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)
