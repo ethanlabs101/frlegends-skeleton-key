@@ -89,7 +89,7 @@ You should now see a terminal window.
 
 It will look similar to:
 
-![]()
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-1.jpg)
 
 ---
 
