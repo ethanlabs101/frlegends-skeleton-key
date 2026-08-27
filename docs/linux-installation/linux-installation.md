@@ -17,8 +17,6 @@ Before beginning, make sure you have:
 - A working internet connection
 - Enough free storage for Skeleton Key and its dependencies
 
-You do not need root access to run Skeleton Key itself.
-
 This guide assumes you are using a Debian/Ubuntu-based or Arch-based Linux distribution such as:
 
 - Ubuntu
