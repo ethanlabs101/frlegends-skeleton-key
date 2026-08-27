@@ -596,9 +596,7 @@ If you are using a terminal, you will return to your normal shell prompt.
 
 For example:
 
-```text
-user@computer:~$
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/exit-screen.png)
 
 ---
 
