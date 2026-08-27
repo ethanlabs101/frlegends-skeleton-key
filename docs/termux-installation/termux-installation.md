@@ -708,21 +708,21 @@ If Termux reports:
 git: command not found
 
 install Git:
-
+````md
 pkg install git
-
+````
 Then verify it:
-
+````md
 git --version
-
+````
 ---
 
 ## 19.2 proot-distro Is Missing
 
 If the installer cannot find proot-distro, install it with:
-
+````md
 pkg install proot-distro
-
+````
 Then run the Skeleton Key installer again.
 
 ---
@@ -760,13 +760,13 @@ If npm reports an error while downloading packages:
 First, make sure you are inside the actual Vault directory.
 
 For example:
-
+````md
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
-
+````
 Then run:
-
+````md
 node cli.js
-
+````
 If the command still fails, copy the complete error message and consult the troubleshooting documentation.
 
 ---
@@ -788,26 +788,6 @@ Restart Termux and run the installer again.
 The installer will check the environment and existing installation before continuing.
 
 If the problem persists, consult the troubleshooting documentation.
-
----
-
-# 20. Getting Help
-
-## 20.1 When Asking for Help
-
-If you encounter a problem, include:
-
-- The step you were performing
-- The command you entered
-- The complete error message
-- Your Android version
-- The Skeleton Key version, if known
-
-Do not only send:
-
-it doesn't work
-
-The more information you provide, the easier the problem is to identify.
 
 ---
 
