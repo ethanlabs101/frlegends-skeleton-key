@@ -592,11 +592,11 @@ The update process can:
 13. Display the previous and installed versions.
 
 Persistent data such as:
-
+````md
 .vault.lock
 identity_vault.db
 fr_legends_payloads/
-
+````
 is intended to survive normal application updates.
 
 ---
