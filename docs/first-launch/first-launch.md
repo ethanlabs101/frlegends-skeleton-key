@@ -392,6 +392,8 @@ The Vault provides the local environment in which Skeleton Key manages its persi
 
 The FR Legends account is the account being authenticated or managed through Skeleton Key.
 
+Skeleton Key acts as a Third-Party Client allowing it to intercept and upload modified player data.
+
 ---
 
 # 11. After Authentication
