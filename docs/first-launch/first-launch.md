@@ -64,6 +64,10 @@ The exact location of your Vault may be different depending on how Skeleton Key 
 
 When Skeleton Key starts, you may first see the Skeleton Key splash screen.
 
+Heres what it looks like:
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.png)
+
 The splash screen is the initial startup interface.
 
 It gives Skeleton Key an opportunity to:
