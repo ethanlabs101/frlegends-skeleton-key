@@ -302,11 +302,14 @@ The installer handles this process.
 
 A successful environment preparation will display information similar to:
 
+````md
 [+] Debian system dependencies installed.
 [+] Node.js version: v20.x.x
 [+] npm version: x.x.x
 [+] Git version: git version x.x.x
 [+] Debian environment prepared.
+
+````
 
 ---
 
