@@ -519,7 +519,7 @@ For a new account:
 ```text
 Authenticate
      ↓
-Quick Entry or Manual Login
+Manual Login
      ↓
 Enter Required Credentials
      ↓
@@ -544,6 +544,20 @@ Alphabetical Filter
 Select Account
      ↓
 Authenticate
+     ↓
+Optional Backup
+     ↓
+Session Active
+```
+
+For Quick-Entry:
+
+```text
+Select Quick-Entry Index
+     ↓
+Authenticate
+     ↓
+Optional Backup
      ↓
 Session Active
 ```
