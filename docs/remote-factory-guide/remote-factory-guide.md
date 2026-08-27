@@ -412,7 +412,7 @@ This can include:
 
 For information about logging into and managing stored accounts, see:
 
-[Authentication Guide →](authentication-guide.md)
+[Authentication Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
 ---
 
@@ -438,7 +438,7 @@ After a successful login, the account can be stored and managed by the local Vau
 
 For a complete explanation of Quick Entry, manual login, account storage, and credential maintenance, see:
 
-[Authentication Guide →](authentication-guide.md)
+[Authentication Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
 ---
 
@@ -684,65 +684,22 @@ Depending on the configured Vault workflow, stored credentials may be available 
 
 For more information, see:
 
-[Authentication Guide →](authentication-guide.md)
-
-If normal access is unavailable, review:
-
-[Account Recovery Guide →](account-recovery-guide.md)
-
----
-
-# Related Guides
-
-## Main Navigation
-
-Learn how the Main Navigation system works:
-
-[Main Navigation Guide →](main-navigation-guide.md)
-
----
-
-## Authentication
-
-Learn how to:
-
-- Use Quick Entry
-- Log in manually
-- Store accounts in the Vault
-- Manage account credentials
-- Use the account database
-- Maintain stored accounts
-
-[Authentication Guide →](authentication-guide.md)
-
----
-
-## Account Recovery
-
-Learn how to protect and recover supported account data:
-
-[Account Recovery Guide →](account-recovery-guide.md)
-
----
-
-## Updating Skeleton Key
-
-Learn how to update your installation while preserving important Vault data:
-
-[Updating Skeleton Key →](update.md)
+[Authentication Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
 ---
 
 # Next Steps
 
-After provisioning your account, the recommended next step is authentication.
+Continue with the feature you need:
 
-Return to the Main Navigation menu and select:
+[Cloning Matrix Guide →](./cloning-matrix.md)
 
-```text
-1) Authenticate
-```
+[Modding Sandbox Guide →](./modding-sandbox.md)
 
-You can then add the account to your normal Skeleton Key workflow.
+[Account Recovery Guide →](./account-recovery.md)
 
-[Continue to the Authentication Guide →](authentication-guide.md)
+[← Authentication Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
+
+[← Main Navigation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
+
+[← First Launch Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)
