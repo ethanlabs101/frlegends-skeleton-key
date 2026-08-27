@@ -47,52 +47,6 @@ The Remote Factory menu will appear:
 
 ---
 
-# Understanding the Status Panel
-
-At the top of the Remote Factory, Skeleton Key displays the current Vault and session state.
-
-For example:
-
-```text
-[STATUS]     Session: [ OFF ]
-[IDENTITY]   ID: N/A
-[ACCOUNT]    User: None (Unauthenticated)
-```
-
-## Session
-
-```text
-Session: [ OFF ]
-```
-
-No account is currently authenticated.
-
-The Remote Factory does not require you to already be logged into an existing Vault account.
-
-You can use the Remote Factory to provision a new account without an active authenticated session.
-
-## Identity
-
-```text
-ID: N/A
-```
-
-No active Vault identity is currently loaded.
-
-If you are already authenticated, this area may display information associated with the currently active Vault identity.
-
-## Account
-
-```text
-User: None (Unauthenticated)
-```
-
-No FR Legends account is currently active in the Skeleton Key session.
-
-Again, this does not prevent you from entering the Remote Factory and beginning the provisioning process.
-
----
-
 # Choosing a Batch Size
 
 The Remote Factory allows you to choose how many accounts you want to provision during the current operation.
