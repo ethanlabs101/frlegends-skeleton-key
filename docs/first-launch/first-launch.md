@@ -111,6 +111,9 @@ On a new installation, Skeleton Key may detect that the Vault has not yet been i
 
 If this happens, follow the initialization prompts displayed by Skeleton Key.
 
+Create a Master Key this will be required in the future to log back into your
+Skeleton Key Vault, and other destructive/sensitive actions.
+
 The initialization process prepares the local Vault for use.
 
 Allow the initialization process to complete before closing the application.
