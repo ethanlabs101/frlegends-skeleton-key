@@ -151,27 +151,9 @@ unless you intentionally want to reset or remove that data.
 
 After startup and Vault initialization, Skeleton Key will eventually bring you to the Main Navigation interface.
 
-A new or unauthenticated Vault may look like this:
+Here's what that looks like:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - MAIN NAVIGATION          ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║  1) Authenticate                                           ║
-║  2) Remote Factory                                         ║
-║  3) Cloning Matrix                                         ║
-║  4) Modding Sandbox                                        ║
-║  5) Account Recovery                                       ║
-║  6) Documentation / Help                                   ║
-║  7) Exit                                                   ║
-╚════════════════════════════════════════════════════════════╝
-[>] Index:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/main-screen.png)
 
 This is the primary navigation interface for Skeleton Key.
 
