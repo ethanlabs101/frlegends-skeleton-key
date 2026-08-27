@@ -819,29 +819,8 @@ From here, you can begin exploring Skeleton Key.
 
 # Continue Learning
 
-First Launch Guide:
-../getting-started/first-launch.md
+[First Launch Guide]()
 
-Vault Guide:
-../vault/overview.md
-
-Online Asset Manager:
-../assets/online-asset-manager.md
-
-Livery Workshop:
-../livery/workshop.md
-
-Termux / Debian Updater Guide:
-../termux-updater/termux-updater.md
-
-Termux Troubleshooting:
-../troubleshooting/termux-troubleshooting.md
-
-Return to Getting Started:
-../getting-started/getting-started.md
+[Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
 
 ---
-
-FR Legends Skeleton Key
-
-A powerful save management, account, asset, and customization toolkit for FR Legends.
