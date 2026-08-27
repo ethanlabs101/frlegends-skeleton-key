@@ -518,11 +518,9 @@ The Main Navigation menu includes:
 6) Documentation / Help
 ```
 
-Use this section when you want to access Skeleton Key documentation or help information directly from the application.
+Use this section when you want to access this Skeleton Key repository documentation directly from the application.
 
 The documentation system may evolve as new features are added.
-
-This repository's documentation is also organized so that individual systems can have their own dedicated guides.
 
 ---
 
