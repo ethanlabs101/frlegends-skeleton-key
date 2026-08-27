@@ -769,7 +769,7 @@ For updates and maintenance:
 
 To return to the documentation home:
 
-[← Documentation Home](../README.md)
+[← Documentation Home](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
 ---
 
