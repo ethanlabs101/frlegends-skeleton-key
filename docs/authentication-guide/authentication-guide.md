@@ -155,10 +155,7 @@ Enter the requested information exactly as required.
 
 For example:
 
-```text
-Email:
-Password:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/quick-entry.png)
 
 After you submit the credentials, Skeleton Key attempts to authenticate the account.
 
