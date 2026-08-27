@@ -1306,8 +1306,4 @@ From here, you can begin exploring Skeleton Key.
 
 [First Launch Guide →]()
 
-[Online Asset Manager Guide →]()
-
-[Troubleshooting Guide →]()
-
 [→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
