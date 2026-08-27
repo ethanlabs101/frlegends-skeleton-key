@@ -31,7 +31,7 @@ everything is designed to work together through the Vault.
 - 🔄 Safely update Skeleton Key without overwriting your Vault
 - 💻 Run on supported Linux and Termux/Debian environments
 
-***and much much more!***
+***and much more!***
 
 [See full list]()
 
