@@ -30,7 +30,11 @@ You should already have:
 
 If you are coming from the Linux installation guide:
 
-[← Linux Installation](./linux-installation.md)
+[← Linux Installation](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
+
+If you are coming from the Termux installation guide:
+
+[← Termux Installation](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
 ---
 
