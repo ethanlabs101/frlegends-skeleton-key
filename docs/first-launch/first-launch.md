@@ -773,8 +773,6 @@ For updates and maintenance:
 
 [Linux Update Guide →](./linux-update.md)
 
-[Windows Update Guide →](./windows-update.md)
-
 [Android Update Guide →](./android-update.md)
 
 To return to the documentation home:
