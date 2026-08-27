@@ -1304,7 +1304,7 @@ From here, you can begin exploring Skeleton Key.
 
 # GIF Demo
 
-![]()
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.gif)
 
 # Continue Learning
 
