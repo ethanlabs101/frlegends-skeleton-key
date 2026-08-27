@@ -32,6 +32,7 @@ everything is designed to work together through the Vault.
 - 💻 Run on supported Linux and Termux/Debian environments
 
 ***and much much more!***
+
 [See full list]()
 
 ---
