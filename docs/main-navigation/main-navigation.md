@@ -100,7 +100,7 @@ Authentication allows you to work with supported account login and session workf
 
 If you are launching Skeleton Key for the first time and want to begin using an existing account, start here.
 
-[Authentication Guide →](./authentication.md)
+[Authentication Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 
 ---
 
