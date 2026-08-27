@@ -16,7 +16,6 @@ Before beginning, make sure you have:
 - Android 7 or newer
 - An active internet connection
 - Enough free storage for Termux, Debian, Skeleton Key, and its dependencies
-- Permission to install an APK downloaded from a website
 
 You do not need root access.
 
