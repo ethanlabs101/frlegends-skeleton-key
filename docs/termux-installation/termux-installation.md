@@ -39,19 +39,25 @@ https://github.com/termux/termux-app/releases
 
 ---
 
-## 1.2 Choose the Correct APK
+### 1.2 Choose the Correct APK
 
-Open the latest stable Termux release (non-beta) and scroll down and select the Assets section.
+Open the latest **stable Termux release** (not a beta or pre-release) and scroll down to the **Assets** section.
 
-You will see multiple APK files.
+You will see several APK files.
 
-For most modern Android devices, use the Android 7 or newer build.
+For most modern Android devices, use the **Android 7+** build.
 
-The filename will look similar to:
+If you know your device uses ARM64, you can use:
 
-termux-app_...+..._arm64-v8a.apk
+`termux-app_...+apt-android-7..._arm64-v8a.apk`
 
-If you are unsure which APK your device requires, refer to the official Termux installation information:
+If you are unsure which architecture your device uses, use the **Universal** Android 7+ APK instead.
+
+> **When in doubt:** Use the Android 7+ Universal APK.
+
+Do **not** download a beta/pre-release version unless you specifically know that you need it.
+
+For additional information about Termux APK variants and supported Android versions, see the official Termux installation documentation:
 
 https://github.com/termux/termux-app#installation
 
