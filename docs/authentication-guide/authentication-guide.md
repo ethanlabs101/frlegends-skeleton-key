@@ -10,14 +10,9 @@ From the Main Navigation screen, select:
 
 The Authentication system provides several ways to access and manage supported accounts.
 
-Depending on the current state of your Vault, the authentication menu may provide options such as:
+Here is a preview of how a fresh non-populated system looks:
 
-```text
-1) Quick Entry
-2) Manual Login
-3) Account Database
-4) Account Maintenance
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/main-screen.png)
 
 The exact menu layout may change between Skeleton Key releases.
 
