@@ -1306,6 +1306,6 @@ From here, you can begin exploring Skeleton Key.
 
 # Continue Learning
 
-[First Launch Guide →]()
+[First Launch Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)
 
 [→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
