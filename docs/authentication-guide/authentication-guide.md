@@ -610,9 +610,8 @@ only if you are working with a locally stored account entry and you are in a pri
 
 If the stored password is unavailable or incorrect, use the appropriate account password reset or recovery process.
 
-For Skeleton Key recovery workflows, see:
-
-[Account Recovery Guide →](./account-recovery.md)
+FR Legends has a password recovery option through email verification. Please utilize that feature in case of
+password loss.
 
 ---
 
