@@ -661,7 +661,7 @@ You now understand the Authentication system and how Skeleton Key manages stored
 
 Continue with the feature you need:
 
-[Remote Factory Guide →](./remote-factory.md)
+[Remote Factory Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory-guide.md)
 
 [Cloning Matrix Guide →](./cloning-matrix.md)
 
