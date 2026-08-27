@@ -461,10 +461,10 @@ Contains your FR Legends payload data and related persistent assets.
 When the installation finishes, the installer will display an installation summary.
 
 A successful installation will look similar to:
-
-============================================================
+````md
+================================================
 INSTALLATION COMPLETE
-============================================================
+================================================
 
 FRL Skeleton Key is installed inside Debian proot.
 
@@ -476,6 +476,7 @@ Launch command:
 
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
 node cli.js
+````
 
 If you see the installation completion message, Skeleton Key is ready to launch.
 
