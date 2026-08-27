@@ -126,7 +126,7 @@ The installer handles the complicated environment setup for you.
 Before installing Skeleton Key, update Termux's package information.
 
 Enter:
-````md
+````bash
 pkg update && pkg upgrade
 ````
 Then press Enter.
@@ -148,7 +148,7 @@ This may take several minutes depending on your device and internet connection.
 Skeleton Key uses Git to download and manage its repository.
 
 Install Git with:
-````md
+````bash
 pkg install git
 ````
 If Termux asks for confirmation, enter:
@@ -158,7 +158,7 @@ y
 and press Enter.
 
 When the installation finishes, verify Git:
-````md
+````bash
 git --version
 ````
 You should see a Git version number.
@@ -176,13 +176,13 @@ If you see a version number, Git is ready.
 ## 4.1 Clone the Repository
 
 Download the official FR Legends Skeleton Key repository with:
-````md
+````bash
 git clone https://github.com/ethanlabs101/frlegends-skeleton-key.git
 ````
 Git will download the Skeleton Key source files to your Termux home directory.
 
 When the download finishes, enter the repository:
-````md
+````bash
 cd frlegends-skeleton-key
 ````
 You are now inside the Skeleton Key repository.
@@ -192,7 +192,7 @@ You are now inside the Skeleton Key repository.
 ## 4.2 Verify the Repository
 
 You can verify your current location with:
-````md
+````bash
 pwd
 ````
 You should see a path ending in:
@@ -208,7 +208,7 @@ You should see a path ending in:
 Skeleton Key includes a dedicated Termux installer.
 
 Make the installer executable:
-````md
+````bash
 chmod +x installers/install-termux.sh
 ````
 This only needs to be done so Termux can execute the installer script.
@@ -218,7 +218,7 @@ This only needs to be done so Termux can execute the installer script.
 ## 5.2 Run the Installer
 
 Start the installer:
-````md
+````bash
 ./installers/install-termux.sh
 ````
 The Skeleton Key installer will now begin preparing your environment.
@@ -302,7 +302,7 @@ The installer handles this process.
 
 A successful environment preparation will display information similar to:
 
-````md
+````bash
 [+] Debian system dependencies installed.
 [+] Node.js version: v20.x.x
 [+] npm version: x.x.x
@@ -461,7 +461,7 @@ Contains your FR Legends payload data and related persistent assets.
 When the installation finishes, the installer will display an installation summary.
 
 A successful installation will look similar to:
-````md
+````bash
 ================================================
 INSTALLATION COMPLETE
 ================================================
@@ -489,7 +489,7 @@ If you see the installation completion message, Skeleton Key is ready to launch.
 Use the Vault location displayed by the installer.
 
 For example:
-````md
+````bash
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
 ````
 ---
@@ -497,7 +497,7 @@ cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
 ## 13.2 Launch the CLI
 
 Run:
-````md
+````bash
 node cli.js
 ````
 The FR Legends Skeleton Key CLI should now appear.
@@ -549,22 +549,22 @@ First, make sure you are in debian proot and
 in the ~/frlegends-skeleton-key/source/ directory.
 
 Use:
-````md
+````bash
 proot-distro login debian
 ````
 (if not in proot) then,
-````md
+````bash
 cd ~/frlegends-skeleton-key/source
 ````
 to enter the correct directory.
 
 Second, make the updater executable. Run:
-````md
+````bash
 chmod +x updaters/update-termux.sh
 ````
 
 Run it from the Skeleton Key repository:
-````md
+````bash
 ./updaters/update-termux.sh
 ````
 The updater checks your current version against the latest version available from the official repository.
@@ -592,7 +592,7 @@ The update process can:
 13. Display the previous and installed versions.
 
 Persistent data such as:
-````md
+````bash
 .vault.lock
 identity_vault.db
 fr_legends_payloads/
@@ -708,11 +708,11 @@ If Termux reports:
 git: command not found
 
 install Git:
-````md
+````bash
 pkg install git
 ````
 Then verify it:
-````md
+````bash
 git --version
 ````
 ---
@@ -720,7 +720,7 @@ git --version
 ## 19.2 proot-distro Is Missing
 
 If the installer cannot find proot-distro, install it with:
-````md
+````bash
 pkg install proot-distro
 ````
 Then run the Skeleton Key installer again.
@@ -760,11 +760,11 @@ If npm reports an error while downloading packages:
 First, make sure you are inside the actual Vault directory.
 
 For example (in proot):
-````md
+````bash
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
 ````
 Then run:
-````md
+````bash
 node cli.js
 ````
 If the command still fails, copy the complete error message and consult the troubleshooting documentation.
@@ -796,7 +796,7 @@ If the problem persists, consult the troubleshooting documentation.
 If Skeleton Key launches successfully, your Android device is now ready to use the FR Legends Skeleton Key ecosystem.
 
 You have completed:
-````md
+````bash
 Android
    ↓
 Termux
