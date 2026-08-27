@@ -19,7 +19,7 @@ Before beginning, make sure you have:
 
 You do not need root access to run Skeleton Key itself.
 
-This guide assumes you are using a Debian/Arch-based Linux distribution such as:
+This guide assumes you are using a Debian/Ubuntu-based or Arch-based Linux distribution such as:
 
 - Ubuntu
 - Linux Mint
@@ -27,7 +27,7 @@ This guide assumes you are using a Debian/Arch-based Linux distribution such as:
 - Pop!_OS
 - Zorin OS
 - Arch Linux
-- Cachy OS
+- CachyOS
 - Other Debian/Ubuntu/Arch-based distributions
 
 If you are using a different Linux distribution, the Skeleton Key application may still work, but the package installation commands may be different.
@@ -66,26 +66,34 @@ Your username and computer name will be different.
 
 Before installing Skeleton Key, update your package information.
 
+### Debian/Ubuntu-based systems
+
 Run:
 
 ```bash
 sudo apt update
 ```
-(For Debian/Ubuntu based systems) or,
 
-```bash
-sudo pacman -Syu
-```
-(For Arch systems)
-
-Enter your sudo password if requested.
-
-Press Enter after entering your password.
-
-Then upgrade installed packages (Deb based only):
+Then upgrade installed packages:
 
 ```bash
 sudo apt upgrade
+```
+
+If Linux asks you to confirm the upgrade, enter:
+
+```text
+Y
+```
+
+and press Enter.
+
+### Arch-based systems
+
+Run:
+
+```bash
+sudo pacman -Syu
 ```
 
 If Linux asks you to confirm the upgrade, enter:
@@ -104,17 +112,40 @@ This may take several minutes depending on your internet connection and how many
 
 # 2. Install Required Software
 
-Skeleton Key requires several standard Linux development and runtime tools.
+The Skeleton Key Linux installer handles the application's Node.js dependencies.
 
-The installer will handle most dependencies, but install git so you can download this repos content.
+You do **not** need to manually install `build-essential`, `g++`, SQLite development libraries, or other application build dependencies just to run the installer.
 
-Here is how to do so in Debian and Arch-based distributions:
+The Linux installer performs the following checks itself:
 
-Debian/Ubuntu-based
+- Node.js
+- npm
+- Application structure
+- Application directories
+- Node.js dependencies
+- Vault data
+- Vault directory permissions
+
+You only need to make sure the basic tools required to obtain and run the repository are available.
+
+The primary requirement that this guide installs before cloning the repository is Git.
+
+---
+
+## 2.1 Install Git
+
+### Debian/Ubuntu-based systems
+
+Run:
+
 ```bash
-sudo apt install git 
+sudo apt install git
 ```
-Or alternatively, on Arch-based systems,
+
+### Arch-based systems
+
+Run:
+
 ```bash
 sudo pacman -S git
 ```
@@ -133,7 +164,7 @@ Allow the installation to finish.
 
 # 3. Verify the Requirements
 
-Before downloading Skeleton Key, verify that the required tools are available.
+Before downloading Skeleton Key, verify that Git is available.
 
 ## 3.1 Check Git
 
@@ -155,33 +186,49 @@ If you see a version number, Git is ready.
 
 ---
 
-## 3.2 Check Python
+## 3.2 Check Node.js
+
+The Linux installer requires Node.js.
 
 Run:
 
 ```bash
-python3 --version
+node --version
 ```
 
-You should see a Python version number.
+You should see a Node.js version number.
 
 For example:
 
 ```text
-Python 3.x.x
+v20.x.x
 ```
+
+If Node.js is not installed, the Skeleton Key installer will stop and tell you that Node.js needs to be installed.
 
 ---
 
-## 3.3 Check SQLite
+## 3.3 Check npm
 
 Run:
 
 ```bash
-sqlite3 --version
+npm --version
 ```
 
-You should see a SQLite version number.
+You should see an npm version number.
+
+For example:
+
+```text
+10.x.x
+```
+
+If npm is not installed, the Skeleton Key installer will stop and tell you that npm needs to be installed.
+
+> IMPORTANT:
+> The supported Node.js version may change as Skeleton Key develops.
+> If the installer reports that your installed Node.js version is unsupported, follow the current Skeleton Key documentation for the required version.
 
 ---
 
@@ -189,61 +236,60 @@ You should see a SQLite version number.
 
 Skeleton Key is a Node.js application.
 
-The recommended Node.js version may change as Skeleton Key develops.
+If Node.js and npm are already installed and both commands from Section 3 return version numbers, you can continue to Section 5.
 
-The Skeleton Key installer will verify the Node.js environment required by the current version.
+If Node.js is not installed, install it using your distribution's package manager.
 
-If Node.js is already installed, first check it:
+## 4.1 Debian/Ubuntu-based Systems
 
-```bash
-node --version
-```
-
-Then check npm:
-
-```bash
-npm --version
-```
-
-If both commands return version numbers, Node.js and npm are already available.
-
-If Node.js is not installed, continue with the installation method below.
-
----
-
-## 4.1 Install Node.js
-
-On Debian-based systems, you can install the distribution-provided Node.js and npm packages with:
+You can install the distribution-provided Node.js and npm packages with:
 
 ```bash
 sudo apt install nodejs npm
 ```
 
-If prompted to continue, enter:
-
-```text
-Y
-```
-
-and press Enter.
-
-After installation, verify Node.js:
+Then verify:
 
 ```bash
 node --version
 ```
 
-Then verify npm:
+and:
 
 ```bash
 npm --version
 ```
 
-You should see version numbers for both.
+Both commands should return version numbers.
 
 > IMPORTANT:
-> Skeleton Key's supported Node.js version can change between releases.
-> If the Skeleton Key installer reports that your Node.js version is unsupported, follow the installer message and the current Skeleton Key documentation rather than forcing an incompatible version.
+> Do not install additional development packages such as `build-essential` or `g++` unless the installer or a dependency error specifically requires them.
+>
+> The Skeleton Key installer runs `npm ci` when a `package-lock.json` exists, or `npm install` otherwise. Native dependencies are handled through the Node.js dependency installation process.
+
+---
+
+## 4.2 Arch-based Systems
+
+On Arch-based systems, Node.js and npm can be installed with:
+
+```bash
+sudo pacman -S nodejs npm
+```
+
+Then verify:
+
+```bash
+node --version
+```
+
+and:
+
+```bash
+npm --version
+```
+
+Both commands should return version numbers.
 
 ---
 
@@ -299,13 +345,13 @@ You should see the Skeleton Key repository files and directories.
 
 Skeleton Key includes a dedicated Linux installer.
 
-Verify that the installer exists:
+Verify that the installer directory exists:
 
 ```bash
 ls installers
 ```
 
-You should see the installation scripts available for the repository.
+You should see the available installation scripts.
 
 The Linux installer is:
 
@@ -335,74 +381,92 @@ Start the installer:
 ./installers/install-linux.sh
 ```
 
-The Skeleton Key installer will now begin preparing your Linux environment.
+The Skeleton Key Linux installer will now begin preparing the application.
 
-From this point forward, the installer handles the majority of the Skeleton Key installation process.
+The installer checks that:
 
-Follow the instructions displayed by the installer.
+- The operating system is Linux
+- The Skeleton Key project structure exists
+- `package.json` exists
+- `cli.js` exists
+- Node.js is installed
+- npm is installed
+- The Vault directories can be prepared
+- Node.js dependencies can be installed
+- Persistent Vault data can be detected
+- The Vault directory is writable
 
----
+From this point forward, the installer handles the Skeleton Key application installation process.
 
-# 7. Debian Environment
-
-## 7.1 Linux Does Not Require a Debian Container
-
-Unlike the Android Termux installation, the normal Linux installation does not need to create a Debian environment through proot-distro.
-
-You are already running Linux.
-
-The Skeleton Key Linux installer can prepare and run the application directly within your Linux environment.
-
-You therefore do not need to:
-
-- Install Termux
-- Install proot-distro
-- Create a Debian container
-- Enter a Debian proot environment
-
-Those steps are specific to the Android/Termux installation.
+> IMPORTANT:
+> You do not need to manually install `build-essential`, `g++`, SQLite development libraries, or other Skeleton Key application dependencies before running this installer unless a specific dependency failure tells you that they are required.
 
 ---
 
-# 8. Skeleton Key Application Installation
+# 7. Understanding the Linux Installer
 
-## 8.1 Repository Setup
+## 7.1 Project Structure Check
 
-The Linux installer checks the current Skeleton Key installation and prepares the application.
+The installer first determines the location of the repository and the Skeleton Key Vault.
 
-If no existing installation is detected, the installer can create the required application environment.
-
-The installer will display the locations it uses.
-
-Always treat the paths displayed by the installer as authoritative.
-
-Do not assume that a future version of Skeleton Key will use exactly the same directory structure.
-
----
-
-## 8.2 Existing Skeleton Key Installation
-
-If the installer detects an existing Skeleton Key installation, it may ask how you want to continue.
-
-Depending on the current installer version, you may see options similar to:
+The application is expected to contain:
 
 ```text
-1) Replace application with fresh Git clone
-2) Keep existing application
-3) Cancel
+skeleton-key-vault/package.json
+skeleton-key-vault/cli.js
 ```
 
-### Keep Existing Application
+If either file is missing, the installer stops.
 
-Choose this option if you want to leave your current application installation untouched.
+This prevents the installer from attempting to install into an incomplete or incorrect repository.
 
-### Replace Application
+---
 
-Choose this option when you intentionally want to replace the current application source with a fresh copy.
+## 7.2 Node.js Check
 
-If you choose to replace the application, pay close attention to any warning displayed by the installer.
+The installer checks whether the `node` command is available.
 
-Always make sure your persistent Vault data is preserved before confirming a replacement.
+If Node.js is missing, the installer displays:
+
+```text
+[!] Node.js is not installed.
+```
+
+The installer does not automatically install Node.js.
+
+Install Node.js using your distribution's package manager, then run the installer again.
+
+---
+
+## 7.3 npm Check
+
+The installer also checks whether npm is available.
+
+If npm is missing, the installer displays:
+
+```text
+[!] npm is not installed.
+```
+
+Install npm using your distribution's package manager, then run the installer again.
+
+---
+
+# 8. Application Directories
+
+The installer prepares the required payload directory automatically.
+
+It creates:
+
+```text
+fr_legends_payloads/
+```
+
+inside the Skeleton Key Vault.
+
+You do not need to manually create this directory.
+
+If the directory cannot be created, the installation will stop.
 
 ---
 
@@ -410,78 +474,85 @@ Always make sure your persistent Vault data is preserved before confirming a rep
 
 ## 9.1 Installing Dependencies
 
-Skeleton Key uses Node.js packages for its application functionality.
+The installer enters the Skeleton Key Vault directory and installs the Node.js dependencies.
 
-The installer automatically installs the Node.js dependencies required by the current Vault version.
+If the repository contains:
 
-This may take several minutes.
+```text
+package-lock.json
+```
 
-You may see npm messages such as:
+the installer uses:
+
+```bash
+npm ci
+```
+
+If no `package-lock.json` exists, the installer uses:
+
+```bash
+npm install
+```
+
+This is important because the installer determines the correct installation method automatically.
+
+You do not need to manually run `npm install` before running the installer.
+
+---
+
+## 9.2 npm Messages
+
+During installation, npm may display warnings such as:
 
 ```text
 npm WARN deprecated ...
 ```
 
-A warning does not automatically mean that the installation failed.
+A warning does not automatically mean the installation failed.
 
-The important thing is whether npm successfully completes the installation.
+The important part is whether npm finishes successfully.
 
-A successful installation should report that the Node.js dependencies were installed successfully.
+A successful installation will be followed by:
 
----
-
-## 9.2 npm Errors
-
-If npm encounters a temporary network, registry, or cache problem, the installation may fail during dependency installation.
-
-Do not immediately delete your entire Skeleton Key installation.
-
-First, read the final error message.
-
-If the problem appears to be a temporary download or registry issue:
-
-1. Check your internet connection.
-2. Wait a moment.
-3. Run the installer again.
-4. Review the final error if the problem continues.
-
-For persistent problems, see the troubleshooting documentation.
+```text
+[+] Dependencies installed successfully.
+```
 
 ---
 
-# 10. SQLite Verification
+## 9.3 Native Node.js Dependencies
 
-## 10.1 Testing SQLite
+Some Node.js packages may contain native components.
 
-Skeleton Key uses SQLite for persistent Vault data.
+If npm successfully installs the dependencies, no additional manual build-tool installation is necessary.
 
-The installer automatically tests the required SQLite functionality.
+If npm fails with an error specifically stating that a compiler, `make`, `g++`, Python, or another build tool is missing, install the required package using your Linux distribution's package manager and then run the installer again.
 
-A successful installation should report that the SQLite dependency test passed.
+For example, on Debian/Ubuntu:
 
-This confirms that the required native SQLite dependency is functioning in your Linux environment.
+```bash
+sudo apt install build-essential
+```
 
-If the SQLite test fails, do not delete your Vault.
-
-See the troubleshooting section before making changes to your installation.
-
----
-
-# 11. Your Vault
-
-## 11.1 What Is the Vault?
-
-The Skeleton Key Vault is the local environment used to store your persistent Skeleton Key data.
-
-Your application source and your persistent Vault data are treated separately.
-
-This allows the application to be updated without intentionally destroying your local Vault.
+Do not install these packages preemptively unless they are actually required by your dependency installation.
 
 ---
 
-## 11.2 Persistent Vault Data
+# 10. Vault Data
 
-The primary persistent Vault data includes:
+## 10.1 What Is the Vault?
+
+The Skeleton Key Vault is the local environment used to store persistent Skeleton Key data.
+
+The Vault exists inside the Skeleton Key application directory.
+
+The installer checks for existing Vault data instead of assuming that every installation is completely new.
+
+---
+
+## 10.2 Persistent Vault Data
+
+The installer checks for:
 
 ```text
 .vault.lock
@@ -489,9 +560,11 @@ identity_vault.db
 fr_legends_payloads/
 ```
 
+These are important persistent files and directories.
+
 ### .vault.lock
 
-Stores persistent local Vault and identity information used by Skeleton Key.
+Persistent local Vault and identity information used by Skeleton Key.
 
 ### identity_vault.db
 
@@ -499,24 +572,66 @@ The local Vault database.
 
 ### fr_legends_payloads/
 
-Contains your FR Legends payload data and related persistent assets.
+Persistent FR Legends payload data used by Skeleton Key.
 
 > IMPORTANT:
-> Do not manually delete these files unless you intentionally want to remove or reset your local Vault data.
+> Do not manually delete these files or directories unless you intentionally want to remove or reset your local Vault data.
+
+---
+
+# 11. Vault Permissions
+
+The installer checks whether the current Linux user can write to the Vault directory.
+
+A successful permission check displays:
+
+```text
+[+] Vault directory is writable.
+```
+
+If the directory is not writable, the installer reports:
+
+```text
+[!] The Vault directory is not writable by the current user.
+```
+
+The installer does not automatically take ownership of files belonging to another Linux user.
+
+> IMPORTANT:
+> Do not solve permission problems by running Skeleton Key itself as root.
+>
+> Avoid launching the CLI with:
+>
+> ```bash
+> sudo node cli.js
+> ```
+>
+> Running the application as root can create root-owned files and cause additional permission problems later.
 
 ---
 
 # 12. Installation Complete
 
-## 12.1 Verify the Installation
+When the installer finishes successfully, it displays:
 
-When the installation finishes, the installer will display an installation summary.
+```text
+============================================================
+                 INSTALLATION COMPLETE
+============================================================
+```
 
-A successful installation should display an installation completion message and the location of the installed Skeleton Key application.
+It will also display the actual Vault location detected by the installer.
 
-The exact output may change between versions.
+For example:
 
-If the installer reports that the installation completed successfully, Skeleton Key is ready to launch.
+```text
+Vault location:
+  /home/user/frlegends-skeleton-key/skeleton-key-vault
+```
+
+The exact location depends on where you cloned the repository.
+
+Always use the location printed by the installer rather than assuming a fixed path.
 
 ---
 
@@ -524,21 +639,15 @@ If the installer reports that the installation completed successfully, Skeleton 
 
 ## 13.1 Enter the Vault Directory
 
-The installer should display the directory containing the Skeleton Key Vault.
+Use the Vault location displayed by the installer.
 
-Use the path shown by the installer.
-
-For example, if the Vault is located at:
-
-```text
-~/frlegends-skeleton-key/source/skeleton-key-vault
-```
-
-enter:
+For example:
 
 ```bash
-cd ~/frlegends-skeleton-key/source/skeleton-key-vault
+cd ~/frlegends-skeleton-key/skeleton-key-vault
 ```
+
+The exact path may be different on your system.
 
 ---
 
@@ -577,8 +686,6 @@ Skeleton Key provides features including:
 - Backup and recovery tools
 - Other Skeleton Key utilities
 
-You do not need to understand Linux or Node.js to use these features.
-
 The CLI provides the interface for interacting with the Skeleton Key ecosystem.
 
 ---
@@ -591,17 +698,25 @@ No.
 
 Once Skeleton Key is installed, use the updater when a new version becomes available.
 
-The Linux installation includes the appropriate update script.
-
-The exact updater location may depend on the current Skeleton Key version.
-
-From the Skeleton Key repository, you can inspect the available updater scripts with:
+The available updater scripts can be viewed with:
 
 ```bash
 ls updaters
 ```
 
-If the Linux updater is present, make it executable:
+If the repository contains a Linux updater, it may be named:
+
+```text
+update-linux.sh
+```
+
+Always use the updater included with the current Skeleton Key repository.
+
+---
+
+## 15.2 Run the Linux Updater
+
+If `update-linux.sh` exists, make it executable:
 
 ```bash
 chmod +x updaters/update-linux.sh
@@ -616,32 +731,16 @@ Then run:
 Follow the instructions displayed by the updater.
 
 > IMPORTANT:
-> Always use the updater included with the version of Skeleton Key you have installed.
-> Do not assume that the updater filename or location will remain identical across future releases.
+> The updater filename and behavior may change between Skeleton Key releases.
+> Always follow the updater included with your current repository version.
 
 ---
 
-# 16. What Does the Updater Do?
+# 16. Persistent Vault Data During Updates
 
-The updater is designed to update the application while preserving persistent Vault data.
+When updating Skeleton Key, persistent Vault data should be preserved.
 
-Depending on the current Skeleton Key version, the update process can:
-
-1. Check the current installation.
-2. Read the current Skeleton Key version.
-3. Download the latest repository.
-4. Check the downloaded application.
-5. Determine whether an update is available.
-6. Create a backup of persistent Vault data.
-7. Replace application files.
-8. Restore persistent Vault data.
-9. Install updated Node.js dependencies.
-10. Test better-sqlite3.
-11. Verify preserved Vault data.
-12. Remove temporary update files.
-13. Display the previous and installed versions.
-
-Persistent data such as:
+Important data includes:
 
 ```text
 .vault.lock
@@ -649,27 +748,21 @@ identity_vault.db
 fr_legends_payloads/
 ```
 
-is intended to survive normal application updates.
+Do not manually delete these files before updating.
+
+If a future Skeleton Key version requires a database migration or other data migration, follow the migration instructions provided by that version.
 
 ---
 
-# 17. Important Update Warning
+# 17. Protecting Your Vault
 
-When replacing an existing application installation, always pay attention to the files the updater identifies as persistent data.
-
-Do not manually delete your Vault before updating.
-
-If a future Skeleton Key version requires a migration of existing data, follow the migration instructions provided by that version of Skeleton Key.
-
----
-
-# 18. Protecting Your Vault
-
-## 18.1 Do Not Delete Your Persistent Data
+## 17.1 Do Not Delete Persistent Data
 
 Your persistent Vault data should be treated as important user data.
 
-The primary persistent locations are:
+Before manually replacing, moving, or deleting a Skeleton Key installation, make sure you know where your Vault data is stored.
+
+At minimum, pay attention to:
 
 ```text
 .vault.lock
@@ -677,33 +770,83 @@ identity_vault.db
 fr_legends_payloads/
 ```
 
-Keep these files if you want to preserve your local Vault.
-
-Before manually deleting, replacing, or moving a Skeleton Key installation, make sure you understand what will happen to these files.
-
 ---
 
-## 18.2 Payload Data
+## 17.2 Back Up Your Vault
 
-The:
+Before performing destructive maintenance, create a backup of your persistent Vault data.
 
-```text
-fr_legends_payloads/
+A basic backup can be created from the parent directory of your Vault.
+
+For example:
+
+```bash
+cp -a skeleton-key-vault skeleton-key-vault-backup
 ```
 
-directory contains persistent FR Legends payload data.
+Only perform this type of backup while you understand which directory contains your actual Vault.
 
-This includes data used by Skeleton Key for its asset and save-management functionality.
-
-Some payload directories or files may be updated as the FR Legends game itself changes.
-
-Do not assume that replacing the application requires deleting your payload data.
+For important data, verify that the backup exists before deleting or replacing anything.
 
 ---
 
-# 19. Troubleshooting
+# 18. Linux Permissions
 
-## 19.1 Git Is Missing
+## 18.1 Do Not Run Skeleton Key as Root
+
+You normally do not need to launch Skeleton Key with:
+
+```bash
+sudo node cli.js
+```
+
+Run Skeleton Key as your normal Linux user.
+
+Prefer:
+
+```bash
+node cli.js
+```
+
+instead of:
+
+```bash
+sudo node cli.js
+```
+
+Use `sudo` for system package installation when required, not for normal Skeleton Key operation.
+
+---
+
+# 19. File Permissions
+
+If Linux reports:
+
+```text
+Permission denied
+```
+
+when attempting to run an installer or updater, make sure the script is executable.
+
+For example:
+
+```bash
+chmod +x installers/install-linux.sh
+```
+
+For an updater:
+
+```bash
+chmod +x updaters/update-linux.sh
+```
+
+Then run the appropriate script again.
+
+---
+
+# 20. Troubleshooting
+
+## 20.1 Git Is Missing
 
 If Linux reports:
 
@@ -711,13 +854,21 @@ If Linux reports:
 git: command not found
 ```
 
-install Git:
+install Git.
+
+### Debian/Ubuntu:
 
 ```bash
 sudo apt install git
 ```
 
-Then verify it:
+### Arch:
+
+```bash
+sudo pacman -S git
+```
+
+Then verify:
 
 ```bash
 git --version
@@ -725,7 +876,7 @@ git --version
 
 ---
 
-## 19.2 Node.js Is Missing
+## 20.2 Node.js Is Missing
 
 If Linux reports:
 
@@ -733,10 +884,18 @@ If Linux reports:
 node: command not found
 ```
 
-install Node.js and npm:
+install Node.js and npm.
+
+### Debian/Ubuntu:
 
 ```bash
 sudo apt install nodejs npm
+```
+
+### Arch:
+
+```bash
+sudo pacman -S nodejs npm
 ```
 
 Then verify:
@@ -755,7 +914,7 @@ If Skeleton Key reports that your Node.js version is unsupported, follow the ver
 
 ---
 
-## 19.3 npm Is Missing
+## 20.3 npm Is Missing
 
 If Linux reports:
 
@@ -763,10 +922,18 @@ If Linux reports:
 npm: command not found
 ```
 
-install npm:
+install npm.
+
+### Debian/Ubuntu:
 
 ```bash
 sudo apt install npm
+```
+
+### Arch:
+
+```bash
+sudo pacman -S npm
 ```
 
 Then verify:
@@ -777,50 +944,57 @@ npm --version
 
 ---
 
-## 19.4 build-essential Is Missing
+## 20.4 npm Installation Failed
 
-If a native Node.js dependency fails to compile and the error indicates that tools such as `make` or `g++` are missing, install the standard build tools:
+If npm reports an error while installing packages:
+
+1. Check your internet connection.
+2. Read the final npm error.
+3. Check whether the error identifies a missing system dependency.
+4. Install only the dependency specifically required by the error.
+5. Run the Skeleton Key installer again.
+6. Do not immediately delete your Vault.
+
+For example, if npm explicitly reports that `make` or `g++` is missing on Debian/Ubuntu, install:
 
 ```bash
 sudo apt install build-essential
-```
-
-Then run the Skeleton Key installer again.
-
----
-
-## 19.5 SQLite Dependencies Are Missing
-
-If the installer reports a SQLite-related dependency failure, make sure SQLite and the required development libraries are installed:
-
-```bash
-sudo apt install sqlite3 libsqlite3-dev
 ```
 
 Then run the installer again.
 
 ---
 
-## 19.6 npm Installation Failed
+## 20.5 Native Module Compilation Failed
 
-If npm reports an error while downloading packages:
+If a Node.js native dependency fails to compile, read the npm error carefully.
 
-1. Check your internet connection.
-2. Wait a moment and retry.
-3. Read the final npm error.
-4. Do not immediately delete your Vault.
-5. If the error persists, consult the troubleshooting documentation.
+The error may identify a missing compiler or development tool.
+
+On Debian/Ubuntu, a common set of build tools is:
+
+```bash
+sudo apt install build-essential
+```
+
+Only install these tools if the dependency error actually requires them.
+
+After installation, return to the Skeleton Key repository and run:
+
+```bash
+./installers/install-linux.sh
+```
 
 ---
 
-## 19.7 Skeleton Key Will Not Launch
+## 20.6 Skeleton Key Will Not Launch
 
-First, make sure you are inside the actual Vault directory.
+First, make sure you are inside the actual Skeleton Key Vault directory.
 
 For example:
 
 ```bash
-cd ~/frlegends-skeleton-key/source/skeleton-key-vault
+cd ~/frlegends-skeleton-key/skeleton-key-vault
 ```
 
 Then run:
@@ -829,15 +1003,51 @@ Then run:
 node cli.js
 ```
 
-If the command still fails, copy the complete error message and consult the troubleshooting documentation.
+If the command still fails, copy the complete error message.
 
-Do not remove your Vault simply because the application fails to start.
+Do not delete your Vault simply because the application fails to start.
 
 ---
 
-## 19.8 Installation Was Interrupted
+## 20.7 Permission Denied
 
-If the installation was interrupted by:
+If you receive:
+
+```text
+Permission denied
+```
+
+when executing the installer:
+
+```bash
+chmod +x installers/install-linux.sh
+```
+
+Then:
+
+```bash
+./installers/install-linux.sh
+```
+
+For the updater:
+
+```bash
+chmod +x updaters/update-linux.sh
+```
+
+Then:
+
+```bash
+./updaters/update-linux.sh
+```
+
+Do not automatically use `sudo` to bypass the problem.
+
+---
+
+## 20.8 Installation Was Interrupted
+
+If installation was interrupted by:
 
 - Network loss
 - Computer shutdown
@@ -846,7 +1056,7 @@ If the installation was interrupted by:
 - Package installation failure
 - npm failure
 
-do not immediately start deleting directories.
+do not immediately delete the installation.
 
 Open a new terminal and return to the Skeleton Key repository:
 
@@ -854,29 +1064,29 @@ Open a new terminal and return to the Skeleton Key repository:
 cd ~/frlegends-skeleton-key
 ```
 
-Then run the installer again:
+Then run:
 
 ```bash
 ./installers/install-linux.sh
 ```
 
-The installer will check the environment and existing installation before continuing.
+The installer will check the project structure and existing Vault data again.
 
-If the problem persists, copy the complete error message and consult the troubleshooting documentation.
+If the problem persists, copy the complete error message.
 
 ---
 
-# 20. Moving or Reinstalling Skeleton Key
+# 21. Moving or Reinstalling Skeleton Key
 
-If you need to reinstall Skeleton Key, do not immediately delete the existing installation.
+If you need to move or reinstall Skeleton Key, do not immediately delete the existing installation.
 
-First identify where your persistent Vault data is stored.
+First identify the location of your Vault.
 
-Check the application documentation and installer output for the current Vault location.
+The installer displays the Vault location when installation completes.
 
 Back up important persistent data before performing destructive changes.
 
-At minimum, pay attention to:
+Pay particular attention to:
 
 ```text
 .vault.lock
@@ -884,82 +1094,26 @@ identity_vault.db
 fr_legends_payloads/
 ```
 
-Once your persistent data is safely backed up, you can proceed with the appropriate reinstall procedure.
+Once your persistent data is safely backed up, proceed with the appropriate reinstall procedure.
 
 ---
 
-# 21. Linux Permissions
+# 22. Internet Connection Requirements
 
-## 21.1 Do Not Run Skeleton Key as Root
+Skeleton Key may require an internet connection for operations such as:
 
-You normally do not need to launch Skeleton Key with:
-
-```bash
-sudo node cli.js
-```
-
-Run Skeleton Key as your normal Linux user.
-
-Using `sudo` unnecessarily can create files owned by root and cause permission problems later.
-
-For example, prefer:
-
-```bash
-node cli.js
-```
-
-instead of:
-
-```bash
-sudo node cli.js
-```
-
-Use `sudo` only when installing system packages or when the installation instructions specifically require it.
-
----
-
-# 22. File Permissions
-
-If Linux reports:
-
-```text
-Permission denied
-```
-
-when attempting to run an installer or updater, make sure the script is executable.
-
-For example:
-
-```bash
-chmod +x installers/install-linux.sh
-```
-
-or:
-
-```bash
-chmod +x updaters/update-linux.sh
-```
-
-Then run the script again.
-
----
-
-# 23. Internet Connection Requirements
-
-Skeleton Key requires an internet connection for operations such as:
-
-- Downloading the Skeleton Key repository
-- Installing packages
+- Cloning the Skeleton Key repository
 - Installing Node.js dependencies
 - Updating Skeleton Key
 - Accessing online assets
 - Downloading supported asset payloads
+- Other online Skeleton Key functionality
 
 If an operation fails while downloading data, first verify that your Linux computer has a working internet connection.
 
 ---
 
-# 24. Security and Downloads
+# 23. Security and Downloads
 
 Only download FR Legends Skeleton Key from the official repository.
 
@@ -973,11 +1127,11 @@ If someone provides a modified executable, script, archive, or installer claimin
 
 ---
 
-# 25. Linux Distribution Compatibility
+# 24. Linux Distribution Compatibility
 
-Skeleton Key is primarily designed to run in a standard Linux userspace with the required Node.js environment and dependencies.
+Skeleton Key is designed to run in a standard Linux userspace with the required Node.js environment and dependencies.
 
-Debian-based distributions are the easiest to support because they use the `apt` package manager.
+Debian/Ubuntu-based distributions are straightforward to support because they use the `apt` package manager.
 
 Examples include:
 
@@ -987,21 +1141,32 @@ Examples include:
 - Pop!_OS
 - Zorin OS
 
-Other distributions may also work.
+Arch-based distributions use `pacman`.
+
+Examples include:
+
+- Arch Linux
+- CachyOS
+- Manjaro
+- EndeavourOS
+
+Other Linux distributions may also work.
 
 However, package names and installation commands can differ.
 
-For example, Arch Linux uses `pacman` rather than `apt`.
+For example:
 
-Fedora uses `dnf`.
+- Debian/Ubuntu → `apt`
+- Arch → `pacman`
+- Fedora → `dnf`
 
-If you are using a non-Debian-based distribution, do not blindly run the `apt` commands from this guide.
+If you are using a distribution not covered by this guide, do not blindly run the `apt` or `pacman` commands.
 
-Instead, install the equivalent dependencies using your distribution's package manager.
+Install the equivalent packages using your distribution's package manager.
 
 ---
 
-# 26. Reaching the Skeleton Key Repository Again
+# 25. Reaching the Skeleton Key Repository Again
 
 If you close your terminal and later want to launch Skeleton Key again, you do not need to reinstall it.
 
@@ -1010,7 +1175,7 @@ Open a terminal and navigate back to the Vault directory.
 For example:
 
 ```bash
-cd ~/frlegends-skeleton-key/source/skeleton-key-vault
+cd ~/frlegends-skeleton-key/skeleton-key-vault
 ```
 
 Then launch:
@@ -1019,15 +1184,15 @@ Then launch:
 node cli.js
 ```
 
-If your installation uses a different Vault location, use the location displayed by your installer.
+If your installation uses a different Vault location, use the location displayed by the installer.
 
 ---
 
-# 27. Basic Linux Terminal Commands
+# 26. Basic Linux Terminal Commands
 
 If you are completely new to Linux, the following commands are useful when working with Skeleton Key.
 
-## 27.1 Show Your Current Directory
+## 26.1 Show Your Current Directory
 
 ```bash
 pwd
@@ -1037,7 +1202,7 @@ This tells you where you currently are.
 
 ---
 
-## 27.2 List Files
+## 26.2 List Files
 
 ```bash
 ls
@@ -1047,7 +1212,7 @@ This shows the files and directories in your current location.
 
 ---
 
-## 27.3 Enter a Directory
+## 26.3 Enter a Directory
 
 ```bash
 cd directory-name
@@ -1061,7 +1226,7 @@ cd frlegends-skeleton-key
 
 ---
 
-## 27.4 Go Back One Directory
+## 26.4 Go Back One Directory
 
 ```bash
 cd ..
@@ -1069,7 +1234,7 @@ cd ..
 
 ---
 
-## 27.5 Return Home
+## 26.5 Return Home
 
 ```bash
 cd ~
@@ -1079,14 +1244,12 @@ This returns you to your Linux user's home directory.
 
 ---
 
-# 28. Understanding the Installation
+# 27. Understanding the Installation
 
 Your Linux Skeleton Key installation can be thought of as:
 
 ```text
 Linux
-   ↓
-System Dependencies
    ↓
 Git
    ↓
@@ -1096,6 +1259,8 @@ Skeleton Key Repository
    ↓
 Skeleton Key Vault
    ↓
+Node.js Dependencies
+   ↓
 FR Legends Skeleton Key CLI
 ```
 
@@ -1103,9 +1268,11 @@ Unlike the Android installation, there is no Termux layer and no Debian proot la
 
 The Linux operating system provides the environment directly.
 
+The Skeleton Key Linux installer handles the application dependency installation after Node.js and npm are available.
+
 ---
 
-# 29. Installation Complete
+# 28. Installation Complete
 
 If Skeleton Key launches successfully, your Linux computer is now ready to use the FR Legends Skeleton Key ecosystem.
 
@@ -1116,13 +1283,15 @@ Linux
    ↓
 System Preparation
    ↓
-Required Dependencies
-   ↓
 Git
    ↓
-Node.js
+Node.js + npm
    ↓
 Skeleton Key Repository
+   ↓
+Skeleton Key Installer
+   ↓
+Node.js Dependencies
    ↓
 Skeleton Key Vault
    ↓
@@ -1142,5 +1311,3 @@ From here, you can begin exploring Skeleton Key.
 [Troubleshooting Guide →]()
 
 [→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
-
-----
