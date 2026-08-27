@@ -796,7 +796,7 @@ If the problem persists, consult the troubleshooting documentation.
 If Skeleton Key launches successfully, your Android device is now ready to use the FR Legends Skeleton Key ecosystem.
 
 You have completed:
-
+````md
 Android
    ↓
 Termux
@@ -812,7 +812,7 @@ Node.js + Dependencies
 Skeleton Key Vault
    ↓
 FR Legends Skeleton Key CLI
-
+````
 From here, you can begin exploring Skeleton Key.
 
 ---
