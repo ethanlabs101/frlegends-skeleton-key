@@ -538,19 +538,11 @@ For Linux:
 
 [Linux Update Guide →](./linux-update.md)
 
-For Windows:
-
-[Windows Installation →](./windows-installation.md)
-
-[Windows Update Guide →](./windows-update.md)
-
 For Android/Termux:
 
 [Android Installation →](./android-installation.md)
 
 [Android Update Guide →](./android-update.md)
-
-If one of these guides does not exist yet, return to the documentation index and use the platform guide currently available for your Skeleton Key release.
 
 ---
 
