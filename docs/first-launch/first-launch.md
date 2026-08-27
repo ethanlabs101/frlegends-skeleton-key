@@ -452,7 +452,7 @@ The complete explanation of each Main Navigation option is covered in the next g
 
 Continue here:
 
-[Main Navigation Guide →](./main-navigation.md)
+[Main Navigation Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
 
 That guide explains each of the following:
 
@@ -755,7 +755,7 @@ You have now learned the basic Skeleton Key startup process.
 
 The recommended next step is the Main Navigation guide:
 
-[Main Navigation Guide →](./main-navigation.md)
+[Main Navigation Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
 
 After that, continue into the Modding Sandbox:
 
@@ -799,4 +799,4 @@ Modding Sandbox
 
 From here, the next guide explains the Main Navigation system in detail.
 
-[Continue to Main Navigation →](./main-navigation.md)
+[Continue to Main Navigation →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
