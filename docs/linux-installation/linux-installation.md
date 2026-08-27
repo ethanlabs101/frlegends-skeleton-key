@@ -778,7 +778,7 @@ Before performing destructive maintenance, create a backup of your persistent Va
 
 A basic backup can be created from the parent directory of your Vault.
 
-For example:
+The following example creates a complete copy of the Skeleton Key Vault directory, including persistent data and application files:
 
 ```bash
 cp -a skeleton-key-vault skeleton-key-vault-backup
