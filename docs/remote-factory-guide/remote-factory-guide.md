@@ -291,7 +291,7 @@ Avoid repeatedly creating additional batches immediately after finishing a previ
 
 # How Provisioned Accounts Are Stored
 
-After a successful provisioning process, account information can be incorporated into the Skeleton Key Vault.
+After a successful provisioning process, account information is incorporated into the Skeleton Key Vault.
 
 The Vault provides persistent local account management.
 
