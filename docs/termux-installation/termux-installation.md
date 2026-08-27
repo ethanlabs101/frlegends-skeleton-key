@@ -49,15 +49,15 @@ For most modern Android devices running **Android 7 or newer**, use one of the *
 
 #### If your device uses ARM64
 
-Most modern Android phones use ARM64. If you know your device is ARM64, download:
+Most modern Android phones use ARM64. Look for an APK whose filename ends with:
 
-`termux-app_...+apt-android-7-github-debug_arm64-v8a.apk`
+`_arm64-v8a.apk`
 
 #### If you are unsure
 
-If you do not know your device's CPU architecture, use the **Universal Android 7+ APK**:
+If the latest stable release provides a Universal APK, you can use the file whose name ends with:
 
-`termux-app_...+apt-android-7-github-debug_universal.apk`
+`_universal.apk`
 
 The Universal APK is larger because it contains support for multiple CPU architectures, but it is the easiest option when you are unsure.
 
