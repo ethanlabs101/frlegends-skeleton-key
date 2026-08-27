@@ -49,7 +49,7 @@ For most modern Android devices, use the Android 7 or newer build.
 
 The filename will look similar to:
 
-termux-app_...+apt-android-7_....apk
+termux-app_...+..._arm64-v8a.apk
 
 If you are unsure which APK your device requires, refer to the official Termux installation information:
 
