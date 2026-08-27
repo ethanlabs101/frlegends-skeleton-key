@@ -759,7 +759,7 @@ If npm reports an error while downloading packages:
 
 First, make sure you are inside the actual Vault directory.
 
-For example:
+For example (in proot):
 ````md
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
 ````
