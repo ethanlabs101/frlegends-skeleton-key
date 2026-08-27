@@ -55,7 +55,6 @@ Instead of manually entering the same information through multiple authenticatio
 Quick Entry is intended for users who want to:
 
 - Quickly authenticate an account
-- Add an account to the local Vault
 - Begin a new account session
 - Use account information without repeatedly navigating through the full authentication workflow
 
@@ -71,24 +70,13 @@ Enter the Authentication system from Main Navigation:
 1) Authenticate
 ```
 
-Then select Quick Entry.
+Then select a Quick Entry account. Enter 1-9 (Depending on index).
 
 Skeleton Key will request the information required to begin authentication.
 
-For a new account, this may include information such as:
+Accounts recently created, or authenticated will begin to populate Quick Entry. 
 
-```text
-Email
-Password
-```
-
-Enter the requested information carefully.
-
-Once the information has been accepted, Skeleton Key will attempt to authenticate the account and establish a session.
-
-If authentication succeeds, the account can be registered inside the local Vault.
-
-After this process is complete, the account becomes available for future use.
+This feature is designed to give quick easy access to recently authenticated accounts.
 
 ---
 
