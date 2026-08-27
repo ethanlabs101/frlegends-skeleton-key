@@ -10,25 +10,7 @@ Each menu option leads into a separate system with its own documentation. This g
 
 A fresh or unauthenticated session may look like this:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - MAIN NAVIGATION          ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║  1) Authenticate                                           ║
-║  2) Remote Factory                                         ║
-║  3) Cloning Matrix                                         ║
-║  4) Modding Sandbox                                        ║
-║  5) Account Recovery                                       ║
-║  6) Documentation / Help                                   ║
-║  7) Exit                                                   ║
-╚════════════════════════════════════════════════════════════╝
-[>] Index:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.png)
 
 The exact information displayed at the top of the screen changes depending on the current Vault, identity, and account session.
 
