@@ -489,17 +489,17 @@ If you see the installation completion message, Skeleton Key is ready to launch.
 Use the Vault location displayed by the installer.
 
 For example:
-
+````md
 cd "/root/frlegends-skeleton-key/source/skeleton-key-vault"
-
+````
 ---
 
 ## 13.2 Launch the CLI
 
 Run:
-
+````md
 node cli.js
-
+````
 The FR Legends Skeleton Key CLI should now appear.
 
 Congratulations.
@@ -514,16 +514,14 @@ Your Android device is now running the FR Legends Skeleton Key environment.
 
 Once Skeleton Key launches, you can explore the available tools.
 
-Depending on your installed version, Skeleton Key may provide features including:
+Skeleton Key provides features including:
 
 - Account Management
 - Vault Management
 - Online Asset Manager
 - Asset Installation
-- Livery Workshop
 - Garage Management
 - Player Data Management
-- Save Management
 - Playtime Management
 - Money Management
 - Backup and recovery tools
@@ -547,10 +545,28 @@ The Termux/Debian installation includes:
 
 updaters/update-termux.sh
 
+First, make sure you are in debian proot and
+in the ~/frlegends-skeleton-key/source/ directory.
+
+Use:
+````md
+proot-distro login debian
+````
+(if not in proot) then,
+````md
+cd ~/frlegends-skeleton-key/source
+````
+to enter the correct directory.
+
+Second, make the updater executable. Run:
+````md
+chmod +x updaters/update-termux.sh
+````
+
 Run it from the Skeleton Key repository:
-
+````md
 ./updaters/update-termux.sh
-
+````
 The updater checks your current version against the latest version available from the official repository.
 
 ---
