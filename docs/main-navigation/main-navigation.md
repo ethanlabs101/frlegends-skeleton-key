@@ -152,7 +152,7 @@ You do not need to learn every Sandbox feature at once.
 
 Enter the Sandbox, choose the feature you need, and follow the documentation for that specific tool.
 
-[Modding Sandbox Guide →](./modding-sandbox.md)
+[Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
 ---
 
@@ -306,7 +306,7 @@ Continue with the feature you want to use:
 
 [Cloning Matrix →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
-[Modding Sandbox →](./modding-sandbox.md)
+[Modding Sandbox →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
 [Account Recovery →](./account-recovery.md)
 
