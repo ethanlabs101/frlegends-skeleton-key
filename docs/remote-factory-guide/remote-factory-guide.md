@@ -587,7 +587,7 @@ For more information, see:
 
 Continue with the feature you need:
 
-[Cloning Matrix Guide →](./cloning-matrix.md)
+[Cloning Matrix Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
 [Modding Sandbox Guide →](./modding-sandbox.md)
 
