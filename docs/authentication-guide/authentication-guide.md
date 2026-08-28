@@ -665,7 +665,7 @@ Continue with the feature you need:
 
 [Cloning Matrix Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
-[Modding Sandbox Guide →](./modding-sandbox.md)
+[Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
 [Account Recovery Guide →](./account-recovery.md)
 
