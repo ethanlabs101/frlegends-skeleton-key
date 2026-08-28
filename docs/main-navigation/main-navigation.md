@@ -180,11 +180,7 @@ The available recovery methods depend on the current Skeleton Key release and th
 
 Documentation / Help provides access to Skeleton Key documentation and help resources.
 
-Use this option when you want to learn more about the system you are currently using or need help navigating Skeleton Key.
-
-The online documentation is organized into separate guides so that you can read only the information relevant to your current task.
-
-[Documentation Home →](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
+This provides a direct link to this repo for Linux users, and a URL reminder for other platforms.
 
 ---
 
@@ -272,12 +268,6 @@ If you need account recovery:
 5) Account Recovery
 ```
 
-If you need help:
-
-```text
-6) Documentation / Help
-```
-
 ---
 
 # Recommended Learning Path
@@ -319,8 +309,6 @@ Continue with the feature you want to use:
 [Modding Sandbox →](./modding-sandbox.md)
 
 [Account Recovery →](./account-recovery.md)
-
-[Documentation Home →](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
 If you have not completed the first-launch process:
 
