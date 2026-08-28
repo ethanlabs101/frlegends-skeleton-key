@@ -451,6 +451,8 @@ The User Data Manager provides tools for managing downloaded Skeleton Key conten
 
 This section helps organize locally stored content such as:
 
+- Account Backups/Snapshots
+- Exported Car Payloads
 - Downloaded cars
 - Downloaded liveries
 - Asset packs
