@@ -194,7 +194,7 @@ Depending on the account data, you may see information relating to:
 
 This feature is particularly useful for users who want to understand the underlying structure of their account data.
 
-**[Raw JSON Viewer Guide →]()**
+**[Raw JSON Viewer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
 
 ---
 
@@ -600,7 +600,7 @@ This keeps the main Sandbox guide short enough to function as an onboarding page
 
 Choose the feature you want to learn more about:
 
-- **[Raw JSON Viewer Guide →]()**
+- **[Raw JSON Viewer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
 - **[Raw JSON Snapshot Guide →]()**
 - **[Carport Slots Guide →]()**
 - **[Livery Pass Guide →]()**
