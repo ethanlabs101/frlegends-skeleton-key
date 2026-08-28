@@ -332,7 +332,7 @@ Example:
                  Account B
                ↗
 
-Account A  ─────→ Account C
+Account A      → Account C
 DONOR
                ↘
 
@@ -402,7 +402,7 @@ Example:
                    Account C
                   ↗
 
-Account A ─────────────→ Account D
+Account A         → Account D
 DONOR
                   ↘
 
