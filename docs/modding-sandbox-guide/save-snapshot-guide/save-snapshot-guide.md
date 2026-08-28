@@ -168,8 +168,8 @@ Press **Enter** to return to the Modding Sandbox.
 
 ---
 
-**[← View JSON Guide](./view-json-guide.md)**
+**[← View JSON Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
 
-**[← Modding Sandbox Guide](./modding-sandbox-guide.md)**
+**[← Modding Sandbox Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
 **[Next: Carport Slots Guide →](./carport-slots-guide.md)**
