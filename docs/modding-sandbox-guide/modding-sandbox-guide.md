@@ -147,7 +147,6 @@ MODDING SANDBOX
 │   └── Raw JSON Snapshot
 │
 ├── Player Configuration
-│   ├── Carport Slots
 │   ├── Livery Pass
 │   ├── Driver Name
 │   └── Played Time
@@ -156,6 +155,7 @@ MODDING SANDBOX
 │   └── Money / Coins
 │
 ├── Garage Management
+│   ├── Carport Slots
 │   ├── Export Cars
 │   ├── Import Cars
 │   ├── Delete Cars
