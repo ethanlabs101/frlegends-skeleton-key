@@ -248,7 +248,7 @@ The feature can be useful when managing an account where livery functionality ne
 
 Always verify the resulting state after making a change.
 
-**[Livery Pass Guide →]()**
+**[Livery Pass Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.md)**
 
 ---
 
@@ -603,7 +603,7 @@ Choose the feature you want to learn more about:
 - **[Raw JSON Viewer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
 - **[Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
 - **[Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
-- **[Livery Pass Guide →]()**
+- **[Livery Pass Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.md)**
 - **[Driver Name Guide →]()**
 - **[Playtime Manager Guide →]()**
 - **[Currency Manager Guide →]()**
