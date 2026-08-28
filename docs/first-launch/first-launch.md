@@ -480,9 +480,9 @@ The Sandbox is intentionally covered separately from the Main Navigation guide b
 
 After learning the Main Navigation system, continue to:
 
-[Modding Sandbox Guide →](./modding-sandbox.md)
+[Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
-The Sandbox documentation will eventually be divided into individual feature guides where appropriate.
+The Sandbox documentation will be divided into individual feature guides where appropriate.
 
 For example:
 
@@ -759,7 +759,7 @@ The recommended next step is the Main Navigation guide:
 
 After that, continue into the Modding Sandbox:
 
-[Modding Sandbox Guide →](./modding-sandbox.md)
+[Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
 For updates and maintenance:
 
