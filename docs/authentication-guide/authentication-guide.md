@@ -663,7 +663,7 @@ Continue with the feature you need:
 
 [Remote Factory Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory-guide.md)
 
-[Cloning Matrix Guide →](./cloning-matrix.md)
+[Cloning Matrix Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
 [Modding Sandbox Guide →](./modding-sandbox.md)
 
