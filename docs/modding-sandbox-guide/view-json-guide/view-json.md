@@ -187,4 +187,4 @@ That's it.
 
 **[← Modding Sandbox Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Raw JSON Snapshot Guide →](./save-json-guide.md)**
+**[Next: Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
