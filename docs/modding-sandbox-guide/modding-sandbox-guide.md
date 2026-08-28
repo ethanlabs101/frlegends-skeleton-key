@@ -220,7 +220,7 @@ Verify Results
 
 Creating a snapshot before experimentation gives you an additional reference point if you need to investigate an unexpected result.
 
-**[Raw JSON Snapshot Guide →]()**
+**[Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
 
 ---
 
@@ -601,7 +601,7 @@ This keeps the main Sandbox guide short enough to function as an onboarding page
 Choose the feature you want to learn more about:
 
 - **[Raw JSON Viewer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
-- **[Raw JSON Snapshot Guide →]()**
+- **[Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
 - **[Carport Slots Guide →]()**
 - **[Livery Pass Guide →]()**
 - **[Driver Name Guide →]()**
