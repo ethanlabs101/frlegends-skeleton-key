@@ -619,15 +619,12 @@ Choose the feature you want to learn more about:
 
 # Related Documentation
 
-**[← Main Navigation Guide](./main-navigation-guide.md)**
+**[← Main Navigation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)**
 
-**[← First Launch Guide](./first-launch.md)**
+**[← First Launch Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)**
 
-**[Authentication Guide →](./authentication-guide.md)**
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
 
-**[Account Cloning Matrix Guide →](./cloning-matrix-guide.md)**
-
-**[Remote Account Factory Guide →](./remote-factory-guide.md)**
 
 ---
 
