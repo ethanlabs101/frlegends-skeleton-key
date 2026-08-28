@@ -701,6 +701,9 @@ Create Backups
 
 Do not create accounts and then immediately forget which credentials belong to which account.
 
+***Freshly provisioned accounts automatically get stored in the account vault. Always double check the vault
+for account entries there you can derive the password via the maintenance menu.***
+
 ---
 
 # What Happens to Provisioned Data in Crazy Mode?
