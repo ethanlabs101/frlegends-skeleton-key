@@ -441,8 +441,6 @@ This is different from importing an individual exported vehicle payload.
 
 The Unlock Menu works with supported stock content and can be useful when restoring or populating an account's garage.
 
-Make sure sufficient garage space is available before performing operations that add vehicles.
-
 **[Unlock Menu Guide →]()**
 
 ---
