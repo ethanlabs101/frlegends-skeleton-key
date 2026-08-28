@@ -6,6 +6,10 @@ Your current slot count is displayed before making any changes.
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.png)
+
 ## Slot Options
 
 The module provides several preset values:
