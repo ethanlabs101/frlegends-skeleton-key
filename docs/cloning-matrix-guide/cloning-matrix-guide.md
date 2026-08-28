@@ -899,7 +899,7 @@ After learning the Cloning Matrix, you can continue to the **Modding Sandbox**.
 
 The Modding Sandbox provides a separate environment for supported account and save-data modification features.
 
-[Modding Sandbox Guide →](modding-sandbox-guide.md)
+[Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
 [Account Recovery Guide →](account-recovery-guide.md)
 
