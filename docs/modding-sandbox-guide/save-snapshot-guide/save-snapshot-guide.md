@@ -172,4 +172,4 @@ Press **Enter** to return to the Modding Sandbox.
 
 **[← Modding Sandbox Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Carport Slots Guide →](./carport-slots-guide.md)**
+**[Next: Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
