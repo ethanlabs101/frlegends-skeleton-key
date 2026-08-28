@@ -234,7 +234,7 @@ Before changing the value, consider how many slots you actually need.
 
 Extreme values may behave differently depending on the game version and account state.
 
-**[Carport Slots Guide →]()**
+**[Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
 
 ---
 
@@ -602,7 +602,7 @@ Choose the feature you want to learn more about:
 
 - **[Raw JSON Viewer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/view-json-guide/view-json.md)**
 - **[Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
-- **[Carport Slots Guide →]()**
+- **[Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
 - **[Livery Pass Guide →]()**
 - **[Driver Name Guide →]()**
 - **[Playtime Manager Guide →]()**
