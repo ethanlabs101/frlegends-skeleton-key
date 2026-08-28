@@ -893,44 +893,12 @@ Choose the smallest batch that accomplishes what you need.
 
 ---
 
-# Related Guides
-
-## Main Navigation
-
-Return to the overview of the Skeleton Key interface:
-
-[Main Navigation Guide →](main-navigation-guide.md)
-
----
-
-## Authentication
-
-Learn how to access and manage stored accounts:
-
-[Authentication Guide →](authentication-guide.md)
-
----
-
-## Remote Factory
-
-Learn how fresh accounts are provisioned:
-
-[Remote Factory Guide →](remote-factory-guide.md)
-
----
-
-## Account Recovery
-
-Learn how to back up and recover supported account data:
-
-[Account Recovery Guide →](account-recovery-guide.md)
-
----
-
 # Next Steps
 
 After learning the Cloning Matrix, you can continue to the **Modding Sandbox**.
 
 The Modding Sandbox provides a separate environment for supported account and save-data modification features.
 
-[Continue to the Modding Sandbox Guide →](modding-sandbox-guide.md)
+[Modding Sandbox Guide →](modding-sandbox-guide.md)
+
+[Account Recovery Guide →](account-recovery-guide.md)
