@@ -132,7 +132,7 @@ This system is intended for users working with the cloning functionality provide
 
 Because cloning workflows can involve multiple account and Vault operations, the full process is documented separately from the Main Navigation guide.
 
-[Cloning Matrix Guide →](./cloning-matrix.md)
+[Cloning Matrix Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
 ---
 
@@ -314,7 +314,7 @@ Continue with the feature you want to use:
 
 [Remote Factory →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/remote-factory-guide/remote-factory-guide.md)
 
-[Cloning Matrix →](./cloning-matrix.md)
+[Cloning Matrix →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.md)
 
 [Modding Sandbox →](./modding-sandbox.md)
 
