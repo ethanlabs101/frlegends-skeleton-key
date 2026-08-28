@@ -14,41 +14,7 @@ When you enter the Modding Sandbox, Skeleton Key displays your current session a
 
 A typical screen looks similar to:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - MODDING SANDBOX AREA     ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ ON ]                             ║
-║   [IDENTITY]   ID: BF140C3845FC4A3E                        ║
-║   [ACCOUNT]    User: example@email.com                     ║
-║   [TELEMETRY]  Garage: 116/1000000 Livery Pass: UNLOCKED   ║
-║   [CURRENCY]   Money: 1206886528 Coins: 63147              ║
-║   [PLAYTIME]   Playtime: 37h 31m 21.265625s                ║
-║   [PLAYER]     Welcome Back: Player                        ║
-╚════════════════════════════════════════════════════════════╝
-
-╔════════════════════════════════════════════════════════════╗
-║ Select an Option [1-15]                                    ║
-╠════════════════════════════════════════════════════════════╣
-║ [01] [DEV TOOLS] View Raw JSON Snapshot                    ║
-║ [02] [DEV TOOLS] Save Complete Raw JSON Snapshot           ║
-║ [03] Modify Carport Slots                                  ║
-║ [04] Unlock/Lock Livery Pass                               ║
-║ [05] Change Driver Name                                    ║
-║ [06] Modify Played Time                                    ║
-║ [07] Currency Menu - Add Money / Coins                     ║
-║ [08] Check Garage - Export Car Payloads                    ║
-║ [09] Exotic Importer - Inject Car Payloads                 ║
-║ [10] Garage Cleanup - Delete Cars                          ║
-║ [11] Live Car Editor - Modify Cars In Garage               ║
-║ [12] Online Asset Manager - Cars/Liveries/Packs            ║
-║ [13] Unlock Menu - Inject Stock Cars                       ║
-║ [14] User Data Manager - Manage Downloaded Content         ║
-║ [15] Back to Main Routing Menu                             ║
-╚════════════════════════════════════════════════════════════╝
-
-[>] Selection:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.png)
 
 The information at the top represents the current state of the authenticated Skeleton Key environment.
 
@@ -73,7 +39,7 @@ Most Sandbox operations require an active authenticated session because they ope
 ## Identity
 
 ```text
-[IDENTITY] ID: BF140C3845FC4A3E
+[IDENTITY] ID: XXXXXXXXXXXXXXXX
 ```
 
 This represents the local Skeleton Key identity associated with the current Vault environment.
@@ -99,7 +65,7 @@ If no account is authenticated, the account section will indicate that the sessi
 ## Telemetry
 
 ```text
-[TELEMETRY] Garage: 116/1000000 Livery Pass: UNLOCKED
+[TELEMETRY] Garage: 1/1 Livery Pass: UNLOCKED
 ```
 
 This provides a quick overview of important player-state information.
@@ -118,7 +84,7 @@ The telemetry panel is primarily informational.
 ## Currency
 
 ```text
-[CURRENCY] Money: 1206886528 Coins: 63147
+[CURRENCY] Money: 500000 Coins: 500000
 ```
 
 This displays the currently detected money and coin values associated with the active account.
@@ -136,7 +102,7 @@ See:
 ## Playtime
 
 ```text
-[PLAYTIME] Playtime: 37h 31m 21.265625s
+[PLAYTIME] Playtime: 0h 0m 0s
 ```
 
 This displays the currently detected recorded playtime.
