@@ -611,38 +611,22 @@ After the provisioning step, the Donor Account data is applied to the new accoun
 The flow looks like this:
 
 ```text
-                    DONOR
-                  Account A
-                      │
-                      ▼
-        ┌─────────────┼─────────────┐
-        │             │             │
-        ▼             ▼             ▼
+                                  DONOR
+                                Account A
+                                    │
+                                    ▼
+        ┌───────────────────────────┼──────────────────────────┐
+        │             │             │             │            │
+        ▼             ▼             ▼             ▼            ▼
 
-     Create 1      Create 2      Create 3
-     New Account   New Account   New Account
+     Create 1      Create 2      Create 3      Create 4     Create 5
+     New Account   New Account   New Account   New Account  New Account
 
-        │             │             │
+        │             │             │             │            │
+        ▼             ▼             ▼             ▼            ▼
 
-        ▼             ▼             ▼
-
-     Apply Donor    Apply Donor    Apply Donor
-        Data           Data           Data
-
-
-        ┌─────────────┼─────────────┐
-        │             │
-        ▼             ▼
-
-     Create 4      Create 5
-     New Account   New Account
-
-        │             │
-
-        ▼             ▼
-
-     Apply Donor    Apply Donor
-        Data           Data
+     Apply Donor    Apply Donor   Apply Donor   Apply Donor  Apply Donor
+        Data           Data          Data          Data         Data
 ```
 
 At the end of the operation:
