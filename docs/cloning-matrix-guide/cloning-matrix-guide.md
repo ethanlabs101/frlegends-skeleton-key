@@ -77,33 +77,7 @@ Cloning Matrix
 
 The Account Cloning Matrix will display:
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - ACCOUNT CLONING MATRIX   ║
-╠════════════════════════════════════════════════════════════╣
-║   [STATUS]     Session: [ OFF ]                            ║
-║   [IDENTITY]   ID: N/A                                     ║
-║   [ACCOUNT]    User: None (Unauthenticated)                ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║ WARNING: All accounts receiving cloned data are wiped.     ║
-║ Backup important data before proceeding.                   ║
-╠════════════════════════════════════════════════════════════╣
-║ INFO: Rapid cloning can flag device IDs & IPs.             ║
-║ Limit to 5-10 operations per 24hrs.                        ║
-╠════════════════════════════════════════════════════════════╣
-║ Select Batch Operations:                                   ║
-║ [5] Clone to 5 accounts                                    ║
-║ [4] Clone to 4 accounts                                    ║
-║ [3] Clone to 3 accounts                                    ║
-║ [2] Clone to 2 accounts                                    ║
-║ [1] Clone to 1 accounts                                    ║
-║ [C] Crazy Mode (Create + Max 5 Accounts)                   ║
-║ [Enter] Back                                               ║
-╚════════════════════════════════════════════════════════════╝
-
-[>] Selection:
-```
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/cloning-matrix-guide/cloning-matrix-guide.png)
 
 ---
 
