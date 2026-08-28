@@ -202,7 +202,7 @@ This feature is particularly useful for users who want to understand the underly
 
 The Complete Raw JSON Snapshot tool saves a persistent snapshot of the currently detected player data.
 
-Unlike the viewer, which is primarily for inspection, this option creates a saved representation that can be referenced later.
+Unlike the viewer, which is primarily for inspection, this option creates a saved representation that can be referenced later and used for recovery.
 
 Snapshots are useful before making substantial changes.
 
