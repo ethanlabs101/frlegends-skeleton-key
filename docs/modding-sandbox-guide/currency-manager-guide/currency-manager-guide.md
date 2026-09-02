@@ -78,4 +78,4 @@ After selecting an amount, Skeleton Key:
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Garage Export Guide →]()**
+**[Next: Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
