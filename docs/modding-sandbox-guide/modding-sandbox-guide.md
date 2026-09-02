@@ -113,7 +113,7 @@ Playtime modifications are handled through:
 
 See:
 
-**[Playtime Manager Guide →]()**
+**[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 
 ---
 
@@ -284,7 +284,7 @@ This can be useful for save management, testing, or restoring a desired player-s
 
 Because playtime is stored as account data, use reasonable values and verify the resulting account state after applying a modification.
 
-**[Playtime Manager Guide →]()**
+**[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 
 ---
 
@@ -605,7 +605,7 @@ Choose the feature you want to learn more about:
 - **[Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
 - **[Livery Pass Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.md)**
 - **[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
-- **[Playtime Manager Guide →]()**
+- **[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 - **[Currency Manager Guide →]()**
 - **[Garage Export Guide →]()**
 - **[Exotic Importer Guide →]()**
