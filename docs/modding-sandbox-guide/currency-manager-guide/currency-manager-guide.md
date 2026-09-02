@@ -8,6 +8,12 @@ Open it from:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.png)
+
+---
+
 ## Currency Menu
 
 The current Money and Coins balances are displayed at the top.
