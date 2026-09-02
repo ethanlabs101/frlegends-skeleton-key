@@ -336,7 +336,7 @@ Save Payload
 
 Exported payloads should be treated as valuable data.
 
-**[Garage Export Guide →]()**
+**[Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
 
 ---
 
