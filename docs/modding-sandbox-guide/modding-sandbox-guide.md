@@ -131,7 +131,7 @@ Driver-name modifications are handled through:
 
 See:
 
-**[Driver Name Guide →]()**
+**[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
 
 ---
 
@@ -272,7 +272,7 @@ Save
 
 The tool handles the relevant player-name data so you do not need to manually locate the corresponding value inside the serialized account data.
 
-**[Driver Name Guide →]()**
+**[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
 
 ---
 
@@ -604,7 +604,7 @@ Choose the feature you want to learn more about:
 - **[Raw JSON Snapshot Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/save-snapshot-guide/save-snapshot-guide.md)**
 - **[Carport Slots Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-carport-guide/modify-carport-guide.md)**
 - **[Livery Pass Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.md)**
-- **[Driver Name Guide →]()**
+- **[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
 - **[Playtime Manager Guide →]()**
 - **[Currency Manager Guide →]()**
 - **[Garage Export Guide →]()**
