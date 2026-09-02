@@ -607,7 +607,7 @@ Choose the feature you want to learn more about:
 - **[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
 - **[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 - **[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
-- **[Garage Export Guide →]()**
+- **[Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
 - **[Exotic Importer Guide →]()**
 - **[Garage Cleanup Guide →]()**
 - **[Live Car Editor Guide →]()**
