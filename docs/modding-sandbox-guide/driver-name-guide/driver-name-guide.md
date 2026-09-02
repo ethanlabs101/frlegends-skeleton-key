@@ -8,6 +8,10 @@ Open it from:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.png)
+
 ## Menu
 
 ```text
@@ -69,17 +73,9 @@ The current driver name is displayed at the top of the menu.
 
 ---
 
-## Returning
+## Continue
 
-Press **Enter** from the main selection menu to return to the Modding Sandbox.
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-## Quick Summary
+**[Next: Playtime Manager Guide →]()**
 
-**Option 05 → Change Driver Name**
-
-- View current name
-- Use Ethanlabs101 name spam
-- Generate custom name spam
-- Set a normal custom name
-- Set an empty name
-- Automatically rebuild, upload, finalize, and sync
