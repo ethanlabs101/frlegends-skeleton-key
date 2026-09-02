@@ -6,6 +6,12 @@ It can be used to toggle the pass between **ACTIVE** and **INACTIVE**.
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.png)
+
+---
+
 ## Opening the Livery Pass Menu
 
 From the Modding Sandbox, select:
@@ -137,6 +143,6 @@ New Livery Pass State
 
 ### Continue
 
-- **[Driver Name Guide →](./modding-sandbox-guide.md)**
+**[Driver Name Guide →](./modding-sandbox-guide.md)**
 
-- **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
