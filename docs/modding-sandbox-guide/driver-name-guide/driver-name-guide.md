@@ -77,5 +77,5 @@ The current driver name is displayed at the top of the menu.
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Playtime Manager Guide →]()**
+**[Next: Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 
