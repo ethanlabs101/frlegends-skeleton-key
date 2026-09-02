@@ -95,7 +95,7 @@ Currency modifications are handled through:
 
 See:
 
-**[Currency Manager Guide →]()**
+**[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
 
 ---
 
@@ -304,7 +304,7 @@ The currency menu provides access to:
 
 Always review the resulting values after applying a modification.
 
-**[Currency Manager Guide →]()**
+**[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
 
 ---
 
@@ -606,7 +606,7 @@ Choose the feature you want to learn more about:
 - **[Livery Pass Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/livery-pass-guide/livery-pass-guide.md)**
 - **[Driver Name Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/driver-name-guide/driver-name-guide.md)**
 - **[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
-- **[Currency Manager Guide →]()**
+- **[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
 - **[Garage Export Guide →]()**
 - **[Exotic Importer Guide →]()**
 - **[Garage Cleanup Guide →]()**
