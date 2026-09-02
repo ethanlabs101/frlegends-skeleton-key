@@ -138,3 +138,5 @@ New Livery Pass State
 ### Continue
 
 - **[Driver Name Guide →](./modding-sandbox-guide.md)**
+
+- **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
