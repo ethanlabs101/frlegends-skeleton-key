@@ -2,7 +2,7 @@
 
 The **Livery Pass** module controls the `liveryCreatorPass` state on the currently authenticated FR Legends account.
 
-It can be used to toggle the pass between **ACTIVE** and **INACTIVE**.
+Use this module to toggle the pass **ON** and **OFF**.
 
 ---
 
