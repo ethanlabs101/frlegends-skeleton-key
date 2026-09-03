@@ -2,31 +2,39 @@
 
 ## Overview
 
-The **Online Asset Manager** is the Skeleton Key Vault's central system for discovering, downloading, inspecting, and installing FR Legends assets from the remote asset ecosystem.
+The **Online Asset Manager** is the central remote-asset subsystem of FR Legends Skeleton Key Vault.
 
-It is accessed from:
+It connects the Vault directly to the **FR Legends Skeleton Key Asset Database**, allowing users to browse, search, download, install, and manage Cars, Liveries, and Packs — capable of being injected directly into the active garage.
+
+This is much more than a conventional file browser.
+
+The Asset Manager acts as a bridge between:
 
 ```text
-Main Navigation
-└── 4) Modding Sandbox
-    └── 12) Online Asset Manager - Cars/Liveries/Packs
+FR Legends Asset Database
+          ↓
+    Asset Manager
+          ↓
+ Download / Construct
+          ↓
+   Install / Register
+          ↓
+ FR Legends Save Data
+          ↓
+      Garage
 ```
 
-Unlike a simple file downloader, the Online Asset Manager understands the structure of Skeleton Key assets and can turn remote asset data into **game-ready content**.
+---
 
-The system currently supports:
+# Opening the Asset Manager
 
-- 🚗 Cars
-- 🎨 Liveries
-- 📦 Full asset packs
-- 🔎 Asset searching and browsing
-- ⬇️ Remote downloads
-- 📥 Local installation
-- 🗂️ Installed/downloaded asset management
-- 📋 Asset inspection and metadata
-- 🧩 Construction of complete FR Legends car objects
-- 🔐 Binary save deserialization and serialization
-- ☁️ Remote asset delivery through the Skeleton Key asset repository
+From the main navigation:
+
+```text
+[4] Modding Sandbox
+        ↓
+[12] Online Asset Manager - Cars/Liveries/Packs
+```
 
 ---
 
@@ -36,620 +44,533 @@ The system currently supports:
 
 ---
 
-## Entering the Online Asset Manager
+# 1. Browse Assets
 
-From the Modding Sandbox, select:
+**Browse Assets** is the primary entry point for exploring the remote asset library.
 
-```text
-[12] Online Asset Manager - Cars/Liveries/Packs
-```
+From here, users can navigate available content and select individual assets to inspect, download, install, and use.
 
-The Asset Manager opens its own navigation system rather than mixing online asset operations into the rest of the Sandbox.
-
-The primary sections are built around the type of content being managed.
-
----
-
-## The Asset Manager Architecture
-
-The Online Asset Manager is intentionally designed as a **multi-stage asset pipeline** rather than a single download function.
-
-At a high level:
+The browser is designed to work with the Asset Manager's other systems instead of being an isolated file viewer.
 
 ```text
-Remote Asset Database
-        │
-        ▼
-   Asset Browser
-        │
-        ▼
-    Search / Filter
-        │
-        ▼
-   Asset Details
-        │
-        ▼
-      Download
-        │
-        ▼
- Local Asset Storage
-        │
-        ▼
-      Installer
-        │
-        ▼
- Game-Ready Asset
-        │
-        ▼
- Garage / Livery Injection
+Browse
+  ↓
+Select Asset
+  ↓
+View Details
+  ↓
+Download / Install
+  ↓
+Use Asset
 ```
 
-This separation is important.
+### Screenshot — Browse Assets
 
-The browser does not need to know how an asset is injected.
-
-The downloader does not need to know how the garage is structured.
-
-The installer does not need to implement the online search system.
-
-Each part of the subsystem has a specific responsibility, allowing the Asset Manager to operate as a complete asset-management layer.
+> **[SCREENSHOT: INSERT BROWSE ASSETS MENU HERE]**
 
 ---
 
-## Why This Is More Than an Asset Browser
+# 2. Categories
 
-The most important engineering feature of the Online Asset Manager is that it understands the **actual FR Legends save structure**.
+**Categories** provides a structured way to navigate the asset repository.
 
-A downloaded car is not simply treated as a picture, ZIP file, or arbitrary JSON document.
+Instead of searching through the entire database, users can narrow the available content by asset type.
 
-Skeleton Key can work with the underlying save representation and perform the required transformation between:
+This is especially useful as the repository grows and contains large numbers of community and curated assets.
 
-```text
-FR Legends Binary Data
-        ↕
-Decoded JSON/Object Structure
-        ↕
-Skeleton Key Asset Representation
-        ↕
-Game-Ready Serialized Data
-```
+### Screenshot — Categories
 
-This allows the Vault to work at the same level as the game's save system instead of treating cars as superficial files.
-
-That is what makes features such as remote car installation possible.
+> **[SCREENSHOT: INSERT CATEGORIES MENU HERE]**
 
 ---
 
-# Binary Serialization & Deserialization
+# 3. Search
 
-One of the strongest parts of Skeleton Key is its ability to work with the game's binary save representation.
+The **Search** system provides direct asset discovery without requiring manual browsing.
 
-The Vault can:
+Users can search the available asset collection and receive matching results that can then be inspected through the normal Asset Manager workflow.
 
-```text
-Deserialize
-Binary Save Data
-      ↓
-Structured FR Legends Objects
-      ↓
-Modify / Construct / Merge
-      ↓
-Serialize
-Structured Objects
-      ↓
-Binary Save Data
-```
-
-This means the Asset Manager can obtain structured game data, work with it as normal JavaScript objects, and then produce data that can be placed back into the game's save structure.
-
-The user does not have to manually understand the binary representation.
-
-Skeleton Key handles that layer internally.
-
----
-
-# The Car Construction Pipeline
-
-The remote car system is especially powerful because the Asset Manager can construct a **complete car object** rather than simply downloading a collection of loose files.
-
-The general process is:
-
-```text
-Remote Car Asset
-      │
-      ▼
-Asset Metadata
-      │
-      ▼
-Car Components
-      │
-      ├── Vehicle configuration
-      ├── Appearance data
-      ├── Livery information
-      ├── Wheels / tires
-      ├── Performance data
-      └── Other required fields
-      │
-      ▼
-Full FR Legends Car Object
-      │
-      ▼
-Serialization / Injection
-      │
-      ▼
-Playable Garage Car
-```
-
-This is possible because the Vault's asset ecosystem provides the information necessary to construct the game's expected object structure.
-
----
-
-# Sister Repository as the Asset CDN
-
-The Online Asset Manager is also connected to the project's sister GitHub asset repository.
-
-The repository acts as the remote distribution layer for Skeleton Key assets.
-
-It also doubles as a visual inventory catalog.
-
-Check it out! -> [FR Legends Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)
-
-Conceptually:
-
-```text
-Skeleton Key Vault
-       │
-       │ HTTPS
-       ▼
-FR Legends Asset Repository
-       │
-       ├── Cars
-       ├── Liveries
-       ├── Packs
-       └── Community Assets
-```
-
-This gives the Vault a centralized source for remotely distributed content without requiring the CLI itself to contain every asset.
-
-New assets can be added to the asset repository independently of the core Vault application.
-
-The CLI can then discover and retrieve those assets through the Asset Manager.
-
-This separation is one of the reasons the system can scale much better than hard-coding assets directly into the application.
-
----
-
-# Cars
-
-The Cars section is responsible for discovering and managing complete vehicle assets.
-
-A typical workflow is:
-
-```text
-Browse Cars
-    ↓
-Select Car
-    ↓
-Inspect Details
-    ↓
-Download
-    ↓
-Install
-    ↓
-Available to Exotic Importer / Garage Systems
-```
-
-Installed cars become part of the local Skeleton Key asset ecosystem and can subsequently be used by the appropriate garage-management tools.
-
----
-
-## Screenshot — Car Browser
-
-> **[SCREENSHOT: INSERT CAR BROWSER MENU HERE]**
-
-Recommended screenshot:
-
-- Car browsing menu
-- Asset names
-- Navigation controls
-- Any category/filter information
-
----
-
-## Screenshot — Car Details
-
-> **[SCREENSHOT: INSERT CAR DETAILS PAGE HERE]**
-
-Recommended screenshot:
-
-- Selected car
-- Metadata
-- Asset status
-- Download/install options
-
----
-
-# Liveries
-
-The Livery section provides the same general remote-to-local pipeline for livery assets.
-
-A livery can be:
-
-```text
-Discovered
-   ↓
-Inspected
-   ↓
-Downloaded
-   ↓
-Installed Locally
-   ↓
-Injected onto the appropriate vehicle
-```
-
-The Asset Manager handles the remote asset lifecycle while the dedicated Livery Workshop and injector systems handle local livery operations.
-
-This separation keeps the online subsystem from becoming tangled with the actual injection logic.
-
----
-
-## Screenshot — Livery Browser
-
-> **[SCREENSHOT: INSERT LIVERY BROWSER MENU HERE]**
-
----
-
-## Screenshot — Livery Details
-
-> **[SCREENSHOT: INSERT LIVERY DETAILS MENU HERE]**
-
----
-
-# Asset Packs
-
-Packs allow multiple related assets to be distributed together.
-
-Instead of requiring users to locate every individual component, a pack can represent a complete collection.
-
-Conceptually:
-
-```text
-Asset Pack
-   │
-   ├── Car
-   ├── Livery
-   ├── Supporting Assets
-   └── Additional Content
-```
-
-The Asset Manager can present the pack as a single downloadable unit while preserving the individual assets once installed.
-
-This is particularly useful for curated builds, themed collections, and community releases.
-
----
-
-## Screenshot — Packs
-
-> **[SCREENSHOT: INSERT PACK BROWSER MENU HERE]**
-
----
-
-# Search
-
-The search system exists separately from the main browser.
-
-This is intentional.
-
-Instead of forcing the browser to understand every possible search operation, the search layer produces a filtered set of assets that can then be handed back to the normal browsing interface.
-
-Conceptually:
+The important engineering detail is that Search feeds back into the Asset Manager rather than implementing its own completely separate asset interface.
+Asset Browser
 
 ```text
 Search Query
      ↓
-Remote / Local Asset Dataset
+Matching Assets
      ↓
-Filtered Results
+Asset Browser
      ↓
-Normal Asset Browser
+Asset Details
+     ↓
+Download / Install
 ```
 
-This keeps searching and browsing modular while allowing both systems to share the same asset-detail and installation pipeline.
-
----
-
-## Screenshot — Search
+### Screenshot — Search
 
 > **[SCREENSHOT: INSERT SEARCH MENU HERE]**
 
 ---
 
-# Asset Status
+# 4. New Assets
 
-The Asset Manager also distinguishes between different states of an asset.
+**New Assets** provides a quick way to discover recently added content.
 
-An asset may be:
+This gives the Asset Database a continuously evolving feel without requiring users to manually search for newly published assets.
+
+It is particularly useful for discovering:
+
+- Recently added cars
+- New liveries
+- New community uploads
+- Newly released packs
+
+### Screenshot — New Assets
+
+> **[SCREENSHOT: INSERT NEW ASSETS MENU HERE]**
+
+---
+
+# 5. Installed Assets
+
+**Installed Assets** manages content that has already been installed into the local Skeleton Key asset library.
+
+This separates assets that merely exist in the download cache from assets that have actually passed through the installation process.
+
+Conceptually:
 
 ```text
-REMOTE
+Remote
   ↓
-DOWNLOADED
+Downloaded
   ↓
-INSTALLED
+Installed
   ↓
-AVAILABLE FOR USE
+Ready For Use
 ```
 
-This distinction matters because downloading an asset does not necessarily mean that it has been installed into the active Skeleton Key asset library.
+Installed assets can subsequently be used by the appropriate garage, car, livery, or pack systems.
 
-The Asset Manager tracks these stages so the user can understand what is actually available locally.
+### Screenshot — Installed Assets
 
----
-
-# Downloads vs Installed Assets
-
-Skeleton Key intentionally keeps downloaded content separate from installed content.
-
-### Downloaded
-
-The asset exists locally but has not necessarily been registered as an installed game-ready asset.
-
-### Installed
-
-The asset has passed through the appropriate installation process and is registered with the local asset system.
-
-This distinction makes it possible to:
-
-- Keep downloaded assets for later
-- Reinstall assets
-- Inspect downloaded content
-- Remove installed content
-- Maintain a cleaner local asset library
+> **[SCREENSHOT: INSERT INSTALLED ASSETS MENU HERE]**
 
 ---
 
-# User Data Manager
+# 6. Download Cache
 
-The Online Asset Manager also connects to the **User Data Manager**.
+The **Download Cache** provides access to assets that have already been downloaded locally.
 
-The User Data Manager provides the local management layer for content obtained through the Asset Manager.
-
-This is where users can manage downloaded and installed content without having to manually navigate the filesystem.
-
-The result is essentially a small local asset-management ecosystem inside Skeleton Key:
-
-```text
-ONLINE ASSET MANAGER
-        │
-        ├── Browse
-        ├── Search
-        ├── Download
-        ├── Inspect
-        └── Install
-                 │
-                 ▼
-          LOCAL ASSET LIBRARY
-                 │
-                 ├── Downloaded
-                 ├── Installed
-                 └── Registered
-```
-
----
-
-# Why the Online Asset Manager Is So Useful
-
-The biggest advantage is that it removes the need for users to manually handle the complicated parts of FR Legends save manipulation.
-
-Without the Asset Manager, a user could potentially have to deal with:
-
-```text
-Find Asset
-    ↓
-Download Files
-    ↓
-Understand Asset Structure
-    ↓
-Understand FR Legends Save Format
-    ↓
-Decode Binary Data
-    ↓
-Construct Missing Objects
-    ↓
-Serialize Data
-    ↓
-Place It Correctly
-    ↓
-Repair References
-    ↓
-Inject Into Garage
-```
-
-The Asset Manager compresses that entire workflow into a controlled pipeline:
-
-```text
-Find Asset
-    ↓
-Download
-    ↓
-Install
-    ↓
-Use
-```
-
-The complicated work still happens.
-
-It is simply happening **underneath the interface**.
-
----
-
-# The Engineering Behind It
-
-The Online Asset Manager is effectively a bridge between three worlds:
-
-```text
-        REMOTE ASSET ECOSYSTEM
-                 │
-                 ▼
-        SKELETON KEY ASSET LAYER
-                 │
-                 ▼
-          FR LEGENDS SAVE DATA
-```
-
-The remote repository provides the content.
-
-The Asset Manager understands how that content should be organized.
-
-The serialization layer understands how FR Legends represents the data.
-
-The installer turns the resulting structures into locally usable assets.
-
-The injection systems then place those assets into the user's game data.
-
-That combination is what makes the Online Asset Manager one of the more advanced subsystems in Skeleton Key.
-
----
-
-# Typical Workflow
-
-For a normal remote car:
-
-```text
-1. Open Modding Sandbox
-
-2. Select:
-   [12] Online Asset Manager
-
-3. Open Cars
-
-4. Browse or Search
-
-5. Select a vehicle
-
-6. Inspect the asset
-
-7. Download
-
-8. Install
-
-9. Return to the Sandbox
-
-10. Use Exotic Importer or the appropriate asset tool
-```
-
-For a livery:
-
-```text
-1. Open Online Asset Manager
-
-2. Open Liveries
-
-3. Browse or Search
-
-4. Select a livery
-
-5. Download
-
-6. Install
-
-7. Use the Livery Workshop / Injector
-```
-
-For a pack:
-
-```text
-1. Open Online Asset Manager
-
-2. Open Packs
-
-3. Select a pack
-
-4. Inspect contents
-
-5. Download
-
-6. Install
-
-7. Use the resulting assets
-```
-
----
-
-# Screenshot — Main Asset Manager
-
-> **[SCREENSHOT: INSERT MAIN ONLINE ASSET MANAGER MENU HERE]**
-
-This is the most important screenshot for this guide.
-
-It should show the main Asset Manager navigation and establish that this is a full subsystem rather than a single download command.
-
----
-
-# Screenshot — Asset Installation
-
-> **[SCREENSHOT: INSERT INSTALLATION / DOWNLOAD CONFIRMATION HERE]**
-
-A good installation screenshot helps demonstrate the transition from remote content into the local asset library.
-
----
-
-# Screenshot — Local Asset Management
-
-> **[SCREENSHOT: INSERT USER DATA MANAGER / LOCAL ASSET VIEW HERE]**
-
-This is useful for showing that downloaded assets remain manageable after leaving the online browser.
-
----
-
-# Summary
-
-The Online Asset Manager is the **distribution and asset-management layer of Skeleton Key Vault**.
-
-It combines:
-
-- Remote asset discovery
-- Search and filtering
-- Asset metadata
-- Downloads
-- Local storage
-- Installation
-- Asset registration
-- Binary deserialization
-- Binary serialization
-- Complete FR Legends object construction
-- Garage integration
-- Livery integration
-- Pack distribution
-- Local user-data management
-
-The important part is that the user does not need to manually perform the complicated serialization, object construction, or filesystem work.
-
-Skeleton Key handles the pipeline:
+This is useful because downloading and installing are treated as separate stages.
 
 ```text
 REMOTE ASSET
      ↓
-DISCOVER
-     ↓
 DOWNLOAD
      ↓
-DESERIALIZE / CONSTRUCT
+DOWNLOAD CACHE
      ↓
 INSTALL
      ↓
-REGISTER
-     ↓
-SERIALIZE / INJECT
-     ↓
-FR LEGENDS
+INSTALLED ASSET
 ```
 
-That is ultimately what makes the Online Asset Manager so powerful:
+This separation gives the Vault better control over local asset management and allows downloaded content to remain available without automatically treating everything as installed.
 
-**it turns a remote asset repository into a usable extension of the Skeleton Key Vault itself.**
+### Screenshot — Download Cache
+
+> **[SCREENSHOT: INSERT DOWNLOAD CACHE MENU HERE]**
 
 ---
 
-## Continue
+# 7. Pack Browser
 
+The **Pack Browser** is designed for asset collections rather than individual assets.
+
+A pack can contain multiple related pieces of content and can be distributed as a single curated package.
+
+For example:
+
+```text
+PACK
+ ├── Car
+ ├── Livery
+ ├── Supporting Data
+ └── Additional Assets
+```
+
+This makes packs especially useful for complete builds, themed collections, and community releases.
+
+### Screenshot — Pack Browser
+
+> **[SCREENSHOT: INSERT PACK BROWSER MENU HERE]**
+
+---
+
+# 8. Visit Asset Database
+
+This option provides a direct route to the project's remote asset repository.
+
+The Asset Database is the sister repository that acts as the remote content source for the Vault.
+
+```text
+FR Legends Skeleton Key Vault
+              │
+              │ Asset Requests
+              ▼
+FRLegends-Asset-Database
+              │
+              ▼
+       Cars / Liveries / Packs
+```
+
+The important architectural decision is that the Vault application and the asset collection are separated.
+
+The CLI does not need to ship with every asset.
+
+Instead, the repository functions as the remote distribution layer.
+
+### Screenshot — Asset Database
+
+> **[SCREENSHOT: INSERT ASSET DATABASE / REPOSITORY SCREENSHOT HERE]**
+
+---
+
+# The Engineering Behind the Asset Manager
+
+The Online Asset Manager is one of the most technically interesting parts of Skeleton Key because it isn't simply downloading files and dropping them into a folder.
+
+It operates across several layers of the FR Legends save system.
+
+```text
+REMOTE ASSET
+      ↓
+ASSET METADATA
+      ↓
+DOWNLOAD
+      ↓
+DESERIALIZATION
+      ↓
+OBJECT CONSTRUCTION
+      ↓
+INSTALLATION
+      ↓
+SERIALIZATION
+      ↓
+GAME SAVE STRUCTURE
+      ↓
+GARAGE
+```
+
+The user sees a relatively simple menu.
+
+Underneath that menu, the system is handling significantly more complicated data transformations.
+
+---
+
+# Binary Deserialization
+
+FR Legends stores important save information in serialized binary structures.
+
+Skeleton Key is capable of converting that binary representation into structured objects that JavaScript can work with.
+
+Conceptually:
+
+```text
+Binary Save Data
+       ↓
+   Decoder
+       ↓
+Structured Object
+```
+
+Once decoded, the data can be inspected, modified, combined, or reconstructed without requiring the user to manually manipulate raw binary data.
+
+This is one of the fundamental technologies that allows the Vault's higher-level tools to exist.
+
+---
+
+# Binary Serialization
+
+The reverse operation is equally important.
+
+After Skeleton Key constructs or modifies the required game object, it can serialize the structured representation back into the format expected by the game.
+
+```text
+Structured Object
+       ↓
+   Encoder
+       ↓
+Binary Save Data
+```
+
+Together, serialization and deserialization create the foundation for the Asset Manager's ability to move between remote assets and actual FR Legends save data.
+
+---
+
+# Constructing a Full Car Object
+
+One of the coolest parts of the system is the ability to construct a **complete FR Legends car object** from asset data.
+
+The Asset Database acts as the remote source for the necessary information.
+
+Skeleton Key can then assemble the required structure into something that fits the game's expected car representation.
+
+Conceptually:
+
+```text
+Remote Car Asset
+       ↓
+Read Asset Data
+       ↓
+Resolve Components
+       ↓
+Construct Car Object
+       ↓
+Validate Structure
+       ↓
+Serialize
+       ↓
+Inject
+```
+
+This is fundamentally different from simply downloading a `.json` file and hoping the game understands it.
+
+The Vault is actually working with the game's underlying data model.
+
+---
+
+# Sister Repository / CDN Architecture
+
+The Asset Database operates as the remote content layer for Skeleton Key.
+
+This creates a clean separation:
+
+```text
+┌─────────────────────────────┐
+│      SKELETON KEY VAULT     │
+│                             │
+│ CLI / Logic / Serialization │
+│ Installation / Injection    │
+└──────────────┬──────────────┘
+               │
+               │ Remote Assets
+               ▼
+┌─────────────────────────────┐
+│   FR LEGENDS ASSET DATABASE │
+│                             │
+│ Cars                        │
+│ Liveries                    │
+│ Packs                       │
+│ Community Uploads           │
+│ Exclusive Assets            │
+└─────────────────────────────┘
+```
+
+This effectively gives Skeleton Key a remotely maintained asset distribution system without embedding the entire asset library inside the application itself.
+
+New assets can be published to the sister repository while the core Vault application remains unchanged.
+
+That is a major reason the architecture scales well.
+
+---
+
+# Direct Garage Integration
+
+The Asset Manager is also tightly connected to the Vault's garage systems.
+
+The intended workflow can ultimately look like:
+
+```text
+Remote Asset
+     ↓
+Download
+     ↓
+Install
+     ↓
+Construct / Deserialize
+     ↓
+Serialize
+     ↓
+Garage Injection
+     ↓
+FR Legends
+```
+
+The user doesn't need to manually copy binary data around or construct a car object themselves.
+
+The subsystem handles the difficult parts.
+
+---
+
+# Why Use the Online Asset Manager?
+
+The main advantage is **abstraction**.
+
+Without the Asset Manager, working with remote FR Legends assets could require:
+
+```text
+Find Asset
+↓
+Download Asset
+↓
+Understand File Structure
+↓
+Understand Save Structure
+↓
+Deserialize Data
+↓
+Construct Game Object
+↓
+Validate Data
+↓
+Serialize Data
+↓
+Install
+↓
+Inject
+```
+
+The Asset Manager turns that into a controlled workflow:
+
+```text
+Browse
+↓
+Select
+↓
+Download
+↓
+Install
+↓
+Use
+```
+
+The complicated engineering still happens.
+
+The difference is that **Skeleton Key is doing it for you**.
+
+---
+
+# Asset Lifecycle
+
+The complete asset lifecycle is roughly:
+
+```text
+REMOTE
+  │
+  ▼
+BROWSED
+  │
+  ▼
+DOWNLOADED
+  │
+  ▼
+CACHED
+  │
+  ▼
+INSTALLED
+  │
+  ▼
+REGISTERED
+  │
+  ▼
+READY FOR USE
+  │
+  ▼
+GARAGE / LIVERY / PACK SYSTEM
+```
+
+This separation between remote, downloaded, installed, and usable content is what allows the Vault to maintain a much cleaner local asset ecosystem.
+
+---
+
+# Why This Architecture Matters
+
+The Online Asset Manager demonstrates the larger design philosophy behind Skeleton Key Vault.
+
+The goal isn't simply:
+
+> "Download a mod."
+
+The goal is:
+
+> **Take a remote asset, understand its structure, translate it into the game's data model, serialize it correctly, and make it usable through the Vault's existing systems.**
+
+That means the Asset Manager sits at the intersection of:
+
+```text
+Remote Distribution
+        +
+Asset Management
+        +
+Binary Serialization
+        +
+Object Construction
+        +
+Local Installation
+        +
+Garage Integration
+```
+
+That is what makes it one of the flagship systems in Skeleton Key.
+
+---
+
+# Quick Reference
+
+| Option | Purpose |
+|---|---|
+| **1 — Browse Assets** | Explore the available asset library |
+| **2 — Categories** | Navigate assets by category |
+| **3 — Search** | Find specific assets |
+| **4 — New Assets** | Discover recently added content |
+| **5 — Installed Assets** | Manage locally installed assets |
+| **6 — Download Cache** | Manage previously downloaded content |
+| **7 — Pack Browser** | Browse complete asset packs |
+| **8 — Visit Asset Database** | Open the remote asset repository |
+| **0 — Back** | Return to the previous menu |
+
+---
+
+# Final Takeaway
+
+The Online Asset Manager is effectively the **remote content backbone of Skeleton Key Vault**.
+
+It combines a remote asset repository with local asset management and the Vault's reverse-engineered understanding of FR Legends save structures.
+
+```text
+                ASSET DATABASE
+                      │
+                      ▼
+              ONLINE ASSET MANAGER
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+       DOWNLOAD     SEARCH      BROWSE
+          │
+          ▼
+       CACHE
+          │
+          ▼
+      INSTALLER
+          │
+          ▼
+   OBJECT CONSTRUCTION
+          │
+          ▼
+   DESERIALIZE / MODIFY
+          │
+          ▼
+      SERIALIZE
+          │
+          ▼
+     GARAGE / GAME
+```
+
+What looks like an asset browser from the outside is actually a complete **remote-to-game asset pipeline** underneath.
+
+That is the real value of the system.
+
+
+
+
+Check it out! -> [FR Legends Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)
