@@ -8,6 +8,12 @@ Open it from:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.png)
+
+---
+
 ## Asset Sources
 
 The importer can discover car assets from:
