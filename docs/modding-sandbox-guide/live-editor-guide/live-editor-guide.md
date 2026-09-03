@@ -150,3 +150,7 @@ PRE_EDIT_<CarID>_<timestamp>.json
 
 ## Continue
 
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
+
+**[Next: Live Editor Guide →]()**
+
