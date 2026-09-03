@@ -388,7 +388,7 @@ If you might want it later:
 EXPORT IT FIRST.
 ```
 
-**[Garage Cleanup Guide →]()**
+**[Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
 
 ---
 
@@ -609,7 +609,7 @@ Choose the feature you want to learn more about:
 - **[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
 - **[Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
 - **[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
-- **[Garage Cleanup Guide →]()**
+- **[Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
 - **[Live Car Editor Guide →]()**
 - **[Online Asset Manager Guide →]()**
 - **[Unlock Menu Guide →]()**
