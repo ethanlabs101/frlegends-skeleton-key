@@ -66,7 +66,7 @@ Use Asset
 
 ### Screenshot — Browse Assets
 
-> **[SCREENSHOT: INSERT BROWSE ASSETS MENU HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/asset-browser.png)
 
 ---
 
