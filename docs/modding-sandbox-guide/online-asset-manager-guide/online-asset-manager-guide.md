@@ -190,6 +190,10 @@ The Online Asset Manager is also connected to the project's sister GitHub asset 
 
 The repository acts as the remote distribution layer for Skeleton Key assets.
 
+It also doubles as a visual inventory catalog.
+
+Check it out! -> [FR Legends Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)
+
 Conceptually:
 
 ```text
