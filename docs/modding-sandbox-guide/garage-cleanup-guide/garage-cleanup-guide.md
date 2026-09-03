@@ -8,6 +8,12 @@ Open it from:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.png)
+
+---
+
 ## Filtering
 
 Cars are grouped by the first character of their name.
