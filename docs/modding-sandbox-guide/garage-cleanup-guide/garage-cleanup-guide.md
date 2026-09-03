@@ -70,14 +70,10 @@ Skeleton Key then uploads the updated garage and synchronizes telemetry.
 
 Press **Enter** from the filtering menu to return to the Modding Sandbox.
 
-## Quick Summary
+---
 
-**Option 10 → Garage Cleanup**
+## Continue
 
-- Filter cars alphabetically
-- View all cars
-- Delete one or multiple cars
-- Confirm deletions before applying
-- Automatically reduce carport to match
-- Garage must always retain at least one car
-- Upload and sync changes
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
+
+**[Next: Garage Cleanup Guide →]()**
