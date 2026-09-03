@@ -123,14 +123,8 @@ Press **Enter** to return.
 
 ---
 
-## Quick Summary
+## Continue
 
-**Option 09 → Exotic Importer**
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-- Browse available car assets
-- Filter by filename category
-- Inject individual or multiple cars
-- Automatically adjust carport when necessary
-- Delete generated payloads
-- Downloaded/installed assets remain managed by Asset Manager
-- Use simple car names without spaces or unusual special characters
+**[Next: Exotic Importer Guide →]()**
