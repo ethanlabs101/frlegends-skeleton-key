@@ -410,7 +410,7 @@ The Live Car Editor is intended for users who want more direct control over indi
 
 Because vehicle payloads can be complex, create a backup before experimenting with unfamiliar properties.
 
-**[Live Car Editor Guide →]()**
+**[Live Car Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
 
 ---
 
@@ -610,7 +610,7 @@ Choose the feature you want to learn more about:
 - **[Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
 - **[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
 - **[Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
-- **[Live Car Editor Guide →]()**
+- **[Live Car Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
 - **[Online Asset Manager Guide →]()**
 - **[Unlock Menu Guide →]()**
 - **[User Data Manager Guide →]()**
