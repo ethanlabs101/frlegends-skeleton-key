@@ -127,4 +127,4 @@ Press **Enter** to return.
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Garage Cleanup Guide →]()**
+**[Next: Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
