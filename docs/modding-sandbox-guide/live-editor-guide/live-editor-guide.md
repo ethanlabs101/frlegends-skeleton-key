@@ -8,6 +8,12 @@ Open it from:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.png)
+
+---
+
 ## Selecting a Car
 
 The editor displays every car currently in the garage.
