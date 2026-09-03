@@ -30,6 +30,12 @@ The system currently supports:
 
 ---
 
+## Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager.png)
+
+---
+
 ## Entering the Online Asset Manager
 
 From the Modding Sandbox, select:
