@@ -362,7 +362,7 @@ Verify Garage
 
 Because importing can modify garage data, create a backup before performing an operation that could overwrite existing information.
 
-**[Exotic Importer Guide →]()**
+**[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
 
 ---
 
@@ -608,7 +608,7 @@ Choose the feature you want to learn more about:
 - **[Playtime Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modify-playtime-guide/modify-playtime-guide.md)**
 - **[Currency Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/currency-manager-guide/currency-manager-guide.md)**
 - **[Garage Export Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-export-guide/garage-export-guide.md)**
-- **[Exotic Importer Guide →]()**
+- **[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
 - **[Garage Cleanup Guide →]()**
 - **[Live Car Editor Guide →]()**
 - **[Online Asset Manager Guide →]()**
