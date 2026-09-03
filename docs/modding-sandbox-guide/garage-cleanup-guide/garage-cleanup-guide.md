@@ -82,4 +82,4 @@ Press **Enter** from the filtering menu to return to the Modding Sandbox.
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Live Editor Guide →]()**
+**[Next: Live Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
