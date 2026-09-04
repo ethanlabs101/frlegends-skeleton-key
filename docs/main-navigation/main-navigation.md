@@ -168,7 +168,7 @@ Use this section when you need recovery functionality rather than normal authent
 
 The available recovery methods depend on the current Skeleton Key release and the state of the account or Vault involved.
 
-[Account Recovery Guide →](./account-recovery.md)
+[Account Recovery Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.md)
 
 ---
 
@@ -308,7 +308,7 @@ Continue with the feature you want to use:
 
 [Modding Sandbox →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
-[Account Recovery →](./account-recovery.md)
+[Account Recovery →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.md)
 
 If you have not completed the first-launch process:
 
