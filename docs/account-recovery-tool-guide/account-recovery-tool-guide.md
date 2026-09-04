@@ -16,19 +16,11 @@ From the **Main Navigation Menu**, select:
 
 The recovery interface will ask for the email address of the account whose backups you want to restore.
 
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - ACCOUNT RECOVERY         ║
-╠════════════════════════════════════════════════════════════╣
-║   Restore previous account backups                          ║
-╚════════════════════════════════════════════════════════════╝
-╔════════════════════════════════════════════════════════════╗
-║   [Enter] Back                                             ║
-╚════════════════════════════════════════════════════════════╝
-[>] Enter Account Email:
-```
-
 Entering an empty value returns to the Main Navigation Menu.
+
+### Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.png)
 
 ---
 
