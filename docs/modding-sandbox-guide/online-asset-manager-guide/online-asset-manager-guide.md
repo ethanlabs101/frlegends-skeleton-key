@@ -202,7 +202,7 @@ This makes packs especially useful for complete builds, themed collections, and 
 
 ### Screenshot — Pack Browser
 
-> **[SCREENSHOT: INSERT PACK BROWSER MENU HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/pack-browser.png)
 
 ---
 
