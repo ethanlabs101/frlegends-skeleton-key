@@ -231,7 +231,7 @@ Instead, the repository functions as the remote distribution layer.
 
 ### Screenshot — Asset Database
 
-> **[SCREENSHOT: INSERT ASSET DATABASE / REPOSITORY SCREENSHOT HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/visit-database.png)
 
 ---
 
