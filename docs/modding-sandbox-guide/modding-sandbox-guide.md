@@ -429,7 +429,7 @@ The Online Asset Manager is separate from the local garage tools because it deal
 
 The exact available content may change over time.
 
-**[Online Asset Manager Guide →]()**
+**[Online Asset Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager-guide.md)**
 
 ---
 
@@ -611,7 +611,7 @@ Choose the feature you want to learn more about:
 - **[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
 - **[Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
 - **[Live Car Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
-- **[Online Asset Manager Guide →]()**
+- **[Online Asset Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager-guide.md)**
 - **[Unlock Menu Guide →]()**
 - **[User Data Manager Guide →]()**
 
