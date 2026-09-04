@@ -461,7 +461,7 @@ This section helps organize locally stored content such as:
 
 The exact functionality may expand as the Skeleton Key asset ecosystem develops.
 
-**[User Data Manager Guide →]()**
+**[User Data Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.md)**
 
 ---
 
@@ -613,7 +613,7 @@ Choose the feature you want to learn more about:
 - **[Live Car Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
 - **[Online Asset Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager-guide.md)**
 - **[Unlock Menu Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/unlock-menu-guide/unlock-menu-guide.md)**
-- **[User Data Manager Guide →]()**
+- **[User Data Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.md)**
 
 ---
 
