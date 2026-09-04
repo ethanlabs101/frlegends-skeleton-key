@@ -194,15 +194,9 @@ The **Pack Browser** is designed for asset collections rather than individual as
 
 A pack can contain multiple related pieces of content and can be distributed as a single curated package.
 
-For example:
+Currently, packs are type specific. This means each pack is either a livery pack or a full car asset pack.
 
-```text
-PACK
- ├── Car
- ├── Livery
- ├── Supporting Data
- └── Additional Assets
-```
+Liveries injected through the Online Asset Manager are applied to a stock car object according to the livery model (ex. S15), then the livery is applied to that car and sent directly to the active garage.
 
 This makes packs especially useful for complete builds, themed collections, and community releases.
 
