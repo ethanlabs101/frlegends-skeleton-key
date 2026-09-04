@@ -610,3 +610,6 @@ This acts as the real asset database and doubles as a visual catalog for users t
 
 ## Continue
 
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
+
+**[Next: Unlock Menu Guide →]()**
