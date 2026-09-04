@@ -136,10 +136,12 @@ It is particularly useful for discovering:
 
 This separates assets that merely exist in the download cache from assets that have actually passed through the installation process.
 
+These installed assets can be injected into the active garage. 
+
 Conceptually:
 
 ```text
-Remote
+Remote Asset
   ↓
 Downloaded
   ↓
@@ -161,6 +163,8 @@ Installed assets can subsequently be used by the appropriate garage, car, livery
 The **Download Cache** provides access to assets that have already been downloaded locally.
 
 This is useful because downloading and installing are treated as separate stages.
+
+The downloaded assets can be installed from cache, then injected to the active garage at will.
 
 ```text
 REMOTE ASSET
