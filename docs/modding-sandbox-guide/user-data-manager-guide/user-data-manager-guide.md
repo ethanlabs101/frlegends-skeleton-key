@@ -15,16 +15,9 @@ It provides dedicated management interfaces for:
 
 Instead of requiring users to manually navigate the filesystem, Skeleton Key provides an interactive interface for browsing, renaming, and deleting generated data.
 
-```text
-┌─────────────────────────┐
-│    USER DATA MANAGER    │
-├─────────────────────────┤
-│ Account Backups         │
-│ Car Payloads            │
-│ Downloaded Assets       │
-│ Snapshots               │
-└─────────────────────────┘
-```
+### Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.png)
 
 This is one of the modules that demonstrates the larger design philosophy behind Skeleton Key:
 
