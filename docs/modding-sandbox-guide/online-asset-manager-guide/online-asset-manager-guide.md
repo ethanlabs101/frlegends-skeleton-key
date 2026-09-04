@@ -178,7 +178,7 @@ This separation gives the Vault better control over local asset management and a
 
 ### Screenshot — Download Cache
 
-> **[SCREENSHOT: INSERT DOWNLOAD CACHE MENU HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/downloaded-assets.png)
 
 ---
 
