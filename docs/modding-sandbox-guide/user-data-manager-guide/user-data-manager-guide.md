@@ -79,7 +79,7 @@ Deletion requires explicit confirmation before the filesystem entry is removed.
 
 ### Screenshot — Account Backups
 
-> **[SCREENSHOT: INSERT ACCOUNT BACKUP ACCOUNT LIST HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/manage-backups.png)
 
 ### Screenshot — Backup History
 
