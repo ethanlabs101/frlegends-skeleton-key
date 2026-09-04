@@ -158,5 +158,5 @@ PRE_EDIT_<CarID>_<timestamp>.json
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Online Asset Manager Guide →]()**
+**[Next: Online Asset Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager-guide.md)**
 
