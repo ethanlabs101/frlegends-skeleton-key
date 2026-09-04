@@ -202,13 +202,13 @@ The User Data Manager therefore helps keep both the physical asset files and the
 
 If no matching registry entry exists, the manager reports that rather than silently assuming the registry was updated.
 
-### Screenshot — Download Categories
+### Screenshot — Manage Downloaded Assets
 
-> **[SCREENSHOT: INSERT DOWNLOADED ASSET CATEGORIES HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/manage-downloaded.png)
 
-### Screenshot — Downloaded Asset Management
+### Screenshot — Downloaded Asset Deletion
 
-> **[SCREENSHOT: INSERT INDIVIDUAL DOWNLOADED ASSET LIST HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/delete-downloaded.png)
 
 ---
 
