@@ -441,7 +441,7 @@ This is different from importing an individual exported vehicle payload.
 
 The Unlock Menu works with supported stock content and can be useful when restoring or populating an account's garage.
 
-**[Unlock Menu Guide →]()**
+**[Unlock Menu Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/unlock-menu-guide/unlock-menu-guide.md)**
 
 ---
 
@@ -612,7 +612,7 @@ Choose the feature you want to learn more about:
 - **[Garage Cleanup Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/garage-cleanup-guide/garage-cleanup-guide.md)**
 - **[Live Car Editor Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/live-editor-guide/live-editor-guide.md)**
 - **[Online Asset Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/online-asset-manager-guide.md)**
-- **[Unlock Menu Guide →]()**
+- **[Unlock Menu Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/unlock-menu-guide/unlock-menu-guide.md)**
 - **[User Data Manager Guide →]()**
 
 ---
