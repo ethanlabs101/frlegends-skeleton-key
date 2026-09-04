@@ -65,7 +65,7 @@ If you are working with a heavily modified carport, the **Exotic Importer** is t
 
 See:
 
-**[Exotic Importer Guide →](exotic-importer-guide.md)**
+**[Exotic Importer Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/exotic-importer-guide/exotic-importer-guide.md)**
 
 ---
 
@@ -124,7 +124,7 @@ to return to the **Modding Sandbox** menu.
 
 ---
 
-### Continue
+## Continue
 
 **[← Modding Sandbox Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
