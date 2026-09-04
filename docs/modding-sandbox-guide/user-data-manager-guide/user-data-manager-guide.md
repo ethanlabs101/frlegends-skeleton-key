@@ -396,7 +396,7 @@ That is what makes this module feel less like a traditional stateless CLI utilit
 
 ## Continue
 
-This is the final sandbox menu module please return to the main sandbox menu or continue to the main navigation account recovery tool.
+This is the final sandbox menu module. Please return to the main sandbox menu or continue to the main navigation account recovery tool.
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
