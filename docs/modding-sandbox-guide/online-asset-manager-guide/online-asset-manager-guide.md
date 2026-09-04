@@ -602,7 +602,11 @@ What looks like an asset browser from the outside is actually a complete **remot
 
 That is the real value of the system.
 
+Check out the repo! -> [FR Legends Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)
 
+This acts as the real asset database and doubles as a visual catalog for users to browse. Submissions are welcomed and appreciated!
 
+---
 
-Check it out! -> [FR Legends Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)
+## Continue
+
