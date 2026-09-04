@@ -400,4 +400,4 @@ This is the final sandbox menu module. Please return to the main sandbox menu or
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: Account Recovery Tool Guide →]()**
+**[Next: Account Recovery Tool Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.md)**
