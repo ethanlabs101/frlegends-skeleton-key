@@ -15,10 +15,6 @@ It provides dedicated management interfaces for:
 
 Instead of requiring users to manually navigate the filesystem, Skeleton Key provides an interactive interface for browsing, renaming, and deleting generated data.
 
-### Preview
-
-![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.png)
-
 This is one of the modules that demonstrates the larger design philosophy behind Skeleton Key:
 
 > **The filesystem is treated as application data, not as something the user should have to manually manage.**
@@ -33,22 +29,13 @@ From the Modding Sandbox:
 [14] User Data Manager - Manage Downloaded Content
 ```
 
-The main menu provides four management categories:
-
-```text
-╔════════════════════════════════════════════════════════════╗
-║   FR LEGENDS SKELETON KEY VAULT - USER DATA MANAGER        ║
-╠════════════════════════════════════════════════════════════╣
-║ [1] Account Backups                                        ║
-║ [2] Car Payloads                                           ║
-║ [3] Downloaded Assets                                      ║
-║ [4] Snapshots                                              ║
-║                                                            ║
-║ [Enter] Return to Sandbox Menu                             ║
-╚════════════════════════════════════════════════════════════╝
-```
+The main menu provides four management categories
 
 Each section has its own dedicated management interface.
+
+### Preview
+
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.png)
 
 ---
 
