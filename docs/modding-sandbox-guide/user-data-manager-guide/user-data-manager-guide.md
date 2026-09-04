@@ -391,3 +391,13 @@ The User Data Manager provides a centralized interface for managing Skeleton Key
 Instead of making users manually search through `fr_legends_payloads`, Skeleton Key turns its internal data structure into an interactive management system.
 
 That is what makes this module feel less like a traditional stateless CLI utility and more like a **real application with a persistent local data layer**.
+
+---
+
+## Continue
+
+This is the final sandbox menu module please return to the main sandbox menu or continue to the main navigation account recovery tool.
+
+**[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
+
+**[Next: Account Recovery Tool Guide →]()**
