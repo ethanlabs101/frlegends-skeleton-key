@@ -66,3 +66,16 @@ Install Skeleton Key directly on your Linux system.
 - See the [LICENSE](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/LICENSE) file for details.
 
 Copyright © 2026 ethanlabs101
+
+---
+
+## Thank you!
+
+If you found FR Legends Skeleton Key useful or just want to support,
+star this repo & hit that follow button. 
+
+Have a great day. God Bless!
+
+![footer](https://github.com/ethanlabs101/FRLegends-Asset-Database/blob/main/images/footer-animated.svg)
+
+---
