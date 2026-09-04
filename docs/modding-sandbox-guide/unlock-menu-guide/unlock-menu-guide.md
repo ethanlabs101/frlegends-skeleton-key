@@ -226,4 +226,4 @@ Skeleton Key ships with the underlying stock payloads and uses them as reusable 
 
 **[← Modding Sandbox Main Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)**
 
-**[Next: User Data Manager Guide →]()**
+**[Next: User Data Manager Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/user-data-manager-guide.md)**
