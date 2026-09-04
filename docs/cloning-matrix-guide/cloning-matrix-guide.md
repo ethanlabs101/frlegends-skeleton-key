@@ -845,7 +845,7 @@ Back Up Again
 
 For more information, see:
 
-[Account Recovery Guide →](account-recovery-guide.md)
+[Account Recovery Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.md)
 
 ---
 
@@ -901,6 +901,6 @@ The Modding Sandbox provides a separate environment for supported account and sa
 
 [Modding Sandbox Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/modding-sandbox-guide.md)
 
-[Account Recovery Guide →](account-recovery-guide.md)
+[Account Recovery Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/account-recovery-tool-guide/account-recovery-tool-guide.md)
 
 [← Back to Main Navigation](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
