@@ -176,6 +176,8 @@ DOWNLOAD CACHE
 INSTALL
      ↓
 INSTALLED ASSET
+     ↓
+INJECTED ASSET
 ```
 
 This separation gives the Vault better control over local asset management and allows downloaded content to remain available without automatically treating everything as installed.
