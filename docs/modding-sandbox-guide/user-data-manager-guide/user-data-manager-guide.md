@@ -83,7 +83,7 @@ Deletion requires explicit confirmation before the filesystem entry is removed.
 
 ### Screenshot — Backup History
 
-> **[SCREENSHOT: INSERT INDIVIDUAL ACCOUNT BACKUP HISTORY HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/backup-history.png)
 
 ---
 
