@@ -182,3 +182,9 @@ The **Account Recovery Tool** turns Skeleton Key's local backup system into an a
 Instead of simply storing snapshots, the Vault can take a previous save state, authenticate against the target account, reconstruct the required PD payload, and restore that state directly to the account's cloud save.
 
 It is the final recovery layer connecting Skeleton Key's **backup infrastructure** to the actual FR Legends account.
+
+---
+
+# Continue
+
+
