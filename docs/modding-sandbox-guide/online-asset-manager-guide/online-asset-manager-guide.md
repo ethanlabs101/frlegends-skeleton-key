@@ -267,13 +267,35 @@ Underneath that menu, the system is handling significantly more complicated data
 
 # Livery Asset Injection Pipeline
 
-How does a livery only asset become a full car?
+### How does a livery-only asset become a full car?
 
-Liveries injected through the Online Asset Manager are applied to a stock car object according to the livery model (ex. S15),
-then the livery is applied to that car and sent directly to the active garage.
+Liveries injected through the Online Asset Manager are applied to a stock car object matching the livery's vehicle model (for example, an S15).
 
-Skeleton Key ships with every stock car object in a protected directory, this gives the Online Asset Manager the resources to
-construct a full car asset with livery applied.
+The Online Asset Manager retrieves the appropriate stock car object, applies the livery data to that vehicle, constructs the resulting full car object, and sends it directly to the active garage.
+
+Skeleton Key ships with the complete stock car objects in a protected directory. This gives the Online Asset Manager the underlying vehicle data required to construct a complete game-ready car from a livery-only asset.
+
+```text
+LIVERY ASSET
+     │
+     │  Model: S15
+     ▼
+STOCK S15 OBJECT
+     │
+     │  Apply Livery
+     ▼
+FULL S15 + LIVERY OBJECT
+     │
+     │  Serialize
+     ▼
+ACTIVE GARAGE
+```
+
+This architecture means a livery asset does **not** need to duplicate the entire stock vehicle structure.
+
+Instead, the livery provides the appearance data while Skeleton Key supplies the underlying vehicle object.
+
+That keeps livery assets smaller, cleaner, and easier to distribute while allowing the Online Asset Manager to produce a complete FR Legends car ready for the garage.
 
 ---
 
