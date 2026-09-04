@@ -146,11 +146,7 @@ Deleting a payload does not automatically modify cars already injected into a ga
 
 ### Screenshot — Car Payload Manager
 
-> **[SCREENSHOT: INSERT CAR PAYLOAD MANAGER HERE]**
-
-### Screenshot — Rename Payload
-
-> **[SCREENSHOT: INSERT PAYLOAD RENAME FLOW HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/manage-payloads.png)
 
 ---
 
