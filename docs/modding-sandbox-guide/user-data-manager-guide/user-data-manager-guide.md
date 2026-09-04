@@ -238,11 +238,11 @@ Individual snapshots can be deleted after confirmation.
 
 ### Screenshot — Snapshot Accounts
 
-> **[SCREENSHOT: INSERT SNAPSHOT ACCOUNT LIST HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/manage-snapshots.png)
 
 ### Screenshot — Snapshot History
 
-> **[SCREENSHOT: INSERT SNAPSHOT HISTORY HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/user-data-manager-guide/delete-snapshots.png)
 
 ---
 
