@@ -196,8 +196,6 @@ A pack can contain multiple related pieces of content and can be distributed as 
 
 Currently, packs are type specific. This means each pack is either a livery pack or a full car asset pack.
 
-Liveries injected through the Online Asset Manager are applied to a stock car object according to the livery model (ex. S15), then the livery is applied to that car and sent directly to the active garage.
-
 This makes packs especially useful for complete builds, themed collections, and community releases.
 
 ### Screenshot — Pack Browser
@@ -267,7 +265,19 @@ Underneath that menu, the system is handling significantly more complicated data
 
 ---
 
-# Binary Deserialization
+# Livery Asset Injection Pipeline
+
+How does a livery only asset become a full car?
+
+Liveries injected through the Online Asset Manager are applied to a stock car object according to the livery model (ex. S15),
+then the livery is applied to that car and sent directly to the active garage.
+
+Skeleton Key ships with every stock car object in a protected directory, this gives the Online Asset Manager the resources to
+construct a full car asset with livery applied.
+
+---
+
+# Livery Binary Deserialization
 
 FR Legends stores important save information in serialized binary structures.
 
