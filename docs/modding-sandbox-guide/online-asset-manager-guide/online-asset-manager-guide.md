@@ -126,7 +126,7 @@ It is particularly useful for discovering:
 
 ### Screenshot — New Assets
 
-> **[SCREENSHOT: INSERT NEW ASSETS MENU HERE]**
+![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/modding-sandbox-guide/online-asset-manager-guide/new-assets.png)
 
 ---
 
