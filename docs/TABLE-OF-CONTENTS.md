@@ -10,10 +10,9 @@ This documentation is organized as a recommended progression rather than simply 
 
 Begin here if you are completely new to Skeleton Key.
 
-- [Project Overview](README.md)
-- []()
+- [Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
-Learn what Skeleton Key is, how the Vault is structured, and what to expect when launching it for the first time.
+Learn what Skeleton Key is and its features.
 
 ---
 
@@ -23,15 +22,22 @@ Choose the installation path for your platform.
 
 ### Linux
 
-- [Linux Installation Guide](installation-linux.md)
+- [Linux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
 
 ### Android / Termux
 
-- [Termux Installation Guide](installation-termux.md)
+- [Termux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
 ### Updating
 
 - [How To Update Skeleton Key](how-to-update.md)
+
+---
+## First Launch
+
+Read this guide to learn how to start operating Skeleton Key.
+
+- [First Launch Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/first-launch/first-launch.md)
 
 ---
 
@@ -39,8 +45,8 @@ Choose the installation path for your platform.
 
 Learn the primary systems available from the Skeleton Key main menu.
 
-- [Main Navigation Guide](main-navigation-guide.md)
-- [Authentication Guide](authentication-guide.md)
+- [Main Navigation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/main-navigation/main-navigation.md)
+- [Authentication Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/authentication-guide/authentication-guide.md)
 - [Remote Factory Guide](remote-factory-guide.md)
 - [Cloning Matrix Guide](cloning-matrix-guide.md)
 - [Account Recovery Guide](account-recovery-tool-guide.md)
