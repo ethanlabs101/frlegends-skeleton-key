@@ -2,7 +2,7 @@
 
 This document provides a high-level overview of the currently available capabilities in **FR Legends Skeleton Key Vault**.
 
-For detailed instructions, follow the relevant guides listed in the [Table of Contents](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TABLE-OF-CONTENTS.md).
+For detailed instructions, follow the relevant guides listed in the [Table of Contents](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TABLE-OF-CONTENTS.md)
 
 Here is **MOST** of the functionality currently included in Skeleton Key.
 
