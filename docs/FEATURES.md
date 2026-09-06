@@ -222,7 +222,7 @@ Skeleton Key includes multiple tools for managing livery data.
 - Inject completed livery vehicles directly into the garage
 - Livery binary codec
 
-The livery codec is a core engine behind Skeleton Key's livery ecosystem. It bridges the gap between compact user-facing livery codes, proprietary serialized binary data, and the structured livery fields stored inside complete car objects. By understanding each representation, the codec allows livery data to be interpreted, converted, reconstructed, and used throughout Skeleton Key's asset and garage systems.
+***The livery codec is a core engine behind Skeleton Key's livery ecosystem. It bridges the gap between compact user-facing livery codes, proprietary serialized binary data, and the structured livery fields stored inside complete car objects. By understanding each representation, the codec allows livery data to be interpreted, converted, reconstructed, and used throughout Skeleton Key's asset and garage systems.***
 
 ---
 
