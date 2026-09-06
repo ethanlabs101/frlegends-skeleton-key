@@ -2,7 +2,7 @@
 
 Welcome to the official documentation for **FR Legends Skeleton Key Vault**.
 
-This documentation is organized as a recommended progression rather than simply a list of files. New users should follow the path from **Getting Started → Core Navigation → Modding → Assets**, while experienced users can jump directly to the technical and reference sections.
+This documentation is organized as a recommended progression rather than simply a list of files. New users should follow the recommended path, while experienced users can jump directly to the technical and reference sections.
 
 ---
 
