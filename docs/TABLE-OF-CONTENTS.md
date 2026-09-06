@@ -10,7 +10,7 @@ This documentation is organized as a recommended progression rather than simply 
 
 Begin here if you are completely new to Skeleton Key.
 
-- [Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
+[Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)
 
 Learn what Skeleton Key is and its features.
 
@@ -18,21 +18,24 @@ Learn what Skeleton Key is and its features.
 
 ## Installation/Updates
 
+Now its time to install Skeleton Key to your device.
+
 Choose the installation path for your platform.
 
 ### Linux
 
-- [Linux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
+[Linux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
 
 ### Android / Termux
 
-- [Termux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
+[Termux Installation Guide](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
 ### Updating
 
-- [How To Update Skeleton Key](how-to-update.md)
+[How To Update Skeleton Key](how-to-update.md)
 
 ---
+
 ## First Launch
 
 Read this guide to learn how to start operating Skeleton Key.
