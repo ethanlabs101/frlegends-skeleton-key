@@ -4,7 +4,7 @@ This document provides a high-level overview of the currently available capabili
 
 For detailed instructions, follow the relevant guides listed in the [Table of Contents](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TABLE-OF-CONTENTS.md)
 
-Here is **MOST** of the functionality currently included in Skeleton Key.
+The following covers most of the functionality currently included in Skeleton Key.
 
 There are also many underlying architectural features, engineering decisions, and supporting systems that are not immediately visible from the user interface. These components are a major part of what makes Skeleton Key a portable, maintainable, extensible, and feature-rich ecosystem.
 
