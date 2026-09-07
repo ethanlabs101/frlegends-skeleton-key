@@ -33,7 +33,7 @@ everything is designed to work together through the Vault.
 
 ***and much more!***
 
-[See full list]()
+[See full list](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FEATURES.md)
 
 ---
 
