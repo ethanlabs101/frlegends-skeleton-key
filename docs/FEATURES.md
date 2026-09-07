@@ -265,7 +265,7 @@ INJECT INTO GARAGE
 
 ---
 
-# Stock Car Unlock System
+# Stock Car Library & Injection System
 
 The Unlock Menu provides access to Skeleton Key's local stock car payload library.
 
