@@ -609,7 +609,7 @@ These systems allow higher-level features to work together as part of a larger s
 
 # Extensible Design
 
-Skeleton Key is built around reusable infrastructure that can support additional features and asset types as the project develops.
+Skeleton Key is built around reusable infrastructure that can support additional features, interfaces, and asset types as the project develops.
 
 Existing systems provide foundations for future expansion in areas such as:
 
@@ -622,9 +622,19 @@ Existing systems provide foundations for future expansion in areas such as:
 - Additional recovery tools
 - New user interfaces
 - Future platform support
+- Web-based integrations
 
-Even web/app integration which has already been proven by [frlmods.com](https://frlmods.com) which uses a stripped version of Skeleton Key's engine
-and money-modification methods packaged into a simple web-based tool. See [frlmods.com money-mod](https://frlmods.com/add-money) ***Requires account***
+### Proven Portability
+
+Skeleton Key's architecture has already been adapted beyond the primary CLI interface.
+
+[frlmods.com](https://frlmods.com) uses a stripped-down implementation of Skeleton Key's engine and save-modification methods to provide a simplified web-based money modification tool.
+
+This demonstrates that Skeleton Key's underlying functionality can be separated from its terminal interface and reused in other applications.
+
+[View the FRLMods Money Modifier](https://frlmods.com/add-money) ***Requires account***
+
+The implementation is also publicly attributed to the Skeleton Key project through the linked GitHub repository on the tool's webpage.
 
 ---
 
