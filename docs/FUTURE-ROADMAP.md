@@ -10,7 +10,7 @@ can be separated from the CLI and reused individually, or transplanted into an e
 
 That interface could theoretically be a desktop application, Android application, web application, or another compatible frontend entirely. This portability has already been demonstrated through frlmods.com, which uses a stripped-down implementation of Skeleton Key's underlying engine and save-modification methods for its web-based money modification tool.
 
-I can't say this tool will be fully functional ***forever*** (as in 99% of game mods), and that should be acknowledged. BUT this could easily turn into a web-based asset share ecosystem
+I can't say this tool will be fully functional ***forever*** (like 99% of game mods), and that should be acknowledged. BUT this could easily turn into a web-based asset share ecosystem
 between users, a website to purchase curated assets, a classic discord bot, a website designed to sell accounts, etc. There is many possibilities and I would love to see this engine integrated into other interfaces.
 
 Besides those types of possibilities, lets dig into what Skeleton Key/ FR Legends save data could theoretically do.
