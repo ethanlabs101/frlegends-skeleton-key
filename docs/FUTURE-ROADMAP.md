@@ -2,8 +2,8 @@
 
 I will keep this short. Truthfully, the purpose of the creation of this framework was a learning experience and to provide for the FR Legends Community.
 I barely play this game, and its not something I plan to monetize or grow further then the current CLI interface. However, there are a full experimental ideas,
-and feasible features I would like to list here that may or may not be released. For both myself, and whoever else out there who wants to and is able to
-experiment themselves. This is open-source software after all :)
+and feasible features I would like to list here that may or may not be released. For both myself, and whoever else out there who wants to experiment themselves. 
+This is open-source software after all :)
 
 Firstly, I'd like to point out that Skeleton Key is highly portable. The underlying client wrapper, player-data decoder, serialization pipeline, and supporting systems
 can be separated from the CLI and reused individually, or transplanted into an entirely different interface.
