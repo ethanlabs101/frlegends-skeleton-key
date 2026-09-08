@@ -136,7 +136,7 @@ These documents explain the systems underneath the user-facing CLI, including sa
 
 Explore where Skeleton Key could go next.
 
-[Future Roadmap](FUTURE-ROADMAP.md)
+[Future Roadmap](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FUTURE-ROADMAP.md)
 
 This section covers possible future systems, experimental ideas, improvements, and long-term development possibilities.
 
