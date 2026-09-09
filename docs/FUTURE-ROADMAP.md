@@ -327,8 +327,6 @@ I have not fully tested this possibility and cannot verify whether modified scor
 
 However, the account data contains score-record fields which may theoretically be editable.
 
-For example, values such as `-1` appear to represent records that have not been achieved.
-
 Here is an example of what part of the field can look like inside an account save:
 
 ```json
