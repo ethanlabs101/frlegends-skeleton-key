@@ -26,7 +26,7 @@ All the livery modifications are out of scope for Skeleton Key and will not be i
 
 ### Here is some of my findings:
 
-1. You can create livery "color presets". I actually already worked on this experimentally, its possible to apply a "Twilight" preset to a car, and specific accent colors will be shifted to blues, and purples etc. I found
+1. You can create livery "color presets". I actually already worked on this experimentally. For example, its possible to apply a "Twilight" preset to a car, and specific accent colors will be shifted to blues, and purples etc. I found
 if you do this and leave primary colors untouched you can successfully apply the color preset without making the livery look muddy. Protecting the primary colors here is key and also creating a map for presets for example,
 dark red = dark blue, red = blue, light red = light blue. You should always back up the car before modifying it. However, maintaining consistent color mappings and protecting primary colors makes it easier to apply multiple transformations without progressively destroying the original livery's visual identity. Of course some liveries wont cleanly work with this method and its not the simplest, but worth mentioning.
 
