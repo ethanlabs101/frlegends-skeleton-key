@@ -113,3 +113,70 @@ For these reasons, iOS support is not currently considered a realistic target.
 
 ---
 
+## FRLMods to Skeleton Key
+
+What does this mean you may be thinking?
+
+FRLMods and other community sources provide livery codes shared through community uploads. These codes are a compact, user-facing representation of serialized livery data.
+
+Skeleton Key's `codec.js` currently understands both the livery code format and the underlying serialized binary representation.
+
+This means a compatible livery code can be processed through the codec, converted into usable binary livery data, applied to a compatible car object, and then injected directly into the garage or saved as a reusable car payload.
+
+I created and tested a prototype of this functionality outside of Skeleton Key, and the underlying workflow works.
+
+The primary limitation is currently the CLI interface.
+
+### Current CLI Limitation
+
+Some livery codes can contain large amounts of data.
+
+Skeleton Key currently uses `readline` for interactive input, which is not ideal for reliably handling very large pasted livery codes. If a pasted code is incomplete or formatting is altered during input, the resulting livery data can become corrupted or invalid.
+
+Because of this, directly pasting large livery codes into the current CLI is not considered a reliable implementation.
+
+### Current Workflow
+
+The current workflow for using a community livery generally requires finding the code on a website, copying it, opening FR Legends, selecting a compatible car, opening the livery menu, purchasing any required livery slots, and finally pasting the code.
+
+That workflow could potentially be consolidated into something much simpler:
+
+```text
+Find code
+Paste code into supported interface
+Select compatible car model
+Inject car or save as payload
+```
+
+### Possible CLI Implementation
+
+Because the current terminal input system is not ideal for large pasted inputs, a feasible CLI implementation could use files instead.
+
+The workflow could look like this:
+
+```text
+Find code
+Paste code into a supported file
+Open Skeleton Key
+Select the livery code
+Select compatible car model
+Inject car or save as payload
+```
+
+This would allow Skeleton Key to process the code without relying on a large serialized string being pasted directly into an interactive terminal prompt.
+
+### Alternative Interfaces
+
+A web application, desktop application, or another interface capable of reliably handling large text inputs could make this workflow even simpler.
+
+A user could paste a supported livery code directly into the interface, select a compatible vehicle model, and construct the completed car without manually moving files around.
+
+The underlying Skeleton Key engine could handle processing the livery data and constructing the compatible car object while the interface handles user interaction.
+
+### Future Consideration
+
+A manual file-based implementation of this feature may be considered for Skeleton Key in the future, but it is not guaranteed.
+
+The underlying codec and car construction workflow have already been demonstrated experimentally. The primary challenge is implementing an input workflow that is reliable and appropriate for the interface.
+
+---
