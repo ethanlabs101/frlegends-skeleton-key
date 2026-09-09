@@ -35,7 +35,7 @@ for such a small niche car game. This requires understanding the livery binary s
 making such a feature, but its out of scope for Skeleton Key and CLI interfaces period. Theoretically, you could create a lightweight rendering engine, render the unity assets in browser and try to simulate FR Legends in-game livery
 application, and if you maintain the binary data, you can apply it to a car object, and boom car. This is very high effort though, and I wouldn't be surprised if it never happened.
 
-3. You can move liveries across car models and have them sized perfectly. If you don't want to program a blender clone like #2, this could hypothetically be achieved from scripting livery manipulation, then trial-and-error checking repeatedly in-game to see if you can get the perfect translation across car models. This is also high effort, and would have to be repeated across all the car models in the game, but another cool possibility even if tedious. 
+3. You can move liveries across car models and have them sized perfectly. If you don't want to program a blender clone like #2, this could hypothetically be achieved from a scripted livery manipulation workflow, then trial-and-error checking repeatedly in-game to see if you can get the perfect translation across car models. This is also high effort, and would have to be repeated across all the car models in the game, but another cool possibility even if tedious. 
 
 
 There is more like image to binary etc, but that I have not tested or speculated about. I have seen an example such as on frlmods.com but in my opinion and others, its very primitive.
