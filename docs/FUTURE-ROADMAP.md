@@ -180,3 +180,229 @@ A manual file-based implementation of this feature may be considered for Skeleto
 The underlying codec and car construction workflow have already been demonstrated experimentally. The primary challenge is implementing an input workflow that is reliable and appropriate for the interface.
 
 ---
+
+## Other Miscellaneous Ideas
+
+I've covered most of the larger ideas I can currently think of. Here are a few smaller possibilities that may or may not be added, but are worth mentioning nonetheless.
+
+### 1. Paint Modifications
+
+Inside a car object, paint data for the car body, roll cage, and engine hose can look something like this:
+
+```json
+"color": {
+    "matType": 0,
+    "matPath": "CarPaintDefault.mat",
+    "body": {
+        "r": 119,
+        "g": 55,
+        "b": 185,
+        "a": 255
+    },
+    "hose": {
+        "r": 32,
+        "g": 191,
+        "b": 223,
+        "a": 255
+    },
+    "rollGage": {
+        "r": 32,
+        "g": 191,
+        "b": 223,
+        "a": 255
+    }
+}
+```
+
+These values can be manipulated, making it possible to create a dedicated interface for modifying vehicle colors.
+
+I have already experimented with unusual color values and effects such as attempting to create invisible cars, but I have not uncovered anything particularly interesting.
+
+I'm not certain whether this feature is worth adding because it does not currently provide functionality that cannot already be performed easily in-game. There is also no visual preview inside the CLI.
+
+However, it is completely feasible, and Skeleton Key already contains multiple examples of direct account and car-object modification through structured save data.
+
+---
+
+### 2. Engine / Suspension Modifications
+
+This is similar to the paint modification possibilities because many of these settings can already be changed through normal gameplay.
+
+From my testing, the game appears to validate important engine and suspension values server-side. This limits how far these modifications can be pushed beyond supported game configurations.
+
+That does not mean the fields are useless. Skeleton Key could still provide stock engine and suspension presets or simplify applying supported configurations.
+
+Unfortunately, no `9999999hp` engines. Sorry. :)
+
+Here is an example of what these fields can look like inside a car object:
+
+```json
+"config": {
+    "height": -1,
+    "balance": 0,
+    "camberF": 18,
+    "camberR": 18,
+    "flangeF": 0.011934160254895687,
+    "flangeR": 0
+},
+"engine": {
+    "engineName": "1JZ",
+    "path": "_Engines/1JZ.prefab",
+    "rpmMin": 1000,
+    "rpmMax": 8500,
+    "torque": 716.7999877929688,
+    "torqueMax": 716.7999877929688,
+    "torqueLimit": 800,
+    "mass": 160,
+    "torqueBase": 515,
+    "engineLevel": 5,
+    "camshaftsLevel": 5,
+    "transmissionLevel": 5,
+    "ecuLevel": 5,
+    "turboRatio": 1,
+    "intakeKit": {
+        "path": "_Engines/1JZ_KIT1.prefab",
+        "AFLevel": 5,
+        "HSLevel": 5,
+        "ICLevel": 5,
+        "TurboLevel": 5
+    }
+}
+```
+
+---
+
+### 3. Unlocked Track Modifications
+
+This is potentially more useful than the previous two options, although there are still some caveats.
+
+Personally, I have not mapped every track value, so I cannot currently provide a complete track mapping. However, the field itself appears straightforward to research through controlled comparison.
+
+A possible workflow would be:
+
+- Check which tracks are currently unlocked
+- Inspect the current account JSON data
+- Record the values inside `unlockedTracks`
+- Unlock one additional track normally
+- Compare the modified save data
+- Repeat the process
+- Test the identified values on a separate account
+
+Once the complete mapping is understood and verified, the process could theoretically be turned into a simple interface where users select a supported track and Skeleton Key applies the corresponding account data.
+
+Here is an example of what the field can look like:
+
+```json
+"unlockedTracks": [
+    4,
+    20,
+    16,
+    5,
+    10,
+    24,
+    6,
+    13
+]
+```
+
+This is more of a convenience feature than a necessary one, but it remains a possible addition.
+
+---
+
+### 4. Inventory Modifications
+
+This one is worth mentioning because inventory ownership appears to be represented inside the structured account data.
+
+Theoretically, modifying the relevant inventory data could allow items such as supported vehicle components or body parts to be added to an account's inventory.
+
+However, I currently do not consider this a high-priority feature. It would require additional mapping and testing, while much of the project's existing functionality already provides more direct ways to construct and manage vehicles.
+
+This functionality would involve modifying the `inventory` field inside the structured account save data.
+
+---
+
+### 5. Score Record Modifications
+
+I have not fully tested this possibility and cannot verify whether modified score records are accepted by the server.
+
+However, the account data contains score-record fields which may theoretically be editable.
+
+For example, values such as `-1` appear to represent records that have not been achieved.
+
+Here is an example of what part of the field can look like inside an account save:
+
+```json
+"scoreRecords": {
+    "tougev2_seconds": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        46.1971549987793
+    ],
+    "gymk_scores": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        26.399999618530273
+    ]
+}
+```
+
+Whether modified values are accepted, displayed, or retained by the game would require additional testing.
+
+---
+
+### 6. Miscellaneous Fields
+
+There are several additional fields I have not investigated deeply enough to justify dedicated features.
+
+Possible areas for experimentation include:
+
+- Special offers
+- Car damage
+- `defaultLevelDifficulty`
+- `defaultFreeRunAINumbers`
+- Other account and gameplay configuration fields
+
+These are some of the final areas I can currently identify for potential experimentation.
+
+Realistically, I do not expect every editable field to produce a useful Skeleton Key feature. Some values may simply be validated, overwritten, ignored, or provide functionality that is already easily available through normal gameplay.
+
+Still, one of the interesting aspects of working with structured account data is that there is always room for additional experimentation.
+
+---
+
+## Conclusion
+
