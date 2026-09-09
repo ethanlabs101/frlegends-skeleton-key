@@ -1,19 +1,51 @@
 ## Future Road map
 
-Truthfully, the purpose of the creation of this framework was a learning experience and to provide for the FR Legends Community.
-I barely play this game, and its not something I plan to monetize or grow further then the current CLI interface. However, there are a full experimental ideas,
-and feasible features I would like to list here that may or may not be released. For both myself, and whoever else out there who wants to experiment themselves. 
-This is open-source software after all :)
+Truthfully, the original purpose of creating Skeleton Key was simple: it was a learning experience, and I wanted to build something useful for the FR Legends community.
 
-Firstly, I'd like to point out that Skeleton Key is highly portable. The underlying client wrapper, player-data decoder, serialization pipeline, and supporting systems
-can be separated from the CLI and reused individually, or transplanted into an entirely different interface.
+I barely play FR Legends myself, and I do not currently plan to monetize Skeleton Key or turn it into a larger product beyond the existing CLI interface. However, while building the framework, I ended up discovering a lot more possibilities than I originally expected.
 
-That interface could theoretically be a desktop application, Android application, web application, or another compatible frontend entirely. This portability has already been demonstrated through frlmods.com, which uses a stripped-down implementation of Skeleton Key's underlying engine and save-modification methods for its web-based money modification tool.
+Some of those possibilities are realistic features. Some are experimental ideas. Some would require a ridiculous amount of work. Some may never be implemented at all.
 
-I can't say this tool will be fully functional ***forever*** (like 99% of game mods), and that should be acknowledged. BUT this could easily turn into a web-based asset share ecosystem
-between users, a website to purchase curated assets, a classic discord bot, a website designed to sell accounts, etc. There is many possibilities and I would love to see this engine integrated into other interfaces.
+I still want to document them.
 
-Besides those types of possibilities, lets dig into what Skeleton Key/ FR Legends save data could theoretically do.
+This section exists to show what I have already explored, what I believe is technically possible, and what someone else could potentially experiment with in the future. This is open-source software after all. :)
+
+### The CLI Is Not the Whole Framework
+
+One of the most important things to understand about Skeleton Key is that the CLI is only the interface.
+
+The underlying client wrapper, player-data decoder, serialization pipeline, car and livery manipulation systems, and supporting infrastructure can be separated from the CLI and reused independently.
+
+In other words, Skeleton Key does not fundamentally need to be a terminal application.
+
+The same underlying systems could theoretically be transplanted into a desktop application, Android application, web application, or another compatible frontend entirely.
+
+This portability has already been demonstrated through frlmods.com, which uses a stripped-down implementation of Skeleton Key's underlying engine and save-modification methods for its web-based money modification tool.
+
+That is one of the reasons I consider the underlying framework more interesting than the CLI itself.
+
+### Where Could This Go?
+
+I cannot say Skeleton Key will remain fully functional forever. Like most game modifications, changes to the game, its backend, or its data structures could eventually break parts of the framework.
+
+But even if that happens, the underlying work does not necessarily have to end there.
+
+The same engine could theoretically be adapted into completely different interfaces or projects.
+
+For example, someone could build:
+
+- A web-based asset sharing ecosystem
+- A curated asset marketplace
+- A desktop-based save editor
+- A mobile application
+- Community tools built around the existing codecs and data structures
+- Other interfaces that make use of the underlying Skeleton Key engine
+
+I'm not saying all of these will happen, or even that I plan to build them myself.
+
+The point is that the framework provides a foundation that other people can experiment with.
+
+So, with that out of the way, let's look at what Skeleton Key and the FR Legends save-data ecosystem could theoretically do.
 
 ---
 
