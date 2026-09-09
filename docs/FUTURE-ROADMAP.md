@@ -1,6 +1,6 @@
 ## Future Road map
 
-I will keep this short. Truthfully, the purpose of the creation of this framework was a learning experience and to provide for the FR Legends Community.
+Truthfully, the purpose of the creation of this framework was a learning experience and to provide for the FR Legends Community.
 I barely play this game, and its not something I plan to monetize or grow further then the current CLI interface. However, there are a full experimental ideas,
 and feasible features I would like to list here that may or may not be released. For both myself, and whoever else out there who wants to experiment themselves. 
 This is open-source software after all :)
