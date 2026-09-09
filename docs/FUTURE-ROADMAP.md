@@ -44,4 +44,72 @@ There is more like image to binary etc, but that I have not tested or speculated
 
 ## Hex Bodyshop
 
+Here's another cool one.
+
+It is common knowledge within the community to perform "hex body swaps," which involves applying body parts from one car model to another. This can result in unique-looking cars that are not normally possible to create through the game's standard customization system.
+
+Since Skeleton Key operates at the save and data-processing layer and can work directly with plaintext car objects, rather than modifying game memory through Game Guardian or similar alternatives, this feature is very feasible within Skeleton Key's current architecture.
+
+This feature **IS** in scope and is one of the additions I am strongly considering for the near future.
+
+### 1. Hex Bodyshop
+
+The goal would be relatively simple.
+
+Skeleton Key would maintain a mapped library of compatible FR Legends body parts. The user could select a stock car, browse available body components, mix and match parts from different vehicles, and then either:
+
+- Inject the completed car directly into the active garage
+- Save the completed car as a reusable payload
+
+Relatively simple compared to some of the more experimental ideas in this roadmap, but potentially one of the more practical additions because the underlying car-object manipulation infrastructure already exists.
+
+---
+
+## True Cross-Compatibility
+
+Skeleton Key currently officially supports Linux and Android through Termux-based setups. Installation and update scripts are provided for these environments, and the current documentation assumes the user is operating on one of these supported platforms.
+
+macOS and Windows will **NOT** be officially supported. I personally do not use either operating system and therefore do not intend to maintain, test, or provide dedicated installation instructions for them.
+
+That does **not** necessarily mean Skeleton Key cannot run on those platforms.
+
+### 1. Portable Architecture
+
+Again, Skeleton Key is highly portable.
+
+The framework is written in Node.js and is not inherently tied to its current terminal environments. It is completely feasible for an experienced user to read the existing documentation, adapt the installation process, and potentially run Skeleton Key on macOS or Windows.
+
+Users may also be able to use AI-assisted troubleshooting to adapt the project to unsupported environments.
+
+However, unofficial platform support comes with additional responsibility.
+
+If you manually install Skeleton Key on another platform, you should carefully understand the installation and update process. When updating or migrating an installation, make sure you preserve important local data, including:
+
+- The local account database
+- The master key lock file
+- User-generated payloads
+- Backups
+- Snapshots
+- Downloaded assets
+
+Unsupported environments may require manual intervention when the project changes.
+
+---
+
+### 2. iOS Limitations
+
+iOS support is currently out of scope.
+
+Based on the available lightweight Linux user-space environments for iOS, such as iSH, running the modern Node.js environment required by Skeleton Key is currently a significant limitation.
+
+Node.js is a core component of Skeleton Key, which is written around a Node.js-based runtime and supporting dependency ecosystem.
+
+Even if a sufficiently recent version of Node.js could be made available, additional limitations would remain. Skeleton Key relies on local filesystem behavior and SQLite-backed application data, and the type of Linux-like environment available on iOS would need to support the required runtime and filesystem functionality reliably.
+
+This would likely require a significantly more capable user-space environment than what is currently practical for the project.
+
+For these reasons, iOS support is not currently considered a realistic target.
+
+
+---
 
