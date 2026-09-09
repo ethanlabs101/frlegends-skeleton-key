@@ -404,3 +404,26 @@ Still, one of the interesting aspects of working with structured account data is
 
 ## Conclusion
 
+And that's about it.
+
+Skeleton Key started as a learning project, but along the way it became much more than I originally expected. I learned how the game's data is structured, how its save pipeline works, how to decode and reconstruct serialized data, and how much can actually be done once you stop looking at the game purely through its normal interface.
+
+Not every idea in this roadmap needs to become a feature. Some are practical, some are experimental, some would require an unreasonable amount of work, and some are probably better left as ideas for someone else to explore.
+
+That's honestly part of the point.
+
+I wanted to document what I've found so far, what I've tested, what I believe is possible, and where I think the framework could go if someone wanted to take it further.
+
+Skeleton Key is open-source. If someone reads this documentation years from now and decides to build something I never got around to making, then that's a win in my book.
+
+Maybe the project stays exactly where it is today. Maybe someone forks it and turns it into something completely different. Maybe the game changes and eventually breaks half of it.
+
+Either way, the knowledge doesn't disappear.
+
+That's probably the most valuable thing I got out of building this.
+
+Enjoy :)
+
+---
+
+[→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
