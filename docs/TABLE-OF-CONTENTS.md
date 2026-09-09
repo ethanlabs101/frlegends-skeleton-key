@@ -115,7 +115,7 @@ Skeleton Key ships with update scripts for all supported platforms.
 These documents provide quick-reference information after completing the primary study path.
 
 - [Complete Feature List](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FEATURES.md)
-- [Changelog](CHANGELOG.md)
+- [Changelog](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/CHANGELOG.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
 
 ---
