@@ -37,21 +37,21 @@ It is to document how the project was discovered, understood, and engineered int
 ## Table of Contents
 
 1. **[From Curiosity to a Framework]()**
-2. **Discovering the Original Proof of Concept**
-3. **Moving Beyond Memory Modification**
-4. **Understanding the Player Data Pipeline**
-5. **Provisioning and Client Communication**
-6. **Serialization, Decoding, and Reconstruction**
-7. **Livery Binary Research and Codec Development**
-8. **Treating Game Data as Structured Objects**
-9. **Building the Car and Payload Pipeline**
-10. **Garage Management and Save Operations**
-11. **The Persistent Identity Vault**
-12. **Backups, Snapshots, and Data Safety**
-13. **The CLI as an Interface Layer**
-14. **Architecture Evolution**
-15. **Lessons Learned**
-16. **Future Research Directions**
+2. **[Discovering the Original Proof of Concept]()**
+3. **[Moving Beyond Memory Modification]()**
+4. **[Understanding the Player Data Pipeline]()**
+5. **[Provisioning and Client Communication]()**
+6. **[Serialization, Decoding, and Reconstruction]()**
+7. **[Livery Binary Research and Codec Development]()**
+8. **[Treating Game Data as Structured Objects]()**
+9. **[Building the Car and Payload Pipeline]()**
+10. **[Garage Management and Save Operations]()**
+11. **[The Persistent Identity Vault]()**
+12. **[Backups, Snapshots, and Data Safety]()**
+13. **[The CLI as an Interface Layer]()**
+14. **[Architecture Evolution]()**
+15. **[Lessons Learned]()**
+16. **[Future Research Directions]()**
 
 ---
 
