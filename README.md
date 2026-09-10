@@ -1,6 +1,6 @@
 ![Header](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/header.png)
 
-[Getting Started](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/README.md#getting-started)   •   [Table of Contents](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TABLE-OF-CONTENTS.md)   •   [Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)   •   [Future Roadmap](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FUTURE-ROADMAP.md)  •  [Technical Breakdowns](...)  •  [Releases](...)   •   [How To Update](...) •   [Changelog](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/CHANGELOG.md)
+[Getting Started](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/README.md#getting-started)   •   [Table of Contents](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TABLE-OF-CONTENTS.md)   •   [Asset Database](https://github.com/ethanlabs101/FRLegends-Asset-Database)   •   [Future Roadmap](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FUTURE-ROADMAP.md)  •  [Technical Breakdowns](...)  •  [Releases](...)   [How To Update](...) •   [Changelog](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/CHANGELOG.md)
 
 ## What is FR Legends Skeleton Key?
 
