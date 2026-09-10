@@ -125,7 +125,7 @@ These documents provide quick-reference information after completing the primary
 For developers, researchers, reverse-engineers, and technically curious users.
 
 - [Project Architecture](ARCHITECTURE.md)
-- [Technical Breakdowns](TECHNICAL-BREAKDOWNS.md)
+- [Technical Breakdowns](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md)
 - [Directory Structure](DIRECTORY-STRUCTURE.md)
 
 These documents explain the systems underneath the user-facing CLI, including save serialization, asset construction, livery handling, backups, and the relationships between Skeleton Key's major components.
