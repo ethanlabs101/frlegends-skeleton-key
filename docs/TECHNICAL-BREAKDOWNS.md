@@ -38,7 +38,7 @@ It is to document how the project was discovered, understood, and engineered int
 
 1. **[From Curiosity to a Framework](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#1-from-curiosity-to-a-framework)**
 2. **[Discovering the Original Proof of Concept](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#2-discovering-the-original-proof-of-concept)**
-3. **[Moving Beyond Memory Modification]()**
+3. **[Moving Beyond Memory Modification](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#3-moving-beyond-memory-modification)**
 4. **[Understanding the Player Data Pipeline]()**
 5. **[Provisioning and Client Communication]()**
 6. **[Serialization, Decoding, and Reconstruction]()**
