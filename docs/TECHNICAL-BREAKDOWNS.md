@@ -36,7 +36,7 @@ It is to document how the project was discovered, understood, and engineered int
 
 ## Table of Contents
 
-1. **[From Curiosity to a Framework]()**
+1. **[From Curiosity to a Framework](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#1-from-curiosity-to-a-framework)**
 2. **[Discovering the Original Proof of Concept]()**
 3. **[Moving Beyond Memory Modification]()**
 4. **[Understanding the Player Data Pipeline]()**
