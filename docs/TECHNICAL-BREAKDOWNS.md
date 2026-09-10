@@ -137,57 +137,6 @@ It was becoming infrastructure.
 
 ---
 
-### The Binary Data Problem
-
-One of the more significant discoveries came from working with liveries.
-
-Unlike much of the structured player data that could be represented and manipulated as JavaScript objects, livery information involved serialized binary data.
-
-This required a different approach.
-
-Instead of simply modifying readable fields, I needed to understand how the livery data could be decoded, represented, modified, and reconstructed without destroying the structure.
-
-That research eventually led to the development of codec and data-processing systems capable of working with supported livery representations.
-
-This was another major architectural shift.
-
-Skeleton Key was no longer only concerned with reading player data.
-
-It now needed to support multiple forms of data processing:
-
-```text
-Structured Player Data
-        ↓
-Decode
-        ↓
-JavaScript Objects
-        ↓
-Inspect / Modify
-        ↓
-Validate
-        ↓
-Reconstruct
-
-
-Serialized Livery Data
-        ↓
-Decode
-        ↓
-Structured Representation
-        ↓
-Transform
-        ↓
-Encode
-        ↓
-Reconstruct
-```
-
-Different data types required different processing pipelines, but the architectural idea remained similar:
-
-Convert opaque data into a representation that can be understood and manipulated, perform controlled operations, then reconstruct the data into a compatible format.
-
----
-
 ### Building Systems Around the Data
 
 Eventually, manipulating individual fields stopped being enough.
@@ -282,3 +231,5 @@ The collection of tools eventually became a framework.
 And the CLI became the interface sitting on top of it all.
 
 ---
+
+# 2. Discovering the Original Proof of Concept
