@@ -1694,3 +1694,340 @@ That foundation made the next major problem possible:
 That would become one of the most important technical areas of the project.
 
 ---
+
+# 6. Serialization, Decoding, and Reconstruction
+
+Once I had a working understanding of the player-data pipeline, I needed a reliable way to move between the game's encoded player-data representation and something Skeleton Key could actually work with.
+
+This is where the original `pd.js` from the earlier proof of concept became useful.
+
+I did not build the original player-data serialization system from scratch. I inherited that foundation and then reworked it into a cleaner and more general implementation that better fit the direction Skeleton Key was taking.
+
+That distinction matters because this was one of the first places where I was building on an existing reverse-engineering discovery rather than starting entirely from zero.
+
+## 6.1 The Original Player-Data Codec
+
+The original implementation established the basic player-data transformation:
+
+```text
+Encoded Player Data
+        ↓
+XOR
+        ↓
+GZIP Data
+        ↓
+JSON
+```
+
+The reverse process was:
+
+```text
+JSON
+        ↓
+GZIP
+        ↓
+Prefix + GZIP
+        ↓
+XOR
+        ↓
+Encoded Player Data
+```
+
+The original implementation also had a default XOR key and could search through the possible byte values if the preferred key did not produce a valid gzip header.
+
+That gave me the core mechanism I needed.
+
+However, I wanted the codec to be less dependent on assumptions about what the key was supposed to be.
+
+## 6.2 Generalizing XOR Key Discovery
+
+One of the main changes I made was simplifying the key-discovery process.
+
+Rather than relying on a known default key first, my implementation could simply test the full 8-bit XOR key space:
+
+```text
+0x00 → 0xFF
+```
+
+For each candidate key, the data was XOR-transformed and checked for the recognizable gzip signature.
+
+Conceptually:
+
+```text
+Unknown XOR Key
+      ↓
+Try Key 0
+      ↓
+Try Key 1
+      ↓
+Try Key 2
+      ↓
+...
+      ↓
+Try Key 255
+      ↓
+Candidate GZIP Data
+```
+
+This made the decoder independent of having to know the expected key ahead of time.
+
+The important part was not merely brute-forcing 256 possible values.
+
+The important part was being able to automatically identify which candidate actually produced valid data.
+
+## 6.3 Validating the Candidate Instead of Trusting the Header
+
+A byte pattern alone is not enough to prove that the correct XOR key has been found.
+
+A random transformation could theoretically produce bytes resembling a gzip header somewhere in the buffer.
+
+I therefore used the gzip signature as the first detection step and then attempted to actually decompress the resulting data.
+
+If decompression failed, that candidate key was discarded and the search continued.
+
+If decompression succeeded, the resulting data was then parsed as UTF-8 JSON.
+
+That created a stronger validation chain:
+
+```text
+Candidate XOR Key
+       ↓
+XOR Buffer
+       ↓
+Find GZIP Signature
+       ↓
+Attempt GZIP Decompression
+       ↓
+Parse JSON
+       ↓
+Confirmed Representation
+```
+
+This was a more useful approach than simply stopping when a matching byte pattern was found.
+
+The decoder was effectively asking:
+
+> "Does this key actually produce a valid player-data payload?"
+
+rather than:
+
+> "Did I happen to find the right-looking bytes?"
+
+## 6.4 Preserving the Prefix
+
+The player-data representation also contained data before the compressed JSON payload.
+
+Once the gzip region was located, the decoder preserved everything before that region as the payload prefix.
+
+The decoded result therefore retained three important pieces of information:
+
+```text
+json
+prefix
+xorKey
+```
+
+The structured JSON represented the actual player-data content.
+
+The prefix preserved the portion of the original representation that needed to remain present during reconstruction.
+
+The recovered XOR key allowed the encoded representation to be rebuilt using the same transformation discovered during decoding.
+
+This made the decode result useful not just for inspection, but for reconstruction.
+
+## 6.5 Reconstruction Was Part of the Design
+
+A decoder by itself would only solve half of the problem.
+
+Skeleton Key needed to modify player data and produce a representation that could be reconstructed afterward.
+
+The encoder therefore reversed the process:
+
+```text
+Structured JSON
+      ↓
+JSON.stringify
+      ↓
+GZIP
+      ↓
+Prefix + GZIP
+      ↓
+XOR With Recovered Key
+      ↓
+Encoded Player Data
+```
+
+This meant the codec could preserve the relationship between the decoded representation and the encoded representation.
+
+The result was a reusable round-trip:
+
+```text
+Encoded Data
+      ↓
+    Decode
+      ↓
+Structured Data
+      ↓
+   Modify
+      ↓
+    Encode
+      ↓
+Encoded Data
+```
+
+That round-trip became the important part.
+
+## 6.6 Making the Codec Fit Skeleton Key
+
+The original `pd.js` was useful, but Skeleton Key was becoming a larger system.
+
+I wanted the serialization layer to have a simple responsibility:
+
+> Convert between the game's player-data representation and a structured object while preserving the information necessary to reconstruct it.
+
+That meant the rest of the framework did not need to know how the XOR search worked.
+
+It did not need to know how gzip was located.
+
+It did not need to know how the prefix was preserved.
+
+It could simply work with the decoded result.
+
+Conceptually:
+
+```text
+Feature / Manager
+       ↓
+Structured Player Data
+       ↓
+Player-Data Codec
+       ↓
+Encoded Representation
+```
+
+The codec became an abstraction boundary.
+
+## 6.7 Separating Player-Data Encoding From Value Representation
+
+This was also where I had to keep two different reverse-engineering problems separate.
+
+The XOR used by the player-data serialization layer was not the same problem as the XOR-based representation I later investigated for individual in-game values.
+
+The player-data codec dealt with the transformation of the overall payload.
+
+Individual values could have their own representation or obfuscation.
+
+Those layers should not be treated as one system.
+
+The original proof of concept had an older approach to money modification, but that functionality had already stopped working before I discovered the project because the game's representation of certain values had changed.
+
+The later research into those value representations was separate work.
+
+That research eventually led me to build a better approach for identifying XOR relationships rather than relying on the old implementation.
+
+So there were two distinct pieces of work:
+
+```text
+Player-Data Serialization
+    ↓
+Inherited from the original PoC
+    ↓
+Refactored / generalized by me
+
+
+Individual Value Representation
+    ↓
+Investigated separately
+    ↓
+XOR relationship research
+    ↓
+Improved XOR analysis tooling
+```
+
+Keeping those distinctions clear was important as the framework grew.
+
+## 6.8 From a Codec to Infrastructure
+
+At first, `pd.js` was simply a utility for decoding and encoding player data.
+
+As Skeleton Key developed, the codec became infrastructure that other systems could depend on.
+
+Higher-level features could operate on structured data without having to understand the raw representation underneath it.
+
+That created a separation between:
+
+```text
+Raw Representation
+```
+
+and:
+
+```text
+Meaningful Data
+```
+
+The codec handled the translation between them.
+
+That allowed other systems to focus on what the data represented rather than repeatedly dealing with the underlying serialization mechanism.
+
+## 6.9 The Larger Pipeline
+
+By this point, the player-data workflow could be represented as:
+
+```text
+Authenticated Client
+        ↓
+Retrieve Player Data
+        ↓
+Encoded Representation
+        ↓
+Player-Data Codec
+        ↓
+Structured Data
+        ↓
+Feature Operations
+        ↓
+Validation
+        ↓
+Player-Data Codec
+        ↓
+Encoded Representation
+        ↓
+Client
+```
+
+This was an important architectural milestone.
+
+The framework now had a clear boundary between communication, serialization, and higher-level operations.
+
+The client handled communication.
+
+The codec handled the player-data representation.
+
+The higher-level systems handled what the data actually meant.
+
+The CLI handled interaction with the user.
+
+Each layer could evolve without requiring the entire project to be rewritten.
+
+## 6.10 Why This Became Important Later
+
+The player-data codec was not the end of the reverse-engineering work.
+
+It was actually the point where the project became capable of supporting more complicated research.
+
+Once I could reliably get player data into a structured representation, I could start looking at larger objects and relationships instead of isolated values.
+
+That eventually led into car structures, garage management, payload construction, and most importantly, the much deeper research into the game's livery binary format.
+
+The player-data codec gave Skeleton Key a way to work with the outer player-data layer.
+
+The livery system would require something different.
+
+That binary format was not simply another JSON payload waiting to be decoded.
+
+It required its own reverse-engineering process, structural analysis, transformations, reconstruction logic, and eventually a dedicated codec.
+
+That became the next major technical challenge.
+
+---
