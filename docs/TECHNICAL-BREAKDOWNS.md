@@ -2498,3 +2498,362 @@ I could start asking:
 That led directly into the development of the livery editor, transformations, manipulation tools, and the larger livery-management system inside Skeleton Key.
 
 ---
+
+# 8. Treating Game Data as Structured Objects
+
+Once the player-data pipeline was understood, the next challenge was no longer simply decoding and encoding the save.
+
+The useful part was what happened in between.
+
+I needed to be able to take decoded player data, understand its structure, modify specific parts of it, construct new data when necessary, and then produce a valid payload again.
+
+This was where Skeleton Key started becoming more than a collection of reverse-engineering experiments.
+
+The framework needed to work with the **meaning of the data**, not just the encoded representation.
+
+## 8.1 Decoded Player Data Was Already Structured
+
+The player-data codec provided a major advantage because the compressed/XOR-protected payload ultimately decoded into JSON.
+
+That meant I did not need to treat the entire save as an opaque binary structure.
+
+Once decoded, the data could be represented as normal JavaScript objects.
+
+Conceptually:
+
+```text
+Encoded Player Data
+        ↓
+XOR / Gzip Decode
+        ↓
+JSON
+        ↓
+JavaScript Object
+```
+
+That JavaScript object became the working representation used by higher-level systems.
+
+The codec handled the conversion between the game's stored representation and the structured data.
+
+The rest of Skeleton Key could then operate on that structured representation.
+
+## 8.2 Separating the Codec From the Data
+
+This separation became important very quickly.
+
+The player-data codec should be responsible for things such as:
+
+- decoding the stored representation
+- discovering the XOR key
+- decompressing the payload
+- parsing JSON
+- preserving the required prefix
+- rebuilding the encoded payload
+
+It should not need to know what a garage manager is doing.
+
+Likewise, a garage manager should not need to know how gzip works.
+
+That gave the project a much cleaner boundary:
+
+```text
+Encoded Data
+     ↓
+   Codec
+     ↓
+Structured Player Data
+     ↓
+ Feature / Operation
+     ↓
+Structured Player Data
+     ↓
+   Codec
+     ↓
+Encoded Data
+```
+
+This separation allowed the higher-level systems to focus on what they were actually modifying.
+
+## 8.3 Understanding the Player Data Structure
+
+The next step was learning what the decoded object actually contained.
+
+Rather than treating the JSON as one giant object, I could identify meaningful sections and relationships within it.
+
+For example:
+
+```text
+Player Data
+├── Account Information
+├── Player Information
+├── Currency
+├── Cars
+├── Progress
+└── Other Game State
+```
+
+The exact structure evolved as more of the game's data was understood.
+
+The important part was that the framework could address specific areas of the data without rebuilding the entire save manually for every operation.
+
+## 8.4 Payload Generation
+
+Payload generation became one of the core pieces of the framework.
+
+Instead of only modifying an existing value, Skeleton Key could construct data in the form required by the game's existing player-data structure.
+
+That opened up a much larger range of operations.
+
+The framework could work with existing data, construct new structures, combine known structures, and prepare modified payloads for submission.
+
+Conceptually:
+
+```text
+Existing Data
+     ↓
+Extract Structure
+     ↓
+Modify / Construct
+     ↓
+Validate
+     ↓
+Generate Payload
+```
+
+This was important because not every operation could be reduced to changing one existing value.
+
+Some features required creating complete objects or sections of data.
+
+## 8.5 Modification at the Object Level
+
+Once the decoded player data was represented as JavaScript objects, modifications could be performed directly against those objects.
+
+Instead of thinking:
+
+```text
+Change bytes X through Y
+```
+
+the framework could think in terms of:
+
+```text
+Change this player's data
+Change this car
+Add this object
+Remove this object
+Update this property
+```
+
+That made higher-level functionality much easier to build.
+
+The low-level serialization remained isolated in the codec.
+
+The feature logic could work with the structured data itself.
+
+## 8.6 Cars as Structured Data
+
+This became particularly important once garage functionality was introduced.
+
+A car was not just one value.
+
+It represented a collection of related data that had to remain internally consistent.
+
+That meant car operations needed to work with the structure of the car rather than treating individual fields as unrelated values.
+
+This made operations such as:
+
+- adding cars
+- modifying cars
+- cloning cars
+- constructing cars
+- moving cars
+- validating cars
+
+possible without every feature having to independently understand the entire player-data serialization process.
+
+## 8.7 Templates and Known Structures
+
+As more structures were understood, templates became useful.
+
+A known-good structure could serve as a foundation for constructing new data rather than manually rebuilding every field from nothing.
+
+Conceptually:
+
+```text
+Known Structure
+      ↓
+Template
+      ↓
+Modify Required Fields
+      ↓
+Validate
+      ↓
+Generated Object
+```
+
+This reduced duplication and made object construction more predictable.
+
+It also meant that improvements to the underlying structure could be reflected in one place rather than scattered throughout every feature.
+
+## 8.8 Validation Before Reconstruction
+
+Once data could be modified and generated programmatically, validation became increasingly important.
+
+A JavaScript object can be perfectly valid JavaScript while still being invalid game data.
+
+Skeleton Key therefore needed to verify that important structures existed before attempting to rebuild the payload.
+
+This included checking required structures and making sure modifications did not accidentally destroy the shape expected by the game.
+
+The general workflow became:
+
+```text
+Decode
+  ↓
+Validate Structure
+  ↓
+Modify / Construct
+  ↓
+Validate Result
+  ↓
+Encode
+```
+
+This helped keep individual features from having to reinvent the same safety checks.
+
+## 8.9 Building Systems Around the Data
+
+This approach changed how features were designed.
+
+Instead of making every feature responsible for:
+
+```text
+decode → find data → modify bytes/data → rebuild → encode
+```
+
+the framework could provide reusable layers.
+
+A feature could focus on the operation itself.
+
+For example:
+
+```text
+Garage Manager
+      ↓
+Structured Player Data
+      ↓
+Car Operations
+      ↓
+Updated Player Data
+```
+
+The serialization layer remained underneath it.
+
+This separation became increasingly important as the number of systems grew.
+
+## 8.10 The Livery System Was a Separate Problem
+
+The livery system eventually introduced a different type of reverse-engineering problem.
+
+Unlike the decoded player-data JSON, the livery representation involved a proprietary binary structure.
+
+That required separate research into:
+
+- fixed-size records
+- field boundaries
+- byte ordering
+- color storage
+- reserved identifiers
+- nested records
+- child counts
+- recursive structures
+
+That work eventually resulted in the livery codec described in the previous section.
+
+But it is important to separate the two histories.
+
+The structured-object and payload systems did **not** begin with the livery codec.
+
+Payload generation and player-data modification were already established parts of Skeleton Key before the livery binary format was fully understood.
+
+The livery codec was a later expansion of the same general philosophy into a much more difficult representation.
+
+## 8.11 One Framework, Different Representations
+
+This distinction also helped clarify the architecture.
+
+Different parts of the game could use completely different underlying representations.
+
+For example:
+
+```text
+Player Data
+    ↓
+XOR + Gzip
+    ↓
+JSON
+```
+
+while:
+
+```text
+Livery Data
+    ↓
+Binary Records
+    ↓
+Recursive Tree
+```
+
+The representations were different.
+
+The framework did not need to force them into the same format.
+
+Instead, each system could have its own codec or parser while exposing a useful structured representation to the higher-level systems.
+
+## 8.12 From Payload Editing to a Framework
+
+This was the point where the project started moving beyond individual modifications.
+
+Payload generation, payload modification, car construction, and related systems could all share the same underlying approach.
+
+The framework was effectively becoming a layer between the game's stored data and the operations I wanted to perform on it.
+
+The architecture could be thought of as:
+
+```text
+Game Representation
+        ↓
+     Decoder
+        ↓
+Structured Data
+        ↓
+Feature Systems
+        ↓
+Modified Data
+        ↓
+     Encoder
+        ↓
+Game Representation
+```
+
+That was much more reusable than building every feature directly around the game's encoded format.
+
+## 8.13 The Core Idea
+
+The important lesson from this stage was not that every piece of FR Legends data had the same structure.
+
+It was the opposite.
+
+Different systems had different representations, and the framework needed to respect those differences while still providing a consistent way to work with them.
+
+The player-data system could be decoded into JSON and manipulated as structured JavaScript objects.
+
+The livery system could be decoded into a recursive tree and manipulated through its own representation.
+
+Both could still follow the same higher-level principle:
+
+> Decode the representation, work with meaningful data, then reconstruct the representation.
+
+That separation became one of the foundations of Skeleton Key's architecture.
+
+---
