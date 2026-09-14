@@ -610,3 +610,515 @@ The framework came later.
 ---
 
 # 3. Moving Beyond Memory Modification
+
+My FR Legends research did not start with the player-data system.
+
+Before I ever found the original `frlegends-cli` proof of concept, I was already familiar with Lua, GameGuardian, and `dump.cs`.
+
+I had already spent time working with runtime memory, scripting, class structures, offsets, and reverse-engineering workflows.
+
+FR Legends became another environment to apply those skills to.
+
+---
+
+## Runtime Experimentation
+
+The earliest FR Legends research was primarily black-box experimentation.
+
+I wanted to understand how the game behaved before worrying too much about how the underlying implementation worked.
+
+That meant observing what changed when different actions were performed, looking at values in memory, testing modifications, and gradually building a picture of what was happening internally.
+
+GameGuardian was useful for this because it allowed me to interact directly with the running process.
+
+Lua then provided a way to turn individual experiments into repeatable scripts instead of manually performing the same operations every time.
+
+At this stage, the approach was still heavily runtime-oriented:
+
+```text
+Running Game
+     |
+     v
+Observe Behavior
+     |
+     v
+Find Runtime Value
+     |
+     v
+Identify Structure / Offset
+     |
+     v
+Modify Value
+     |
+     v
+Observe Result
+```
+
+This was useful for learning.
+
+It was also useful for discovering relationships that were not obvious from the game's normal interface.
+
+But I did not want to stay at the level of manually finding and changing individual values.
+
+---
+
+## Using Structural Information
+
+Alongside GameGuardian experimentation, I started using tools such as Ghidra, hex dumps, and `dump.cs` to get a better understanding of what was actually underneath the runtime behavior.
+
+`dump.cs` was particularly useful for basic experimentation because it provided structural information that could help turn a completely unknown memory location into something more meaningful.
+
+Instead of simply seeing:
+
+```text
+0xXXXXXXXX
+```
+
+I could begin thinking in terms of:
+
+```text
+Class
+ ├── Field
+ ├── Field
+ ├── Field
+ └── Field
+```
+
+That changed the nature of the research.
+
+An offset was no longer just an arbitrary address.
+
+It could represent a field inside a known object.
+
+A pointer could lead to another object.
+
+Multiple fields could belong to the same structure.
+
+Those relationships made it possible to reason about the game's runtime state rather than simply search for numbers.
+
+This was still memory research, but it was becoming increasingly structural.
+
+---
+
+## From Individual Patches to Reusable Logic
+
+At some point, I found a general-purpose method and field-offset patching tool.
+
+It was not built specifically for FR Legends.
+
+The underlying idea was useful, but the implementation was much more complicated and bloated than what I actually needed.
+
+Rather than simply using it as-is, I started stripping away the parts that were unnecessary and reorganizing the useful functionality.
+
+The goal was to make the repetitive parts of the workflow reusable.
+
+Instead of every feature having to implement its own search, resolution, offset handling, and write logic, those operations could be handled by shared functions.
+
+The result was a much cleaner abstraction:
+
+```text
+Feature Definition
+       |
+       v
+Shared Resolution Logic
+       |
+       v
+Target Discovery
+       |
+       v
+Field / Pointer Resolution
+       |
+       v
+Operation
+```
+
+That meant a feature could describe what it wanted to modify without having to completely reinvent the underlying memory workflow.
+
+This was an important shift in how I approached the project.
+
+I was no longer just writing individual modifications.
+
+I was building infrastructure that could perform modifications.
+
+---
+
+## Treating Operations as Data
+
+That abstraction eventually allowed different kinds of operations to be represented in a common format.
+
+A basic operation could describe things such as:
+
+```text
+Name
+Class
+Offset
+Type
+Value
+```
+
+Other operations could describe more complicated behavior:
+
+```text
+Multi-field structure
+Pointer chain
+Toggle
+Slider
+User input
+Freeze state
+Custom function
+```
+
+The menu could then sit above those definitions instead of containing all of the low-level logic itself.
+
+Conceptually:
+
+```text
+                    Menu
+                     |
+                     v
+             Operation Definition
+                     |
+                     v
+              Shared Functions
+                     |
+                     v
+              Memory Resolution
+                     |
+                     v
+                 Target
+                     |
+                     v
+                 Modify
+```
+
+This separation was important because it meant the interface and the underlying operation were no longer the same thing.
+
+The menu was just a way to request an operation.
+
+The engine underneath handled the difficult part.
+
+That pattern would become surprisingly important later.
+
+---
+
+## Runtime Data Was More Complicated Than It Looked
+
+The more I experimented with the running game, the more obvious it became that seeing a value in memory did not necessarily mean I understood the value itself.
+
+A value could have relationships to other objects.
+
+It could be reached through pointers.
+
+It could be represented differently internally than it appeared to the player.
+
+It could be generated or transformed at runtime.
+
+It could also change between game versions.
+
+That last part was especially important.
+
+A memory-based approach can be extremely powerful, but it is inherently tied to the current implementation of the running client.
+
+If the game's structures change, offsets can move.
+
+If objects are reorganized, pointer relationships can change.
+
+If a value's representation changes, simply finding the same-looking value is no longer enough.
+
+This became particularly obvious when looking at currency-related values.
+
+---
+
+## The Problem of Representation
+
+One of the things I eventually had to learn was that the value I wanted was not always the value the game was actually storing in the obvious form.
+
+For example, the game could internally represent certain values using an obfuscated representation rather than simply storing the plaintext number directly.
+
+Conceptually:
+
+```text
+Plaintext Value
+      |
+      v
+Internal Transformation
+      |
+      v
+Stored Representation
+```
+
+And the game could reverse that process internally:
+
+```text
+Stored Representation
+      |
+      v
+Internal Transformation
+      |
+      v
+Plaintext Value
+```
+
+This distinction mattered.
+
+Finding a memory location containing a value was one problem.
+
+Understanding **why that value looked the way it did** was a completely different problem.
+
+That pushed my research further away from simply asking:
+
+> "Where is this value?"
+
+and toward asking:
+
+> "How is this value represented?"
+
+That was a major change in perspective.
+
+---
+
+## The Limits of Runtime Modification
+
+None of this made GameGuardian or memory research useless.
+
+Quite the opposite.
+
+That work taught me how to inspect the game, identify structures, trace relationships, test hypotheses, and build reusable tooling around difficult runtime operations.
+
+But it also showed me the limitations of making the running process the center of the entire system.
+
+A runtime modification workflow generally looks like:
+
+```text
+Start Game
+    |
+    v
+Find Runtime Object
+    |
+    v
+Resolve Address
+    |
+    v
+Modify Memory
+    |
+    v
+Keep Process Running
+```
+
+That can be extremely effective for experimentation.
+
+But it is not necessarily the best foundation for persistent data management.
+
+If the goal is to build something that can understand, manipulate, save, back up, reconstruct, and transport player data, then constantly operating inside the live process creates unnecessary dependencies.
+
+I started becoming more interested in the layer underneath the runtime state.
+
+---
+
+## The Question Changed
+
+This was the important transition.
+
+Instead of primarily asking:
+
+> "How can I change this value while the game is running?"
+
+I started asking:
+
+> "Where did this value come from?"
+
+Then:
+
+> "How is it represented?"
+
+Then:
+
+> "What does the game actually save?"
+
+And eventually:
+
+> "Can I work with the saved representation directly?"
+
+Those questions led naturally toward serialized player data.
+
+---
+
+## Discovering the Original Proof of Concept
+
+The original `frlegends-cli` proof of concept appeared during this period while I was working on another project.
+
+I looked at it and realized that it already contained some primitives for communicating with the game's backend and processing player data.
+
+It was primitive and largely broken by the time I found it, but that was not really the important part.
+
+The interesting part was the layer it exposed.
+
+I had already been studying the game from the outside through runtime memory.
+
+Now there was another possibility:
+
+```text
+Running Game
+     |
+     | Runtime Research
+     v
+Memory / Objects / Fields
+```
+
+versus:
+
+```text
+Saved Player Data
+     |
+     | Decode / Process
+     v
+Structured Data
+```
+
+That second approach opened a completely different research direction.
+
+I did not have to abandon the knowledge I gained from memory research.
+
+I could apply it to understanding the structures represented by the persistent data.
+
+---
+
+## From Runtime Objects to Persistent Data
+
+This became one of the biggest conceptual shifts in the project.
+
+Memory research taught me to think about the game in terms of:
+
+```text
+Classes
+Fields
+Pointers
+Values
+Relationships
+```
+
+Player-data research introduced another representation:
+
+```text
+Serialized Data
+      |
+      v
+Decoded Structure
+      |
+      v
+Objects / Fields
+      |
+      v
+Modified Structure
+      |
+      v
+Reconstructed Data
+```
+
+The underlying idea was similar.
+
+I was still trying to understand structures and relationships.
+
+The difference was where I was interacting with them.
+
+Instead of only modifying an object while the game was running, I could begin working with a representation of the player's state outside of the running process.
+
+That was far more interesting for the kind of tooling I wanted to build.
+
+---
+
+## The Abstraction Carried Over
+
+Looking back, the transition from memory modification to player-data manipulation was not actually as drastic as it might appear.
+
+The technology changed.
+
+The layer changed.
+
+The engineering problem changed.
+
+But the underlying approach stayed surprisingly consistent.
+
+With runtime research, I had learned to separate:
+
+```text
+What I want to do
+        |
+        v
+How the target is found
+        |
+        v
+How the target is resolved
+        |
+        v
+How the operation is performed
+```
+
+With player data, the same philosophy could be applied:
+
+```text
+What I want to change
+        |
+        v
+How the data is decoded
+        |
+        v
+How the structure is represented
+        |
+        v
+How the object is modified
+        |
+        v
+How the data is reconstructed
+```
+
+That separation eventually became one of the core architectural ideas behind Skeleton Key.
+
+---
+
+## The Shift
+
+At this point, I was no longer looking at FR Legends as simply a running game process that could be modified.
+
+I was starting to look at it as a collection of systems and representations that could be understood independently.
+
+The progression was roughly:
+
+```text
+Black-Box Experimentation
+        |
+        v
+GameGuardian / Lua
+        |
+        v
+Ghidra / Hex / dump.cs
+        |
+        v
+Runtime Structures
+        |
+        v
+Reusable Memory Operations
+        |
+        v
+Understanding Value Representation
+        |
+        v
+Player-Data Research
+        |
+        v
+Structured Data Processing
+```
+
+The important change was not that I stopped using memory research.
+
+It was that memory research stopped being the entire picture.
+
+It became one layer of understanding the game.
+
+The player-data pipeline became another.
+
+And once those two perspectives started connecting, the project had a much larger foundation to build on.
+
+That is where Skeleton Key began moving beyond a collection of modifications and toward an actual framework.
+
+---
