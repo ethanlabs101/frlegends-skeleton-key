@@ -2857,3 +2857,329 @@ Both could still follow the same higher-level principle:
 That separation became one of the foundations of Skeleton Key's architecture.
 
 ---
+
+# 9. Building the Car and Payload Pipeline
+
+Once player data could be decoded into structured objects, the next major step was figuring out how to work with the actual game objects contained inside that data.
+
+Cars became one of the most important examples.
+
+A car was not simply a value that could be changed independently. It was a structured object containing multiple pieces of information that had to exist in the right shape for the game to recognize it.
+
+This led to the development of the car and payload pipeline.
+
+## 9.1 Moving Beyond Individual Field Modifications
+
+The early stages of reverse engineering naturally focused on individual values.
+
+Find a value.
+
+Understand what it represents.
+
+Modify it.
+
+Verify the result.
+
+That approach works well for experimentation, but it becomes limiting when the goal is to construct or manage complete game objects.
+
+At that point, the question changes from:
+
+> "How do I change this value?"
+
+to:
+
+> "How do I construct and manipulate this entire object correctly?"
+
+Cars were one of the first places where that distinction became important.
+
+## 9.2 Understanding the Car Structure
+
+The car data contained multiple related properties that together represented a complete vehicle.
+
+Rather than treating those properties as unrelated pieces, Skeleton Key began treating the car as a structured object.
+
+Conceptually:
+
+```text
+Car
+├── Identity
+├── Configuration
+├── Appearance
+├── Performance / State
+└── Other Car Data
+```
+
+The exact fields and structure depended on the data being worked with, but the important change was the abstraction itself.
+
+A car could now be treated as an object that could be inspected, modified, constructed, and validated.
+
+## 9.3 Constructing Cars
+
+Once the structure was understood well enough, the framework could move beyond modifying cars that already existed.
+
+It could begin constructing car data.
+
+This required more than simply choosing a car identifier.
+
+The resulting object needed to contain the structures expected by the game's player data.
+
+Conceptually:
+
+```text
+Car Definition
+      ↓
+Construct Car Object
+      ↓
+Populate Required Data
+      ↓
+Validate Structure
+      ↓
+Add To Player Data
+```
+
+This became the foundation for later garage operations.
+
+## 9.4 Templates as Construction Sources
+
+Known-good car structures became useful as templates.
+
+Instead of manually recreating every property required by a car from nothing, the framework could use an existing structure as a starting point and modify the relevant fields.
+
+This was especially useful when dealing with complicated nested data.
+
+A template provided a reliable structural foundation.
+
+The framework could then change the values that needed to be different.
+
+```text
+Known-Good Structure
+        ↓
+      Clone
+        ↓
+Modify Relevant Fields
+        ↓
+   Validate Object
+        ↓
+     New Car
+```
+
+This approach also reduced the chance of accidentally omitting fields that the game expected.
+
+## 9.5 Car Cloning
+
+Once cars could be represented as structured objects, cloning became a natural operation.
+
+A clone could begin with an existing car structure and then be modified independently.
+
+Conceptually:
+
+```text
+Existing Car
+     ↓
+Deep Copy
+     ↓
+New Car Object
+     ↓
+Modify Identity / Properties
+     ↓
+Validate
+```
+
+This was fundamentally different from simply copying a few visible values.
+
+The objective was to preserve the complete structure while creating a separate object that could be manipulated without unintentionally changing the original.
+
+## 9.6 Payload Generation
+
+Car construction naturally connected to payload generation.
+
+Once a valid car object existed, it needed to become part of the larger player-data structure.
+
+The framework therefore needed to understand how to place constructed objects into the appropriate part of the player data.
+
+The general process became:
+
+```text
+Car Object
+    ↓
+Validate
+    ↓
+Insert Into Player Data
+    ↓
+Validate Player Data
+    ↓
+Encode Payload
+```
+
+This allowed car operations to remain independent from the lower-level serialization process.
+
+The car system did not need to manually rebuild the entire encoded player-data blob.
+
+It only needed to produce valid structured data.
+
+## 9.7 Modifying Existing Payloads
+
+The same architecture worked in reverse.
+
+An existing payload could be decoded, inspected, modified, and reconstructed.
+
+```text
+Existing Payload
+      ↓
+Decode
+      ↓
+Player Data
+      ↓
+Locate Car
+      ↓
+Modify Car
+      ↓
+Validate
+      ↓
+Encode
+```
+
+This made it possible to perform targeted modifications without treating the entire payload as an opaque block.
+
+## 9.8 Keeping Construction and Serialization Separate
+
+One of the most important architectural decisions was keeping object construction separate from serialization.
+
+These are two different problems.
+
+The car system answers:
+
+> "What should this car object look like?"
+
+The player-data codec answers:
+
+> "How do I encode the complete player-data object into the game's stored representation?"
+
+Keeping those responsibilities separate meant that changes to one system did not necessarily require rewriting the other.
+
+```text
+Car Construction
+      ↓
+Structured Car
+      ↓
+Player Data
+      ↓
+Player-Data Codec
+      ↓
+Encoded Payload
+```
+
+That separation became increasingly important as more systems were added.
+
+## 9.9 Payloads as the Boundary Between Systems
+
+The payload became an important boundary between the framework and the game's stored data.
+
+Higher-level systems could work with structured objects.
+
+The serialization layer could handle the conversion into the representation expected by the game.
+
+This created a clean division:
+
+```text
+┌──────────────────────────┐
+│ Higher-Level Systems     │
+│                          │
+│ Garage                   │
+│ Car Construction         │
+│ Car Modification         │
+│ Other Save Operations    │
+└────────────┬─────────────┘
+             │
+             ↓
+┌──────────────────────────┐
+│ Structured Player Data   │
+└────────────┬─────────────┘
+             │
+             ↓
+┌──────────────────────────┐
+│ Player-Data Codec        │
+└────────────┬─────────────┘
+             │
+             ↓
+┌──────────────────────────┐
+│ Encoded Game Payload     │
+└──────────────────────────┘
+```
+
+The framework could therefore operate at a much higher level than the final serialized representation.
+
+## 9.10 Why This Was Important
+
+This architecture meant that adding another car-related feature did not require starting from the raw payload every time.
+
+The underlying systems had already solved the difficult parts:
+
+- decoding the player data
+- understanding the structure
+- constructing valid objects
+- validating the result
+- rebuilding the payload
+
+New features could build on those capabilities.
+
+That is where the project began to feel like an actual framework instead of a collection of one-off modifications.
+
+## 9.11 From Cars to General Object Management
+
+The same principles used for cars could be applied to other structured game data.
+
+Once an object could be:
+
+```text
+Read
+↓
+Represented
+↓
+Modified
+↓
+Validated
+↓
+Reconstructed
+```
+
+the framework could build reusable systems around it.
+
+Cars were simply one of the most important and complicated examples.
+
+This eventually led directly into more dedicated garage-management functionality.
+
+## 9.12 The Important Architectural Shift
+
+The biggest change during this stage was moving from **editing values inside a payload** to **operating on objects inside a payload**.
+
+That distinction sounds small, but it changes the entire design.
+
+Instead of every feature needing to understand the game's encoded representation, the framework could provide a structured layer between the raw payload and the feature itself.
+
+The result was a much more maintainable pipeline:
+
+```text
+Game Payload
+     ↓
+Decode
+     ↓
+Structured Player Data
+     ↓
+Car / Object Operations
+     ↓
+Validation
+     ↓
+Encode
+     ↓
+Game Payload
+```
+
+That pipeline became one of the core pieces of Skeleton Key's save-management architecture.
+
+The livery system would later introduce a separate binary format and its own codec, but the car and payload systems already established the broader idea:
+
+> Understand the structure first. Build operations around that structure second. Serialize it only at the boundary where the game requires it.
+
+---
+
