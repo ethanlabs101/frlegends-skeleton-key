@@ -1122,3 +1122,259 @@ And once those two perspectives started connecting, the project had a much large
 That is where Skeleton Key began moving beyond a collection of modifications and toward an actual framework.
 
 ---
+
+# 4. Understanding the Player Data Pipeline
+
+Once I started looking beyond runtime memory, the next problem was understanding what the game actually did with player data.
+
+Changing something while the game was running was one thing. Understanding what happened when that data was saved, transmitted, encoded, decoded, reconstructed, and loaded again was a completely different problem.
+
+That distinction became important because the game was not simply storing a collection of readable values.
+
+There was a pipeline.
+
+## 4.1 From Runtime State to Persistent Data
+
+Runtime experimentation taught me how to locate and manipulate values while the game was active.
+
+Persistent data required a different way of thinking.
+
+Instead of asking:
+
+> "Where is this value in memory?"
+
+I started asking:
+
+> "What does this value look like when the game saves it?"
+
+That meant looking at actual player-data payloads and comparing them across different states.
+
+Changing something in-game and then examining the resulting player data made it possible to correlate a gameplay action with a change in the serialized representation.
+
+This was a much more useful perspective than treating the save as an opaque file.
+
+The goal was no longer simply to modify a value.
+
+The goal was to understand the transformation between:
+
+```text
+Game State
+    ↓
+Player Data Object
+    ↓
+Serialization / Encoding
+    ↓
+Stored or Transmitted Representation
+```
+
+and, in the opposite direction:
+
+```text
+Stored Representation
+    ↓
+Decoding / Decompression
+    ↓
+Player Data Object
+    ↓
+Game State
+```
+
+Once I started thinking about the data as a pipeline, individual values stopped being isolated problems.
+
+They became parts of a larger system.
+
+## 4.2 Discovering the Structure Behind the Payload
+
+The first major step was determining that the player data could be reconstructed into a structured object rather than treated as an arbitrary binary blob.
+
+That changed everything.
+
+Instead of manually searching through raw data every time I wanted to understand something, I could work with recognizable fields and structures.
+
+The decoded representation contained things such as:
+
+- player information
+- balances
+- timestamps
+- game-version information
+- car data
+- other persistent state
+
+The important part was not simply identifying individual fields.
+
+It was establishing a repeatable process for getting from the game's encoded representation to something that could be inspected and manipulated programmatically.
+
+That became the foundation for the later Skeleton Key data model.
+
+## 4.3 Serialization Was Its Own Problem
+
+One of the easiest mistakes at this stage would have been to assume that decoding the player data meant the reverse-engineering problem was solved.
+
+It wasn't.
+
+Being able to decode data is only half of a serialization system.
+
+The other half is being able to reconstruct it correctly.
+
+That meant understanding both directions:
+
+```text
+Encoded Data → Decode → Structured Data
+
+Structured Data → Encode → Encoded Data
+```
+
+A useful decoder without a reliable encoder would only provide an inspection tool.
+
+Skeleton Key needed both.
+
+The implementation therefore had to preserve enough information from the original representation to reconstruct valid output rather than simply generating a new arbitrary representation.
+
+This distinction became increasingly important as more complex modifications were introduced.
+
+## 4.4 Separating Data From the Interface
+
+Another important realization was that none of this really belonged in the CLI itself.
+
+The CLI could provide menus, prompts, status displays, and commands.
+
+It should not be responsible for understanding every detail of the underlying player-data format.
+
+That logic belonged underneath the interface.
+
+The architecture gradually moved toward a separation similar to the abstractions I had already built during runtime research:
+
+```text
+CLI
+ ↓
+Operation / Manager
+ ↓
+Structured Data
+ ↓
+Codec / Serialization Layer
+ ↓
+Raw Player Data
+```
+
+This meant the same underlying data-processing logic could eventually be used by something other than a terminal menu.
+
+That became one of the recurring design principles behind Skeleton Key:
+
+> The interface should not define the system.
+
+The CLI is simply one way of interacting with the system.
+
+## 4.5 Values Were Not Always What They Appeared to Be
+
+While examining the player-data pipeline, another complication became apparent.
+
+Some values could not simply be treated as ordinary plaintext numbers.
+
+In particular, certain in-game values were represented using additional transformations rather than being stored exactly as they appeared inside the game.
+
+This was where the distinction between serialization and value representation became important.
+
+The player-data serialization layer had its own encoding behavior.
+
+Individual values could also have their own representation or obfuscation.
+
+Those were separate problems.
+
+Understanding one did not automatically solve the other.
+
+This became especially important when dealing with currency-related values.
+
+The old proof of concept I had discovered earlier contained an outdated approach to money modification, but that approach was no longer valid by the time I found it. The game had changed how those values were represented.
+
+That meant the value representation itself had to be investigated independently.
+
+The useful question became:
+
+> "What transformation connects the value I can observe to the value actually stored?"
+
+That research eventually led to identifying the XOR relationship involved in the relevant value representation.
+
+This was not something inherited from the original proof of concept.
+
+It was part of the later reverse-engineering work that happened during Skeleton Key's development.
+
+## 4.6 From Individual Values to Data Models
+
+As more of the player data became understandable, another shift happened.
+
+I stopped thinking of the save as a collection of individual values and started thinking of it as a data model.
+
+A car was not simply a handful of unrelated numbers.
+
+A player profile was not simply a list of fields.
+
+The save contained relationships between objects, collections, identifiers, timestamps, and other pieces of state.
+
+That meant modifications needed to respect the structure around them.
+
+This eventually led to the validation and reconstruction systems used by Skeleton Key.
+
+Instead of blindly changing bytes, the framework could operate on structured representations and then validate the result before encoding it again.
+
+Conceptually:
+
+```text
+Raw Save
+   ↓
+Decode
+   ↓
+Structured Object
+   ↓
+Validate
+   ↓
+Modify
+   ↓
+Validate Again
+   ↓
+Encode
+   ↓
+Raw Save
+```
+
+That pipeline became much more powerful than treating every modification as an isolated patch.
+
+## 4.7 The Beginning of the Framework
+
+This was the point where the project started becoming something more than a collection of reverse-engineering experiments.
+
+The earlier runtime work had taught me how to build reusable abstractions around repeated operations.
+
+The player-data research applied the same philosophy at a different layer.
+
+Instead of:
+
+```text
+Find value
+→ Patch value
+→ Repeat
+```
+
+the system became:
+
+```text
+Decode
+→ Understand
+→ Represent
+→ Transform
+→ Validate
+→ Encode
+```
+
+That distinction is one of the biggest foundations of Skeleton Key.
+
+The project was no longer primarily about changing something.
+
+It was becoming about understanding a data system well enough to build reusable tooling around it.
+
+That change in perspective is what made the later garage system, car construction, livery tooling, backups, identity management, and other components possible.
+
+The CLI came later.
+
+The framework started here.
+
+---
