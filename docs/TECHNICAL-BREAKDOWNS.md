@@ -1378,3 +1378,319 @@ The CLI came later.
 The framework started here.
 
 ---
+
+# 5. Provisioning and Client Communication
+
+Once the player-data pipeline became understandable, the next problem was getting that data in and out of the game consistently.
+
+Understanding a payload is useful, but a framework needs a reliable way to communicate with the systems responsible for that data.
+
+This is where the client layer became important.
+
+## 5.1 From Local Data to Backend Communication
+
+The original proof of concept gave me a useful starting point for communicating with the game's backend.
+
+The existing client implementation already demonstrated the basic concepts required to authenticate, establish a session, and communicate with the relevant backend services.
+
+That was one of the pieces I was able to carry forward.
+
+However, having a client capable of making requests was only the beginning.
+
+Skeleton Key needed to understand what those requests actually represented and how they fit into the larger player-data workflow.
+
+The architecture gradually became:
+
+```text
+Skeleton Key
+    ↓
+Client Layer
+    ↓
+Backend Communication
+    ↓
+Player Data
+    ↓
+Decode / Process
+    ↓
+Structured Data
+```
+
+And when saving changes:
+
+```text
+Structured Data
+    ↓
+Validate / Transform
+    ↓
+Encode
+    ↓
+Client Layer
+    ↓
+Backend Communication
+    ↓
+Persistent Player Data
+```
+
+The important distinction was that the client should handle communication, while the rest of the framework handled what the data meant.
+
+## 5.2 Authentication Is Part of the Pipeline
+
+Authentication was not treated as an isolated login screen.
+
+It became part of the overall data pipeline.
+
+The framework needed to establish the appropriate authenticated context before it could reliably retrieve or modify player information.
+
+That meant dealing with things such as:
+
+- account authentication
+- session information
+- entity information
+- player identifiers
+- authenticated requests
+- account-specific data
+
+The client layer therefore became responsible for maintaining the communication state required by the rest of the application.
+
+This also reinforced an architectural rule that would become important later:
+
+> Authentication and data processing are separate concerns.
+
+The system should be able to determine who it is communicating as without embedding account logic throughout every feature.
+
+## 5.3 The Client Became a Reusable Abstraction
+
+Rather than having every feature construct its own backend requests, the client became a shared interface.
+
+Higher-level systems could request the operation they needed without needing to understand the underlying communication details.
+
+Conceptually:
+
+```text
+Garage Manager
+       ↓
+Player Data Manager
+       ↓
+Client
+       ↓
+Backend
+```
+
+Instead of:
+
+```text
+Garage Manager
+       ↓
+Build HTTP Request
+       ↓
+Authenticate
+       ↓
+Construct Headers
+       ↓
+Send Request
+       ↓
+Parse Response
+```
+
+That separation made the rest of the project considerably easier to reason about.
+
+If the communication mechanism changed, the higher-level systems would not need to be rewritten around it.
+
+The same principle had already appeared in my earlier runtime tooling.
+
+Repeated low-level work belonged in a shared abstraction rather than being duplicated across individual operations.
+
+## 5.4 Understanding the Available Data
+
+Communication alone was not enough.
+
+I needed to determine which backend data actually mattered to Skeleton Key.
+
+The player-data system exposed information that could be processed into the structured representation used by the framework.
+
+Other backend systems exposed additional information related to things such as:
+
+- account state
+- player data
+- inventory
+- virtual currency
+- cloud-backed data
+- files and file operations
+- other player-specific state
+
+Not every available operation became a Skeleton Key feature.
+
+The important part was understanding the boundaries between them.
+
+Some information belonged to the persistent player-data pipeline.
+
+Some belonged to account or authentication state.
+
+Some represented backend-managed resources.
+
+Keeping those distinctions clear prevented the framework from becoming one giant collection of unrelated API calls.
+
+## 5.5 Provisioning Data for Local Processing
+
+One of the more important architectural decisions was allowing remote player data to be brought into a local processing pipeline.
+
+The framework could retrieve the relevant data, decode it, and turn it into something the rest of Skeleton Key could work with.
+
+That created a repeatable workflow:
+
+```text
+Authenticate
+    ↓
+Retrieve Player Data
+    ↓
+Decode
+    ↓
+Parse
+    ↓
+Validate Structure
+    ↓
+Create Working Representation
+```
+
+At that point, the data was no longer something that only existed on the remote side.
+
+It became a structured local representation that could be inspected, transformed, backed up, and eventually reconstructed.
+
+This was a major step toward treating player data as an actual dataset rather than something that had to be manipulated entirely through the game itself.
+
+## 5.6 Keeping the Backend Layer Thin
+
+The client was intentionally kept relatively low-level.
+
+It knew how to communicate.
+
+It did not need to know what a "garage" meant.
+
+It did not need to know how a car should be constructed.
+
+It did not need to know how a livery should be edited.
+
+It did not need to know what a valid player-data structure looked like.
+
+Those responsibilities belonged to higher layers.
+
+The separation became roughly:
+
+```text
+CLI
+ ↓
+Feature / Manager
+ ↓
+Data Model / Operations
+ ↓
+Codec / Serialization
+ ↓
+Client
+ ↓
+Backend
+```
+
+Each layer had a different responsibility.
+
+That separation made it possible to keep adding functionality without turning the client into the center of the entire project.
+
+## 5.7 Provisioning Became More Than Fetching
+
+As Skeleton Key grew, provisioning stopped meaning simply "download the save."
+
+The framework needed to prepare data for different operations.
+
+That could include retrieving the current player state, creating local working data, loading templates, constructing objects, preserving required fields, and preparing the resulting payload for encoding.
+
+This eventually led to the concept of **payload management**.
+
+A payload was not just raw data.
+
+It was a structured representation that could move through multiple stages of the framework.
+
+```text
+Remote Data
+    ↓
+Decode
+    ↓
+Payload
+    ↓
+Modify
+    ↓
+Validate
+    ↓
+Encode
+    ↓
+Remote Data
+```
+
+This concept became increasingly important as features such as garage management and car construction were added.
+
+## 5.8 The Importance of Separation
+
+At this point, the project had several different problems that could easily have been mixed together:
+
+- authentication
+- backend communication
+- serialization
+- value representation
+- structured player data
+- modification logic
+- validation
+- local storage
+
+Keeping these separate was what allowed Skeleton Key to continue growing.
+
+The client handled communication.
+
+The codec handled serialization.
+
+The data model handled structure.
+
+Feature managers handled specific operations.
+
+The CLI handled interaction.
+
+This separation was not designed perfectly from the beginning.
+
+It evolved as the problems became clearer.
+
+That is an important part of Skeleton Key's development history: the architecture was shaped by reverse engineering rather than designed around assumptions before the underlying systems were understood.
+
+## 5.9 From Communication to a Working Framework
+
+With authentication, communication, decoding, and structured data processing working together, Skeleton Key had the beginnings of an actual end-to-end pipeline.
+
+The workflow was no longer a collection of disconnected experiments.
+
+It was becoming a system:
+
+```text
+Account
+   ↓
+Authenticated Client
+   ↓
+Player Data
+   ↓
+Decode
+   ↓
+Structured Representation
+   ↓
+Feature Operations
+   ↓
+Validation
+   ↓
+Encode
+   ↓
+Client
+   ↓
+Persistent Data
+```
+
+That foundation made the next major problem possible:
+
+**understanding the serialization process deeply enough to reliably reconstruct the data.**
+
+That would become one of the most important technical areas of the project.
+
+---
