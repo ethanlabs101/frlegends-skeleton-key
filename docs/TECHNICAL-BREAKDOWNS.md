@@ -2031,3 +2031,470 @@ It required its own reverse-engineering process, structural analysis, transforma
 That became the next major technical challenge.
 
 ---
+
+# 7. Livery Binary Research and Codec Development
+
+The player-data codec was one thing.
+
+The livery format was completely different.
+
+This was one of the areas where I had to do substantially more original reverse engineering. Instead of inheriting an existing codec for the format, I had to determine how the game's proprietary livery binary data was structured, identify the meaning of its fields, understand its recursive organization, and then build a codec capable of converting between the binary representation and a human-readable structure.
+
+This eventually became one of the more technically interesting parts of Skeleton Key.
+
+## 7.1 The Livery Format Was a Different Problem
+
+A livery was not simply another JSON object hidden behind compression.
+
+The data was binary and structured.
+
+The format contained records representing livery elements, with relationships between records that formed a tree rather than a simple flat list.
+
+That meant the problem was no longer just:
+
+```text
+Decode Bytes
+    ↓
+Parse JSON
+```
+
+It became:
+
+```text
+Binary Data
+    ↓
+Identify Header
+    ↓
+Identify Records
+    ↓
+Understand Fields
+    ↓
+Determine Relationships
+    ↓
+Reconstruct Tree
+```
+
+The reverse direction needed to work as well:
+
+```text
+Livery Tree
+    ↓
+Serialize Records
+    ↓
+Serialize Relationships
+    ↓
+Construct Header
+    ↓
+Binary Livery Data
+```
+
+The codec therefore had to understand the format structurally rather than simply manipulate individual bytes.
+
+## 7.2 Identifying the Record Structure
+
+One of the major findings was that the livery data could be broken into fixed-size records.
+
+Each record was 18 bytes.
+
+Those 18 bytes could be understood as:
+
+```text
+ID        2 bytes
+X         2 bytes
+Y         2 bytes
+W         2 bytes
+H         2 bytes
+Rotation  2 bytes
+Color     4 bytes
+Byte A    1 byte
+Byte B    1 byte
+----------------
+Total    18 bytes
+```
+
+The first six fields were stored as little-endian 16-bit values.
+
+The color field was four raw bytes.
+
+The final two fields were also independent raw bytes.
+
+That distinction was important because not every field followed the same byte-order behavior.
+
+The codec therefore could not simply reverse the byte order of the entire record.
+
+Each portion had to be handled according to its actual representation.
+
+## 7.3 Working Out the Byte Order
+
+The six 16-bit fields required little-endian handling.
+
+That meant the binary representation of each field had to be interpreted with the correct byte ordering when converting between the binary record and the hexadecimal representation used by the tooling.
+
+The codec therefore explicitly swaps those pairs when converting records:
+
+```text
+ID
+X
+Y
+W
+H
+Rotation
+```
+
+while leaving:
+
+```text
+Color
+Byte A
+Byte B
+```
+
+untouched.
+
+This was one of those details that could easily produce a parser that appeared to work while quietly generating invalid data.
+
+A livery binary format is unforgiving when even a small part of a record is interpreted incorrectly.
+
+## 7.4 Discovering the Tree Structure
+
+The next major discovery was that livery records were not necessarily independent.
+
+Some records could contain children.
+
+The key finding was that a record whose ID field was:
+
+```text
+0xFFFF
+```
+
+represented a container rather than a normal leaf record.
+
+When that condition was encountered, the next two bytes represented the number of child records that followed.
+
+Those child records could themselves contain additional children.
+
+That meant the structure was recursive.
+
+Conceptually:
+
+```text
+Container
+├── Record
+├── Record
+└── Container
+    ├── Record
+    └── Record
+```
+
+This was a major turning point because it explained why treating the binary data as a flat sequence of 18-byte records was insufficient.
+
+The relationship between records was part of the format.
+
+## 7.5 The Reserved Container ID
+
+The `0xFFFF` value became particularly important.
+
+Across the known dataset, the ID was consistently associated with container records and did not appear as a normal leaf sticker type.
+
+That gave the codec a reliable structural rule:
+
+```text
+ID != 0xFFFF
+    → Leaf record
+
+ID == 0xFFFF
+    → Container
+    → Read child count
+    → Parse child records recursively
+```
+
+This rule allowed the decoder to determine where nested structures began without requiring a separate type field.
+
+That was one of the key discoveries needed to turn the binary stream into a usable tree.
+
+## 7.6 Reconstructing the Record Tree
+
+Once the record format and container behavior were understood, the decoder could recursively reconstruct the livery structure.
+
+The process was effectively:
+
+```text
+Read Record
+    ↓
+Interpret Fields
+    ↓
+Check ID
+    ↓
+Is ID 0xFFFF?
+   / \
+ No   Yes
+ ↓     ↓
+Leaf   Read Child Count
+       ↓
+       Parse Children
+       ↓
+       Repeat Recursively
+```
+
+The resulting structure could then be represented in a human-readable form.
+
+This was much easier to work with than raw binary data.
+
+Instead of staring at bytes, the tooling could represent a livery as a hierarchy of records.
+
+## 7.7 Creating a Human-Readable Intermediate Representation
+
+The codec introduced a text representation for that tree.
+
+Individual records could be represented as hexadecimal strings, while `<` and `>` markers represented entering and leaving a child block.
+
+For example, conceptually:
+
+```text
+RECORD
+<
+    RECORD
+    RECORD
+    <
+        RECORD
+    >
+>
+```
+
+This representation was intentionally simple.
+
+It made the structure visible without requiring the editor or other tooling to directly manipulate binary buffers.
+
+The parser could then turn that text representation back into an in-memory tree.
+
+This created another useful abstraction boundary:
+
+```text
+Binary
+   ↓
+Tree
+   ↓
+Human-Readable Representation
+```
+
+and:
+
+```text
+Human-Readable Representation
+   ↓
+Tree
+   ↓
+Binary
+```
+
+## 7.8 Parsing the Tree
+
+The parser had to understand more than individual records.
+
+It needed to understand the hierarchy.
+
+The `parseTreeText()` function therefore treats the text representation as a small structural language.
+
+A normal hexadecimal line creates a record.
+
+A `<` begins a child block.
+
+A `>` closes the child block.
+
+This allowed nested structures to be represented without introducing a large or complicated external format.
+
+The parser also validates structural mistakes, such as encountering a child block without a preceding parent record.
+
+That means malformed tree structures can be rejected before they reach the binary serializer.
+
+## 7.9 Counting Nodes
+
+The binary format also contains a total node count.
+
+That meant the codec needed to recursively count every record in the tree.
+
+A container itself counts as a node, while its children are counted recursively.
+
+Conceptually:
+
+```text
+Container
+├── Record
+├── Record
+└── Container
+    ├── Record
+    └── Record
+```
+
+would count every visible record in the hierarchy rather than treating the entire container as a single object.
+
+This count is then written into the binary header.
+
+That made the tree representation and binary representation agree about the number of records being serialized.
+
+## 7.10 The Implicit Root
+
+Another important discovery was the presence of a root record surrounding the top-level livery records in real save data.
+
+The codec represents this using a known root record:
+
+```text
+FFFF00000000006400640000FFFFFFFF0001
+```
+
+The root is not treated like an ordinary visible livery element.
+
+Instead, the encoder can include it as the implicit root surrounding the top-level records.
+
+The binary structure therefore begins conceptually as:
+
+```text
+Header
+ ↓
+Implicit Root Record
+ ↓
+Top-Level Record Count
+ ↓
+Top-Level Records
+ ↓
+Nested Records
+```
+
+This distinction matters because the total node count does not simply mean "every binary record including the implicit root."
+
+The observed format treats the implicit root separately from the visible tree node count.
+
+The codec preserves that behavior.
+
+## 7.11 Building the Encoder
+
+Once the decoder could reconstruct the tree, the next challenge was rebuilding the binary representation.
+
+The encoder performs the inverse operation.
+
+For each record it:
+
+1. Converts the hexadecimal representation into the correct 18-byte binary structure.
+2. Writes the record.
+3. Determines whether it has children.
+4. If it does, writes the child count.
+5. Recursively serializes the child records.
+
+Conceptually:
+
+```text
+Tree
+ ↓
+Record
+ ↓
+18-Byte Binary Record
+ ↓
+Has Children?
+ ↓
+Write Child Count
+ ↓
+Serialize Children
+ ↓
+Continue
+```
+
+This made the codec capable of producing complete livery binary data rather than merely inspecting it.
+
+## 7.12 Why the Fixed Record Size Mattered
+
+The fixed 18-byte record size provided a strong structural anchor during reverse engineering.
+
+Once the record boundary was understood, the binary stream could be segmented consistently.
+
+That made it possible to investigate individual fields independently rather than treating the entire livery as an undifferentiated byte sequence.
+
+The structure became:
+
+```text
+18-byte Record
+18-byte Record
+18-byte Record
+...
+```
+
+with additional two-byte child counts appearing after container records.
+
+This combination of fixed-size records and recursive child counts explained the overall organization of the format.
+
+## 7.13 Designing the Codec Around the Editor
+
+The purpose of reverse engineering the format was not simply to decode one livery.
+
+The codec needed to become infrastructure for the livery editor.
+
+That meant the format had to be represented in a way that other parts of Skeleton Key could manipulate.
+
+The resulting architecture became roughly:
+
+```text
+Livery Binary
+      ↓
+   Decoder
+      ↓
+Livery Tree
+      ↓
+Editor / Transformations
+      ↓
+Livery Tree
+      ↓
+   Encoder
+      ↓
+Livery Binary
+```
+
+This was the same broader philosophy that had shaped the player-data system, but applied to a completely different format.
+
+The raw representation is one layer.
+
+The structured representation is another.
+
+The editor operates on the structured representation.
+
+The codec connects the two.
+
+## 7.14 From Reverse Engineering to a Real Codec
+
+At the end of this process, the livery format was no longer an opaque binary blob.
+
+It had a working conceptual model:
+
+```text
+Livery Binary
+│
+├── Version
+├── Total Node Count
+├── Root Record
+├── Top-Level Count
+└── Recursive Record Tree
+    ├── Leaf Records
+    ├── Leaf Records
+    └── Container
+        ├── Leaf Record
+        └── Container
+            └── Leaf Record
+```
+
+That model could be decoded into a structured representation and encoded back into binary form.
+
+That was the point where the livery format stopped being something I merely inspected and became something Skeleton Key could actually work with.
+
+The codec became the foundation for the livery editor.
+
+From there, the problem changed again.
+
+I no longer needed to ask only:
+
+> "What does this binary data mean?"
+
+I could start asking:
+
+> "What can I build on top of this representation?"
+
+That led directly into the development of the livery editor, transformations, manipulation tools, and the larger livery-management system inside Skeleton Key.
+
+---
