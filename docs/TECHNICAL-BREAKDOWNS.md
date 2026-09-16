@@ -3726,3 +3726,318 @@ The result is a system where users can gradually build their own local collectio
 The **Persistent Identity Vault** therefore became less about remembering a session and more about giving Skeleton Key a permanent, user-controlled account-management layer.
 
 ---
+
+# 12. Backups, Snapshots, and Data Safety
+
+Once Skeleton Key became capable of making real changes to persistent player data, protecting that data became just as important as being able to modify it.
+
+A system that can manipulate saves needs to have a way to preserve the original state before making changes.
+
+This led to the development of the project's backup and snapshot systems.
+
+## The Problem
+
+Save data is persistent.
+
+If an operation modifies a player's garage, currency, progression, or other saved information incorrectly, the result can potentially be worse than the original state.
+
+During development and reverse engineering, this was especially important because new operations were constantly being tested against real data.
+
+The workflow therefore needed a safety layer:
+
+```text
+Original Data
+     ↓
+Create Backup
+     ↓
+Perform Operation
+     ↓
+Validate Result
+     ↓
+Save Modified Data
+```
+
+The original state remains available if something needs to be restored.
+
+## Automatic Backup Philosophy
+
+Backups became part of the normal save-management workflow rather than something that had to be remembered manually every time.
+
+Before destructive or significant operations, Skeleton Key can preserve the current state so that the user has a recovery point.
+
+This changes the mindset from:
+
+> "I hope this modification works."
+
+to:
+
+> "If something goes wrong, I have the previous state."
+
+That distinction became increasingly important as the framework gained more powerful operations.
+
+## Backup Organization
+
+Backups are organized around the identity they belong to.
+
+The project uses identity-specific backup storage so that data from different accounts does not become mixed together.
+
+Conceptually:
+
+```text
+Backups
+├── Identity A
+│   ├── Save
+│   └── Snapshot
+│
+├── Identity B
+│   ├── Save
+│   └── Snapshot
+│
+└── Identity C
+    ├── Save
+    └── Snapshot
+```
+
+This ties the backup system into the Persistent Identity Vault without making the two systems responsible for the same thing.
+
+The vault manages accounts.
+
+The backup system manages saved states associated with those accounts.
+
+## Snapshots
+
+Backups preserve a state that can be used for recovery.
+
+Snapshots extend that idea by providing explicit points in the development and modification history of the data.
+
+A snapshot represents the state of the player's data at a particular point in time.
+
+Conceptually:
+
+```text
+Snapshot 1
+    ↓
+Modification
+    ↓
+Snapshot 2
+    ↓
+Modification
+    ↓
+Snapshot 3
+```
+
+This makes it easier to experiment with changes while retaining previous states.
+
+Instead of having only one current version of the data, the user can maintain multiple recovery points.
+
+## JSON and Binary Preservation
+
+Skeleton Key works with multiple representations of the game's data.
+
+Structured player data can exist as JSON while encoded save or payload representations can exist in binary form.
+
+The backup system therefore needs to preserve the relevant data in a form that can actually be recovered and reused.
+
+This is one reason the project maintains both structured and encoded representations where appropriate.
+
+The general concept is:
+
+```text
+Game Data
+   ├── Structured Representation
+   └── Encoded Representation
+```
+
+Backups can preserve the data needed to reconstruct or restore the appropriate state rather than relying on a single temporary in-memory object.
+
+## Protecting Experimental Work
+
+Snapshots became especially useful during development.
+
+Reverse engineering often involves experimentation:
+
+```text
+Load Data
+   ↓
+Make Hypothesis
+   ↓
+Modify Data
+   ↓
+Test
+   ↓
+Inspect Result
+```
+
+Without snapshots, every experiment risks destroying the previous working state.
+
+With snapshots:
+
+```text
+Working State
+   ↓
+Snapshot
+   ↓
+Experiment
+   ↓
+Test
+   ↓
+Restore if Necessary
+```
+
+This makes experimentation much safer.
+
+It also allows multiple approaches to be tested without permanently committing to every change.
+
+## Recovery
+
+The purpose of a backup is ultimately recovery.
+
+If a modification produces an unwanted result, the previous state can be restored instead of attempting to manually reconstruct what was lost.
+
+The general recovery process is:
+
+```text
+Current State
+     ↓
+Problem Detected
+     ↓
+Select Previous Backup
+     ↓
+Restore
+     ↓
+Resume From Known State
+```
+
+This provides a safety net around operations that modify persistent data.
+
+## Save Operations and Safety
+
+Backups also became part of the larger save-operation pipeline.
+
+The complete process can be thought of as:
+
+```text
+Load Existing Data
+       ↓
+Create Backup
+       ↓
+Decode
+       ↓
+Modify
+       ↓
+Validate
+       ↓
+Encode / Reconstruct
+       ↓
+Write New State
+```
+
+The backup happens before the modification becomes permanent.
+
+This creates a clear separation between the original state and the newly generated state.
+
+## Data Safety as a Design Requirement
+
+As the framework grew, data safety stopped being an optional convenience and became part of the design itself.
+
+Operations needed to account for the possibility that:
+
+- input data could be malformed
+- a modification could produce an invalid structure
+- a serialization step could fail
+- an operation could produce an unexpected result
+- the user could want to undo an experiment
+- multiple versions of a save could need to be retained
+
+Backups and validation address different parts of this problem.
+
+Validation attempts to prevent invalid data from being written.
+
+Backups provide a recovery path when something still goes wrong.
+
+Both are necessary.
+
+## Backups Are Not Validation
+
+These systems serve different purposes.
+
+Validation asks:
+
+> "Is this data structurally valid?"
+
+Backups ask:
+
+> "Can I recover the previous state?"
+
+A perfectly valid save can still contain an unwanted modification.
+
+Likewise, an invalid operation can fail before anything is written.
+
+The systems therefore complement each other:
+
+```text
+Validation
+    ↓
+Prevent / Detect Problems
+
+Backup
+    ↓
+Recover From Problems
+```
+
+This distinction became an important part of Skeleton Key's overall data-safety philosophy.
+
+## Why This Matters for a Save Management Framework
+
+A save-management framework should not only make changes.
+
+It should make changes in a way that gives the user control over what happens to their data.
+
+That means providing:
+
+- preserved previous states
+- explicit recovery points
+- organized backups
+- validation before reconstruction
+- separation between original and modified data
+- predictable save workflows
+
+The goal is not to eliminate every possible failure.
+
+The goal is to make failures recoverable.
+
+## The Bigger Picture
+
+Backups and snapshots completed another major part of Skeleton Key's save-management workflow.
+
+The framework could now:
+
+```text
+Identify Account
+      ↓
+Load Player Data
+      ↓
+Preserve Existing State
+      ↓
+Modify Structured Data
+      ↓
+Validate
+      ↓
+Reconstruct
+      ↓
+Persist New State
+```
+
+This was an important transition from experimentation toward a system designed for repeated real-world use.
+
+The project was no longer only concerned with whether it *could* modify game data.
+
+It also needed to answer a more practical question:
+
+> "What happens to the user's original data if something goes wrong?"
+
+The backup and snapshot systems were the answer.
+
+They became a fundamental safety layer underneath Skeleton Key's increasingly powerful save-management capabilities.
+
+---
