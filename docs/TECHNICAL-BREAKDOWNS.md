@@ -3183,3 +3183,247 @@ The livery system would later introduce a separate binary format and its own cod
 
 ---
 
+# 10. Garage Management and Save Operations
+
+Once the project could understand and construct individual car objects, the next step was managing those objects as part of the player's actual garage and save data.
+
+This was where the project moved further away from simply modifying individual values and toward managing the game data as a complete system.
+
+## From Individual Cars to the Garage
+
+A car by itself is only one object inside a much larger player-data structure.
+
+The garage contains a collection of cars, and those cars exist alongside the rest of the player's saved information.
+
+Conceptually:
+
+```text
+Player Data
+├── Account / Player Information
+├── Currency
+├── Progress
+├── Garage
+│   ├── Car
+│   ├── Car
+│   ├── Car
+│   └── ...
+└── Other Saved Data
+```
+
+Once the internal structure was understood, garage management could operate on the collection itself instead of treating every car as an isolated modification.
+
+This made operations such as adding, removing, cloning, and modifying cars much more practical.
+
+## Garage Operations
+
+The garage system became responsible for manipulating the player's collection of cars.
+
+Depending on the operation, the system could:
+
+- inspect existing cars
+- add cars
+- remove cars
+- clone existing cars
+- construct cars from templates
+- modify car properties
+- replace existing car data
+- work with imported car objects
+- prepare modified garage data for saving
+
+The important part was that these operations were performed against the structured player-data representation.
+
+The system did not need to repeatedly rediscover the underlying format every time a garage operation was performed.
+
+## Working With Existing Save Data
+
+Save operations introduced another important distinction.
+
+There is a difference between:
+
+```text
+Creating new data
+```
+
+and:
+
+```text
+Modifying existing data
+```
+
+Creating a new car could start from a template.
+
+Modifying an existing save required loading the player's current structured data, locating the relevant object, applying the requested changes, and preserving everything else.
+
+The general workflow became:
+
+```text
+Load Save
+   ↓
+Decode Player Data
+   ↓
+Parse Structured Data
+   ↓
+Locate Target
+   ↓
+Apply Operation
+   ↓
+Validate
+   ↓
+Reconstruct Save
+```
+
+This allowed modifications to be performed without treating the entire save as an opaque blob.
+
+## Preserving Existing Data
+
+One of the biggest advantages of working with structured data was the ability to modify only what was necessary.
+
+Instead of rebuilding an entire save from an unrelated template, the system could load the player's existing data and operate directly on the relevant structures.
+
+For example:
+
+```text
+Existing Save
+    ↓
+Existing Garage
+    ↓
+Existing Car
+    ↓
+Modify Car
+    ↓
+Preserve Everything Else
+```
+
+This became increasingly important as the amount of supported player data grew.
+
+The goal was not simply to generate a technically valid save.
+
+The goal was to generate a valid save while preserving as much of the user's existing state as possible.
+
+## Save Reconstruction
+
+After modifications were complete, the structured data still had to be converted back into the representation expected by the game.
+
+This created a clear boundary between editing and serialization.
+
+```text
+Structured Data
+      ↓
+Validation
+      ↓
+Serialization
+      ↓
+Encoded Player Data
+      ↓
+Payload / Save Operation
+```
+
+The garage system therefore did not need to know every detail about compression or encoding.
+
+It could operate on the objects it understood and leave representation-level processing to the appropriate lower layer.
+
+This separation made the overall system much easier to maintain.
+
+## Backups Became Important
+
+Once the project was capable of modifying real player save data, backups became an important part of the workflow.
+
+A save-management system should not treat the current save as disposable.
+
+Before performing potentially destructive operations, the project could preserve the existing state so that it could be inspected or restored later.
+
+This eventually contributed to the broader backup and snapshot systems used by Skeleton Key.
+
+The basic idea was:
+
+```text
+Current Save
+    ↓
+Backup / Snapshot
+    ↓
+Modify
+    ↓
+Validate
+    ↓
+Write New State
+```
+
+That gave the modification pipeline a recovery point instead of making every operation irreversible.
+
+## Save Operations as a Higher-Level System
+
+At this point, save management was becoming its own layer.
+
+The project now had multiple levels of responsibility:
+
+```text
+Garage Operations
+        ↓
+Player Data Structures
+        ↓
+Serialization
+        ↓
+Payload / Backend Operations
+```
+
+Each layer had a different purpose.
+
+Garage operations dealt with game objects.
+
+Player-data logic dealt with the structure containing those objects.
+
+Serialization handled the representation of that structure.
+
+Backend and payload logic handled communication and persistence.
+
+Keeping these responsibilities separate prevented higher-level features from becoming tightly coupled to low-level implementation details.
+
+## Why This Was a Major Step
+
+This was one of the points where Skeleton Key stopped behaving like a collection of modification scripts and started behaving like a save-management framework.
+
+The project was no longer primarily asking:
+
+> "How do I change this value?"
+
+It was asking:
+
+> "How do I safely manipulate this part of the player's saved state?"
+
+That distinction matters.
+
+A value editor can change a value.
+
+A save-management system has to understand the surrounding structure, preserve unrelated data, validate modifications, reconstruct the save correctly, and provide a reasonable path toward recovery if something goes wrong.
+
+Garage management was one of the first major systems where all of those requirements came together.
+
+## The Foundation for Larger Systems
+
+Once garage management and save operations were established, the same principles could be extended to other parts of the game.
+
+The project could treat different sections of player data as structured systems rather than isolated fields.
+
+That eventually allowed Skeleton Key to grow into a broader framework containing multiple management systems while keeping the same underlying philosophy:
+
+```text
+Decode
+   ↓
+Understand
+   ↓
+Modify
+   ↓
+Validate
+   ↓
+Reconstruct
+   ↓
+Persist
+```
+
+The garage was one of the first places where this complete lifecycle became practical.
+
+It demonstrated that the project could manage game state at the object and collection level rather than simply modifying individual values.
+
+That became a core part of the foundation Skeleton Key was built on.
+
+---
