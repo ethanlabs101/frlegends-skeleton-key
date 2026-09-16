@@ -3427,3 +3427,256 @@ It demonstrated that the project could manage game state at the object and colle
 That became a core part of the foundation Skeleton Key was built on.
 
 ---
+
+# 11. The Persistent Identity Vault
+
+As Skeleton Key became more than a collection of experimental scripts, account and identity management became an increasingly important part of the system.
+
+The project needed a reliable way to remember which FR Legends identity was being worked with, preserve account-related information locally, and prevent different identities from becoming mixed together.
+
+This led to the creation of the **Persistent Identity Vault**.
+
+## The Problem With Temporary Account State
+
+Early experimentation could treat authentication as a temporary process:
+
+```text
+Login
+   ↓
+Get Identity
+   ↓
+Perform Operation
+   ↓
+Done
+```
+
+That approach becomes inconvenient once a tool starts handling persistent save data, backups, multiple accounts, and repeated operations.
+
+The program needs to know more than whether authentication succeeded.
+
+It needs to maintain a consistent identity context while the user works with the system.
+
+The vault was designed to provide that persistent local context.
+
+## Local Identity Storage
+
+Skeleton Key uses a local database to maintain identity information.
+
+This provides a persistent layer between individual CLI sessions.
+
+Instead of starting from an empty state every time the program launches, the system can maintain information associated with previously used identities.
+
+Conceptually:
+
+```text
+Authentication
+      ↓
+Identity Information
+      ↓
+Local Identity Vault
+      ↓
+Future CLI Sessions
+```
+
+This made identity management independent from the lifetime of a single process.
+
+The CLI could close and later reopen while the local vault remained available.
+
+## Why Identity Persistence Matters
+
+Identity is closely tied to save management.
+
+A save is not simply an arbitrary JSON structure. It belongs to a particular player identity and account context.
+
+That means the system needs to keep track of which identity is currently active before performing operations against player data.
+
+The vault therefore became part of the context used by higher-level systems.
+
+For example:
+
+```text
+Active Identity
+      ↓
+Player Data
+      ↓
+Garage
+      ↓
+Cars
+      ↓
+Save Operations
+```
+
+This reduced the chance of treating unrelated account data as though it belonged to the currently selected identity.
+
+## The Identity Database
+
+The vault uses a local SQLite database to persist account-related identity records.
+
+This provided several advantages over storing everything in loose configuration files.
+
+A database gives the system a structured place to store records and makes it possible to query, update, and maintain multiple identities without creating an increasingly complicated collection of files.
+
+The general model became:
+
+```text
+Identity Vault
+├── Identity Record
+├── Identity Record
+├── Identity Record
+└── ...
+```
+
+The exact information associated with an identity can then be used by the rest of Skeleton Key when determining the active account context.
+
+## Active Account State
+
+The persistent vault and the current runtime state serve different purposes.
+
+The vault provides persistent storage.
+
+The active account state represents what the current session is actually working with.
+
+Conceptually:
+
+```text
+Persistent Vault
+       ↓
+Select / Load Identity
+       ↓
+Active Account State
+       ↓
+Current Operations
+```
+
+This distinction became important because the program might know about multiple identities while only one is active for a particular operation.
+
+Keeping persistent records separate from temporary runtime state made the system easier to reason about.
+
+## Protecting the Vault
+
+Because the identity vault contains account-related information, the project also introduced a local `.vault.lock` mechanism.
+
+The lock exists as a local protection layer around vault access and helps establish that the identity database is part of a protected local workflow rather than just another arbitrary project file.
+
+The broader security model was designed around keeping sensitive local state under the user's control.
+
+The vault therefore became another example of Skeleton Key treating account information as structured system state rather than temporary variables.
+
+## Identity and Save Management
+
+The Persistent Identity Vault also connected several systems that had previously been more independent.
+
+The relationship became roughly:
+
+```text
+Authentication
+      ↓
+Identity
+      ↓
+Identity Vault
+      ↓
+Active Account
+      ↓
+Player Data
+      ↓
+Save Operations
+```
+
+This allowed the rest of the framework to operate with a known identity context.
+
+Garage operations, player-data management, backups, and other systems could therefore be associated with the active account instead of operating without context.
+
+## Supporting Multiple Identities
+
+Another advantage of persistent identity storage was the ability to work with more than one account.
+
+Instead of replacing one identity every time another account was used, the vault could maintain multiple identity records.
+
+This created a much cleaner workflow:
+
+```text
+Identity A
+Identity B
+Identity C
+     ↓
+Identity Vault
+     ↓
+Select Active Identity
+     ↓
+Perform Operations
+```
+
+This became particularly useful for a tool intended to manage persistent player data rather than simply perform one-time experiments.
+
+## The Vault as Infrastructure
+
+The identity vault is not itself the save-management system.
+
+It is infrastructure that allows the save-management system to operate consistently.
+
+That distinction is important.
+
+The vault answers questions such as:
+
+```text
+Who is the current identity?
+What identities are stored locally?
+What account context is active?
+```
+
+Other systems answer questions such as:
+
+```text
+What player data belongs to that identity?
+What cars are in the garage?
+What modifications should be performed?
+How should the resulting data be saved?
+```
+
+Keeping those responsibilities separate prevented the account system from becoming tightly coupled to every other feature.
+
+## From Session State to Persistent State
+
+The creation of the Persistent Identity Vault represented another shift in the project's design philosophy.
+
+Earlier systems were focused primarily on making individual operations work.
+
+The vault introduced a different requirement:
+
+**The system needed to remember.**
+
+That meant designing around persistence, identity boundaries, local state, and repeated use rather than assuming every execution was an isolated experiment.
+
+This was an important step toward turning Skeleton Key into a tool that could be used repeatedly as an actual management framework.
+
+## The Larger Architecture
+
+By this stage, several major pieces were beginning to connect:
+
+```text
+Identity
+   ↓
+Persistent Vault
+   ↓
+Active Account
+   ↓
+Player Data
+   ↓
+Garage
+   ↓
+Car Operations
+   ↓
+Payload / Save Operations
+```
+
+Each system had its own responsibility, but they could work together through structured interfaces.
+
+The Persistent Identity Vault therefore became one of the foundations underneath the rest of Skeleton Key.
+
+It provided the persistent identity context needed to make the growing collection of save-management systems behave like one coherent framework rather than a collection of unrelated tools.
+
+The project had now moved beyond simply understanding game data.
+
+It was beginning to manage the **state surrounding that data** as well.
+
+---
