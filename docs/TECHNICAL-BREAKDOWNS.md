@@ -4041,3 +4041,324 @@ The backup and snapshot systems were the answer.
 They became a fundamental safety layer underneath Skeleton Key's increasingly powerful save-management capabilities.
 
 ---
+
+# 13. The CLI as an Interface Layer
+
+As Skeleton Key grew, the command-line interface became the primary way to interact with the framework.
+
+However, the CLI was never intended to be the framework itself.
+
+It became an interface layer sitting above the underlying systems that handle authentication, identity management, player data, garage operations, payload generation, backups, liveries, and other functionality.
+
+The distinction is important because it allows the underlying engine to remain independent from the way a user interacts with it.
+
+## The CLI Is the Interface
+
+At a high level, the architecture can be viewed as:
+
+```text
+User
+  ↓
+CLI
+  ↓
+Skeleton Key Systems
+  ↓
+Game Data / Backend
+```
+
+The user interacts with menus and commands.
+
+The CLI interprets those interactions and calls the appropriate underlying functionality.
+
+The actual work is performed by the systems underneath it.
+
+For example:
+
+```text
+User selects Garage Manager
+          ↓
+CLI handles selection
+          ↓
+Garage system performs operation
+          ↓
+Player data is updated
+```
+
+The CLI provides the entry point.
+
+It does not need to own the entire implementation.
+
+## Why This Separation Matters
+
+Keeping the CLI separate from the underlying functionality makes the project easier to maintain.
+
+A menu should not need to understand the internal details of:
+
+- player-data serialization
+- garage object construction
+- livery binary parsing
+- account storage
+- backup creation
+- payload generation
+- backend communication
+
+Instead, it should call the appropriate system responsible for that operation.
+
+Conceptually:
+
+```text
+CLI
+ ├── Account Manager
+ ├── Garage Manager
+ ├── Livery Manager
+ ├── Backup System
+ ├── Save Operations
+ └── Other Tools
+```
+
+Each feature can then maintain its own internal logic while the CLI provides a consistent way to access it.
+
+## Turning Complex Systems Into Usable Tools
+
+Many of the systems underneath Skeleton Key are technically complex.
+
+A user should not need to understand the underlying serialization format just to modify a car.
+
+They should not need to understand PlayFab communication just to log into an account.
+
+They should not need to understand the livery binary structure just to use the livery editor.
+
+The CLI provides an abstraction over those details.
+
+For example:
+
+```text
+Technical Implementation
+        ↓
+     CLI Menu
+        ↓
+ Simple User Action
+```
+
+The complexity still exists.
+
+It is simply contained below the interface.
+
+## The Menu System
+
+The CLI gradually developed into a structured menu system rather than a collection of unrelated commands.
+
+Different parts of Skeleton Key can be exposed through their own management interfaces.
+
+Conceptually:
+
+```text
+Skeleton Key
+│
+├── Account / Identity
+├── Garage
+├── Player Data
+├── Livery
+├── Assets
+├── Backups
+├── Sandbox Operations
+└── Other Systems
+```
+
+The user can navigate these areas without needing to know which internal module handles each operation.
+
+This creates a consistent experience even though the systems underneath may work very differently.
+
+## Interface vs Implementation
+
+One of the most important architectural distinctions in the project is:
+
+```text
+Interface
+    ≠
+Implementation
+```
+
+The interface answers:
+
+> "How does the user interact with this?"
+
+The implementation answers:
+
+> "How does the system actually perform this?"
+
+For example:
+
+```text
+CLI:
+"Clone Car"
+
+        ↓
+
+Garage Manager:
+Find source car
+Construct clone
+Apply requested changes
+Validate object
+
+        ↓
+
+Payload / Save Layer:
+Reconstruct data
+```
+
+The CLI does not need to contain every step.
+
+It only needs to initiate the operation and present the result.
+
+## Keeping the CLI Thin
+
+As the framework grew, keeping the CLI relatively thin became increasingly valuable.
+
+A large amount of business logic inside menu handlers would make the project difficult to maintain.
+
+Instead of:
+
+```text
+Menu
+ └── Everything
+```
+
+the goal became:
+
+```text
+Menu
+  ↓
+System
+  ↓
+Operation
+```
+
+This means that the same underlying operation can potentially be called from somewhere other than the current CLI menu.
+
+That is one of the reasons the underlying systems are treated as reusable components rather than being permanently tied to terminal interaction.
+
+## The CLI as a Dispatcher
+
+The CLI can also be thought of as a dispatcher.
+
+The user chooses what they want to accomplish, and the CLI routes that request to the appropriate system.
+
+For example:
+
+```text
+User Request
+     ↓
+CLI
+     ↓
+Identify Operation
+     ↓
+Call Appropriate Module
+     ↓
+Return Result
+     ↓
+Display Result
+```
+
+This keeps interaction logic separate from the actual work being performed.
+
+It also makes the overall project easier to navigate as more features are added.
+
+## Consistent User Experience
+
+Although the underlying systems are different, the CLI provides a common environment for interacting with them.
+
+A user can move from account management to garage management to backups without having to learn a completely different interface for every subsystem.
+
+This consistency became increasingly important as Skeleton Key expanded.
+
+The CLI effectively acts as the common front end for the framework.
+
+## Why a CLI?
+
+The command line was a practical choice for the project.
+
+Skeleton Key was developed around programming, reverse engineering, structured data, file operations, and server-style workflows.
+
+A CLI provides direct access to those systems without requiring a graphical application layer.
+
+It is lightweight, scriptable, easy to develop, and well suited to the type of operations Skeleton Key performs.
+
+It also made it possible to build and test the underlying systems quickly without first having to design an entire graphical interface.
+
+## The CLI Does Not Define the Framework
+
+This distinction becomes especially important when considering the future of the project.
+
+Because the underlying systems are separated from the CLI, the same functionality could theoretically be exposed through a different interface.
+
+For example:
+
+```text
+             Skeleton Key Engine
+                    │
+        ┌───────────┼───────────┐
+        ↓           ↓           ↓
+       CLI        Desktop       Web
+```
+
+The CLI is simply one possible interface.
+
+The underlying systems contain the actual functionality.
+
+This means the project is not fundamentally limited to terminal interaction just because the current implementation uses a CLI.
+
+## A Reusable Foundation
+
+The interface-layer approach also reflects a broader principle used throughout Skeleton Key.
+
+The project increasingly separates:
+
+```text
+What the user wants
+        ↓
+What operation must happen
+        ↓
+How the operation is implemented
+        ↓
+How the resulting data is represented
+```
+
+Each layer has a different responsibility.
+
+The CLI handles interaction.
+
+The feature modules handle operations.
+
+The data systems handle structured game data.
+
+The serialization systems handle representation.
+
+The backend layer handles communication and persistence.
+
+This separation makes the entire framework easier to reason about.
+
+## The Result
+
+By treating the CLI as an interface layer rather than the entire application, Skeleton Key gained a cleaner internal structure.
+
+The CLI became responsible for:
+
+- navigation
+- user input
+- menu presentation
+- selecting operations
+- displaying results
+- connecting users to the underlying systems
+
+The underlying modules remain responsible for the actual functionality.
+
+That separation allowed Skeleton Key to continue growing without turning the main CLI into one enormous collection of tightly coupled logic.
+
+The result is a system where the terminal is the user's entry point, but the terminal is not the limit of the framework.
+
+The **CLI is the interface.**
+
+The systems underneath it are **Skeleton Key itself.**
+
+---
