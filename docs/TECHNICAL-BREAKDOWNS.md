@@ -50,7 +50,7 @@ It is to document how the project was discovered, understood, and engineered int
 12. **[Backups, Snapshots, and Data Safety](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#12-backups-snapshots-and-data-safety)**
 13. **[The CLI as an Interface Layer](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#13-the-cli-as-an-interface-layer)**
 14. **[Architecture Evolution](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#14-architecture-evolution)**
-15. **[Lessons Learned]()**
+15. **[Lessons Learned](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#15-lessons-learned)**
 16. **[Conclusion]()**
 
 ---
