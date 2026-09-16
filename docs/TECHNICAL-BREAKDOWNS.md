@@ -44,7 +44,7 @@ It is to document how the project was discovered, understood, and engineered int
 6. **[Serialization, Decoding, and Reconstruction](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#6-serialization-decoding-and-reconstruction)**
 7. **[Livery Binary Research and Codec Development](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#7-livery-binary-research-and-codec-development)**
 8. **[Treating Game Data as Structured Objects](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#8-treating-game-data-as-structured-objects)**
-9. **[Building the Car and Payload Pipeline]()**
+9. **[Building the Car and Payload Pipeline](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#9-building-the-car-and-payload-pipeline)**
 10. **[Garage Management and Save Operations]()**
 11. **[The Persistent Identity Vault]()**
 12. **[Backups, Snapshots, and Data Safety]()**
