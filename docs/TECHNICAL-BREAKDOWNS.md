@@ -4362,3 +4362,367 @@ The **CLI is the interface.**
 The systems underneath it are **Skeleton Key itself.**
 
 ---
+# 14. Architecture Evolution
+
+Skeleton Key did not begin as a fully designed framework.
+
+Its architecture evolved alongside the problems the project was trying to solve.
+
+What started as a small collection of scripts gradually became a system with separate layers for authentication, player data, garage management, account storage, backups, payload generation, livery processing, and user interaction.
+
+The architecture was shaped by development rather than designed entirely in advance.
+
+## From Scripts to Systems
+
+The earliest work was focused on individual problems.
+
+A script would solve one problem, another script would solve something else, and pieces of functionality were gradually added as new requirements appeared.
+
+At that stage, the architecture was relatively simple:
+
+```text
+Script
+  ↓
+Game Data
+```
+
+That was enough for experimentation.
+
+It was not enough for a growing framework.
+
+As more functionality was added, the same underlying logic started appearing in multiple places.
+
+That created the need for reusable systems.
+
+## The First Major Shift
+
+One of the first major architectural changes was separating reusable logic from the interface that invoked it.
+
+Instead of putting everything directly into a CLI menu, functionality could live in its own module.
+
+The model became:
+
+```text
+CLI
+  ↓
+Module
+  ↓
+Operation
+```
+
+This meant the interface could change without requiring the underlying implementation to be rewritten.
+
+It also made individual systems easier to test and expand.
+
+## From Values to Structured Data
+
+Another major architectural shift came from moving beyond individual value modification.
+
+Instead of treating game data as a collection of unrelated values, the project began working with structured objects.
+
+The general pipeline became:
+
+```text
+Encoded Data
+     ↓
+Decode
+     ↓
+Structured Data
+     ↓
+Modify
+     ↓
+Validate
+     ↓
+Encode
+```
+
+This allowed higher-level systems to operate on meaningful structures rather than raw representations.
+
+Cars could be treated as cars.
+
+Garage data could be treated as a collection.
+
+Player data could be treated as a structured object.
+
+The serialization layer could then handle the conversion back into the representation required by the game.
+
+## Separation of Responsibilities
+
+As the project expanded, different responsibilities were separated into different systems.
+
+Instead of one large script attempting to manage everything, the architecture began developing distinct areas.
+
+Conceptually:
+
+```text
+CLI
+ │
+ ├── Identity / Account Management
+ ├── Garage Management
+ ├── Player Data
+ ├── Livery Systems
+ ├── Backup Systems
+ ├── Asset Systems
+ └── Other Operations
+```
+
+Underneath those systems were lower-level components responsible for things such as serialization, payload construction, communication, and storage.
+
+This separation reduced the amount of knowledge any individual component needed to have.
+
+## The Data Layer Became More Important
+
+As more systems were built around player data, the representation of that data became an architectural boundary.
+
+Higher-level operations should not need to understand every byte of an encoded representation.
+
+Instead:
+
+```text
+High-Level Operation
+        ↓
+Structured Data
+        ↓
+Serialization Layer
+        ↓
+Encoded Representation
+```
+
+This allowed the same structured data to be manipulated by multiple systems without duplicating serialization logic.
+
+It also meant that changes to the serialization implementation could be isolated from many of the systems above it.
+
+## The Livery System Introduced a Different Kind of Problem
+
+The livery system eventually introduced a separate binary-format problem.
+
+Unlike the player-data pipeline, which ultimately produced structured JSON after decoding, livery data used its own proprietary binary representation.
+
+That required a dedicated codec capable of decoding and reconstructing the livery format.
+
+The architectural principle remained the same even though the representation was different:
+
+```text
+Binary Livery Data
+       ↓
+Livery Codec
+       ↓
+Structured Livery Representation
+       ↓
+Modify
+       ↓
+Livery Codec
+       ↓
+Binary Livery Data
+```
+
+The important part was keeping this format-specific logic contained within the livery system instead of spreading binary parsing throughout the rest of the project.
+
+## Persistent State Added Another Layer
+
+The Persistent Identity Vault introduced another architectural requirement: Skeleton Key itself needed persistent local state.
+
+The project now had to manage information that survived beyond a single execution.
+
+This added a local persistence layer:
+
+```text
+CLI
+ ↓
+Identity Management
+ ↓
+Local Vault
+ ↓
+Persistent Account Data
+```
+
+The vault could maintain account information independently from the runtime session.
+
+This was another example of the architecture evolving because the project had developed a new requirement.
+
+## Backups Added Safety Boundaries
+
+The backup and snapshot systems introduced another layer around persistent data.
+
+The project now needed to distinguish between:
+
+```text
+Current State
+Previous State
+Modified State
+```
+
+This created a workflow where data could be preserved before operations were performed.
+
+The architecture therefore expanded beyond simply processing data to also managing the lifecycle of that data.
+
+## The Architecture Became Layered
+
+Over time, these changes produced a much more recognizable layered structure.
+
+A simplified view is:
+
+```text
+User
+  ↓
+CLI / Interface
+  ↓
+Feature Systems
+  ↓
+Structured Data
+  ↓
+Serialization / Processing
+  ↓
+Payload / Communication
+  ↓
+Game / Backend
+```
+
+Supporting systems exist alongside these layers:
+
+```text
+Identity Vault
+Backups
+Assets
+Configuration
+Local Storage
+```
+
+Not every feature follows exactly the same path, but the separation of responsibilities remains consistent.
+
+## Why the Architecture Evolved This Way
+
+The architecture was not created simply because layered architecture looked cleaner.
+
+Each separation solved an actual problem.
+
+```text
+Repeated Logic
+    ↓
+Reusable Modules
+
+Complex Data
+    ↓
+Structured Objects
+
+Multiple Features
+    ↓
+Separate Systems
+
+Persistent Accounts
+    ↓
+Identity Vault
+
+Risky Modifications
+    ↓
+Backups / Snapshots
+
+Multiple Data Formats
+    ↓
+Dedicated Serialization / Codecs
+
+Growing CLI
+    ↓
+Interface Layer
+```
+
+The architecture is therefore a record of the problems encountered during development.
+
+Each major layer exists because something eventually became too complicated, too repetitive, or too tightly coupled to remain in its previous form.
+
+## From Project to Framework
+
+This evolution changed what Skeleton Key actually was.
+
+At the beginning, it could reasonably be described as a collection of scripts used to experiment with and manipulate game data.
+
+Over time, those scripts became reusable modules.
+
+Those modules became systems.
+
+Those systems began sharing common infrastructure.
+
+Eventually, the project had enough separation and reusable functionality to be considered a framework rather than simply a collection of tools.
+
+That progression can be summarized as:
+
+```text
+Scripts
+  ↓
+Reusable Logic
+  ↓
+Modules
+  ↓
+Systems
+  ↓
+Framework
+```
+
+## The Architecture Today
+
+The current architecture reflects all of those stages.
+
+Skeleton Key contains systems for:
+
+- authentication
+- persistent account management
+- player-data processing
+- garage management
+- car construction and cloning
+- payload generation
+- backups and snapshots
+- livery processing
+- asset management
+- CLI interaction
+- local storage
+- supporting utilities
+
+These systems are not all implemented for the same reason or at the same abstraction level.
+
+They exist because the project gradually encountered problems that required them.
+
+The resulting architecture is therefore less about forcing everything into one rigid design and more about keeping responsibilities separated where separation provides a practical benefit.
+
+## Architecture as an Ongoing Process
+
+The architecture is not necessarily finished.
+
+As new features are added, existing boundaries may need to change.
+
+A module that begins as a small utility may eventually become its own system.
+
+Two systems that were initially separate may eventually share infrastructure.
+
+A piece of functionality that was once embedded in the CLI may eventually be moved into a reusable module.
+
+That is a normal part of the project's development.
+
+The goal is not to predict every future requirement.
+
+The goal is to keep the architecture flexible enough to adapt when those requirements appear.
+
+## The Core Architectural Principle
+
+The most important architectural lesson from Skeleton Key is that the structure evolved around **responsibility**.
+
+The project increasingly asks:
+
+> What does this component actually need to know?
+
+> What should this component be responsible for?
+
+> Can this logic be reused somewhere else?
+
+> Does this belong in the interface, the data layer, or the operation itself?
+
+Those questions helped prevent the project from becoming one enormous script where every feature depended directly on every other feature.
+
+The result is an architecture built around separation, reuse, and clear boundaries.
+
+Skeleton Key started with individual problems.
+
+The architecture emerged from solving them.
+
+And that evolution is a major part of what turned the project from an experimental tool into a reusable save-management framework.
+
+---
