@@ -4726,3 +4726,443 @@ The architecture emerged from solving them.
 And that evolution is a major part of what turned the project from an experimental tool into a reusable save-management framework.
 
 ---
+
+# 15. Lessons Learned
+
+Building Skeleton Key taught me considerably more than how to modify or process FR Legends data.
+
+The project became a long-running exercise in reverse engineering, software architecture, debugging, experimentation, and learning how to turn discoveries into reusable systems.
+
+Many of the most important lessons came from things that did not work the first time.
+
+## Understanding Before Automating
+
+One of the biggest lessons was that automation is only useful when the underlying structure is understood.
+
+It is easy to write something that changes a value.
+
+It is much harder to understand:
+
+- where that value comes from
+- how it is represented
+- what depends on it
+- how it is serialized
+- what happens when it changes
+- how the game expects the resulting data to look
+
+That difference changed how I approached the project.
+
+Instead of only asking:
+
+> "How can I change this?"
+
+I increasingly started asking:
+
+> "Why does this work this way?"
+
+That question led to much deeper understanding.
+
+## Reverse Engineering Is Iterative
+
+Reverse engineering rarely produced an immediate answer.
+
+A typical process looked more like:
+
+```text
+Observe
+  ↓
+Hypothesize
+  ↓
+Experiment
+  ↓
+Collect Results
+  ↓
+Compare
+  ↓
+Refine Hypothesis
+  ↓
+Repeat
+```
+
+A failed experiment was often useful because it eliminated an incorrect assumption.
+
+This was especially important when working with undocumented data structures.
+
+There was rarely a specification explaining exactly what each field or byte represented.
+
+The structure had to be discovered.
+
+## Do Not Assume the Representation Is the Meaning
+
+Another important lesson was learning to separate data representation from the meaning of the data.
+
+A value may appear as:
+
+- a number
+- hexadecimal
+- encoded bytes
+- compressed data
+- JSON
+- a binary structure
+
+Those are representations.
+
+The underlying meaning is a separate question.
+
+This became especially important when dealing with encoded player data and proprietary binary formats.
+
+Understanding the representation made it possible to recover the meaningful structure underneath it.
+
+## Reusable Abstractions Are Worth Building
+
+Early experimentation often involved solving the same types of problems repeatedly.
+
+Eventually, repeating those processes became a signal that the underlying logic should be generalized.
+
+This led to reusable systems instead of constantly rewriting one-off solutions.
+
+The general pattern became:
+
+```text
+Solve Problem
+    ↓
+Identify Repeated Logic
+    ↓
+Abstract It
+    ↓
+Reuse It
+```
+
+This lesson carried across multiple areas of the project.
+
+The same idea applied to data processing, car operations, payload construction, account management, and CLI functionality.
+
+## Separate Responsibilities Early
+
+As the project grew, tightly coupled code became harder to maintain.
+
+One of the most important architectural lessons was that different systems should have clearly defined responsibilities.
+
+For example:
+
+```text
+CLI
+    → User interaction
+
+Garage System
+    → Garage operations
+
+Player Data
+    → Structured game data
+
+Serialization
+    → Data representation
+
+Vault
+    → Account persistence
+
+Backups
+    → Recovery and safety
+```
+
+A component should not need to understand everything happening elsewhere.
+
+This made later changes significantly easier.
+
+## Preserve Working States
+
+Another lesson was the importance of backups and checkpoints.
+
+When experimenting with persistent data, it is easy to reach a working state and then accidentally destroy it while testing the next idea.
+
+Preserving known-good states makes experimentation safer.
+
+The principle is simple:
+
+```text
+Working State
+    ↓
+Preserve It
+    ↓
+Experiment
+    ↓
+Keep or Restore
+```
+
+This applies far beyond game data.
+
+It is a general software-development lesson.
+
+## Build Around Data Structures
+
+The project became significantly easier to extend once I stopped treating data as an opaque collection of values.
+
+Understanding the structure made it possible to build operations around that structure.
+
+Instead of:
+
+```text
+Change Field
+```
+
+the system could work with:
+
+```text
+Object
+Collection
+Relationship
+Operation
+```
+
+This made higher-level features possible.
+
+Cars could become objects.
+
+Garages could become collections.
+
+Player data could become a structured model.
+
+Once the structure was understood, the operations became easier to reason about.
+
+## Not Every Problem Needs the Same Solution
+
+Different parts of FR Legends data use different representations.
+
+The player-data pipeline and the livery system are examples of this.
+
+Player data ultimately becomes structured JSON after decoding.
+
+Livery data uses its own proprietary binary structure.
+
+Trying to force both systems into exactly the same low-level implementation would have made the project more complicated.
+
+The better approach was to share the higher-level principles while allowing each representation to have its own specialized processing.
+
+```text
+Different Representation
+        ↓
+Different Processing
+        ↓
+Shared Higher-Level Principles
+```
+
+## Debugging Is Part of Development
+
+Another lesson was learning not to treat debugging as a separate phase that happens after development.
+
+Debugging was part of development itself.
+
+Unexpected output often revealed something about the system that was not understood yet.
+
+A failed parse could reveal an incorrect assumption.
+
+A malformed payload could reveal a structural dependency.
+
+A serialization mismatch could reveal a hidden part of the format.
+
+The failure was often useful information.
+
+## Documentation Is Part of the Engineering
+
+As the project became more complicated, documentation became increasingly important.
+
+A system can be technically functional while still being difficult for another developer to understand.
+
+Writing down:
+
+- what a component does
+- why it exists
+- how the data flows
+- what assumptions it makes
+- what problems it solves
+
+makes the project significantly easier to maintain.
+
+This technical breakdown exists for the same reason.
+
+The goal is not only to document the final result.
+
+It is also to document the reasoning and progression that produced it.
+
+## Do Not Overbuild Everything
+
+Another lesson came from seeing how quickly a project can grow.
+
+It is tempting to build a large abstraction for every possible future feature.
+
+In practice, abstractions are most useful when they solve a real problem.
+
+The project benefited from generalization when repeated logic or growing complexity justified it.
+
+Not every small function needed to become a framework.
+
+The goal became finding the point where abstraction actually improved the system.
+
+## Learn the Layer Below the Problem
+
+One of the most valuable lessons from the entire project was that difficult problems often became easier after looking one layer deeper.
+
+If a high-level operation behaved incorrectly, the problem might not be the operation itself.
+
+It could be:
+
+```text
+Operation
+    ↓
+Object Structure
+    ↓
+Serialization
+    ↓
+Encoding
+    ↓
+Stored Representation
+```
+
+Understanding the lower layer often explained why the higher layer behaved the way it did.
+
+This mindset carried over directly from my earlier reverse-engineering work.
+
+## AI Is a Tool, Not a Replacement for Understanding
+
+The project also reinforced a more modern development lesson: AI can accelerate development, but it does not replace understanding.
+
+AI can help with:
+
+- brainstorming
+- explaining unfamiliar concepts
+- generating starting points
+- restructuring code
+- identifying possible approaches
+- documentation
+
+But generated code still needs to be understood, tested, and adapted to the actual project.
+
+The final system still depends on knowing what the code is doing and why it belongs there.
+
+The useful workflow is:
+
+```text
+Understand Problem
+      ↓
+Use Available Tools
+      ↓
+Evaluate Result
+      ↓
+Test
+      ↓
+Adapt
+      ↓
+Understand Final Implementation
+```
+
+AI became another development tool rather than a substitute for engineering judgment.
+
+## Complexity Can Be Reduced Through Layers
+
+One of the biggest overall lessons was that complexity becomes much easier to manage when it is divided into layers.
+
+Instead of one system knowing everything:
+
+```text
+User
+ ↓
+CLI
+ ↓
+Operations
+ ↓
+Structured Data
+ ↓
+Serialization
+ ↓
+Persistence
+```
+
+Each layer has a smaller problem to solve.
+
+This does not remove complexity.
+
+It makes the complexity manageable.
+
+## Projects Change While You Build Them
+
+Skeleton Key did not remain the same project throughout its development.
+
+Its purpose, architecture, capabilities, and internal organization changed as new discoveries were made.
+
+That was not a failure of the original design.
+
+It was part of the development process.
+
+A project does not need to know exactly what it will become before development begins.
+
+Sometimes the architecture can only become obvious after the underlying problems are understood.
+
+## The Biggest Lesson
+
+The biggest lesson from Skeleton Key is that building something complicated is often a process of repeatedly replacing assumptions with understanding.
+
+The progression looked something like:
+
+```text
+"I think this works like this."
+        ↓
+Experiment
+        ↓
+"That assumption was wrong."
+        ↓
+Investigate
+        ↓
+"Now I understand it."
+        ↓
+Build a reusable solution
+```
+
+That process happened repeatedly throughout the project.
+
+It happened with data representation.
+
+It happened with player-data serialization.
+
+It happened with car structures.
+
+It happened with proprietary livery data.
+
+It happened with account management.
+
+It happened with the architecture itself.
+
+Each discovery reduced uncertainty and made the next system easier to build.
+
+## What Skeleton Key Ultimately Taught Me
+
+The project taught me that reverse engineering and software development are not separate skills.
+
+Understanding an undocumented system requires experimentation and analysis.
+
+Turning that understanding into a usable tool requires architecture, abstraction, validation, persistence, and interface design.
+
+The real progression was:
+
+```text
+Discover
+   ↓
+Understand
+   ↓
+Model
+   ↓
+Build
+   ↓
+Validate
+   ↓
+Generalize
+   ↓
+Document
+```
+
+Skeleton Key became the result of repeating that process over and over.
+
+The most valuable outcome was not any single feature.
+
+It was learning how to take an unknown system, break it down, understand its structure, and gradually turn that understanding into reusable software.
+
+---
