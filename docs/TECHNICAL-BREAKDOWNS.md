@@ -48,7 +48,7 @@ It is to document how the project was discovered, understood, and engineered int
 10. **[Garage Management and Save Operations](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#10-garage-management-and-save-operations)**
 11. **[The Persistent Identity Vault](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#11-the-persistent-identity-vault)**
 12. **[Backups, Snapshots, and Data Safety](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#12-backups-snapshots-and-data-safety)**
-13. **[The CLI as an Interface Layer]()**
+13. **[The CLI as an Interface Layer](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TECHNICAL-BREAKDOWNS.md#13-the-cli-as-an-interface-layer)**
 14. **[Architecture Evolution]()**
 15. **[Lessons Learned]()**
 16. **[Conclusion]()**
