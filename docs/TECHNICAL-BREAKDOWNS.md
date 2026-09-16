@@ -51,7 +51,7 @@ It is to document how the project was discovered, understood, and engineered int
 13. **[The CLI as an Interface Layer]()**
 14. **[Architecture Evolution]()**
 15. **[Lessons Learned]()**
-16. **[Future Research Directions]()**
+16. **[Conclusion]()**
 
 ---
 
@@ -5166,3 +5166,15 @@ The most valuable outcome was not any single feature.
 It was learning how to take an unknown system, break it down, understand its structure, and gradually turn that understanding into reusable software.
 
 ---
+
+# Conclusion
+
+Skeleton Key started as experimentation and gradually became a structured system for working with FR Legends data.
+
+The project evolved from individual scripts and runtime research into reusable systems for processing player data, constructing game objects, managing saves, handling accounts, creating backups, and working with proprietary formats.
+
+The biggest lesson throughout the project has been simple:
+
+> Understand the system first. Then build around that understanding.
+
+The technical work documented here represents the process that turned those discoveries into the framework Skeleton Key is today.
