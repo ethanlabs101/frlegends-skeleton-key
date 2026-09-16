@@ -5178,3 +5178,5 @@ The biggest lesson throughout the project has been simple:
 > Understand the system first. Then build around that understanding.
 
 The technical work documented here represents the process that turned those discoveries into the framework Skeleton Key is today.
+
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
