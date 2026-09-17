@@ -116,3 +116,5 @@ You don't have to write code to contribute.
 A useful asset, a bug report, a technical discovery, a repository star, or simply helping another person find the project can all be valuable.
 
 Contributions are appreciated, but Skeleton Key remains a selectively maintained project and its direction ultimately stays with the project maintainer.
+
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
