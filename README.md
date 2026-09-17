@@ -59,6 +59,13 @@ Install Skeleton Key directly on your Linux system.
 
 ---
 
+## Disclaimer
+
+FR Legends Skeleton Key is an independent community-developed project and is not affiliated with, endorsed by, or sponsored by FR Legends or its developers.
+
+Use the software at your own risk. Always maintain backups of your account and save data before making changes. You are responsible for how you use the software and for complying with any applicable game, platform, or service terms.
+
+---
 
 ## License
 
