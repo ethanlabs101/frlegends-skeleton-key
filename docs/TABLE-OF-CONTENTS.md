@@ -116,7 +116,7 @@ These documents provide quick-reference information after completing the primary
 
 - [Complete Feature List](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/FEATURES.md)
 - [Changelog](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/CHANGELOG.md)
-- [Troubleshooting](TROUBLESHOOTING.md)
+- [Troubleshooting](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/TROUBLESHOOTING.md)
 
 ---
 
