@@ -11,7 +11,7 @@ You do not need to contribute code to support Skeleton Key.
 If you find the project useful, a few simple things help:
 
 - ⭐ Star the repository.
-- Follow the project or creator.
+- Follow ethanlabs101.
 - Share the project with people who may find it useful.
 - Submit useful FR Legends assets to the FR Legends Skeleton Key Asset Database.
 - ☕ Buy me a coffee if you want to directly support development.
