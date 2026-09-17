@@ -863,3 +863,5 @@ When manually modifying the project:
 - When distributing or updating the project, ensure the complete `skeleton-key-vault/` application directory is preserved.
 
 The structure may evolve as Skeleton Key Vault develops, but the validated layout documented here represents the current organization of the application.
+
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
