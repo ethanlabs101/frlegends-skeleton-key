@@ -131,6 +131,14 @@ These documents explain the systems underneath the user-facing CLI, including sa
 
 ---
 
+# Contributing
+
+Want to support Skeleton Key? Visit:
+
+[Contributing](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/CONTRIBUTING.md)
+
+---
+
 # Future Development
 
 Explore where Skeleton Key could go next.
