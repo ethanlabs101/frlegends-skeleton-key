@@ -335,3 +335,5 @@ When something goes wrong, check these in order:
 The most important rule is simple:
 
 > **Do not delete the vault or overwrite save data just because something stopped working. Preserve the data first, then troubleshoot the problem.**
+
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
