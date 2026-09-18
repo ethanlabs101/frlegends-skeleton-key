@@ -18,6 +18,12 @@ everything is designed to work together through the Vault.
 
 ---
 
+### Demo
+
+![]()
+
+---
+
 ### What can it do?
 
 - 🔐 Manage multiple FR Legends accounts
