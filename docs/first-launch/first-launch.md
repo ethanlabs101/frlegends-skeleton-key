@@ -528,14 +528,15 @@ For Linux:
 
 [Linux Installation →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
 
-[Linux Update Guide →](./linux-update.md)
 
 For Android/Termux:
 
 [Android Installation →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/termux-installation/termux-installation.md)
 
-[Android Update Guide →](./android-update.md)
 
+For Both Platforms:
+
+[Update Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/UPDATES.md)
 ---
 
 # 17. Important: Updates and Your Vault
