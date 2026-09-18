@@ -78,8 +78,6 @@ Use the software at your own risk. Always maintain backups of your account and s
 - This project is licensed under the Apache License 2.0.
 - See the [LICENSE](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/LICENSE) file for details.
 
-Copyright © 2026 ethanlabs101
-
 ---
 
 ## Thank you!
