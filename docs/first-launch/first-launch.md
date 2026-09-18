@@ -537,6 +537,7 @@ For Android/Termux:
 For Both Platforms:
 
 [Update Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/UPDATES.md)
+
 ---
 
 # 17. Important: Updates and Your Vault
