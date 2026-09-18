@@ -6,7 +6,7 @@ This project follows a release-based changelog format. Version numbers represent
 
 ---
 
-# [1.0.0] — Initial Public Release
+# [1.0.0](https://github.com/ethanlabs101/frlegends-skeleton-key/releases/tag/v1.0.0) — Initial Public Release
 
 ## Overview
 
@@ -342,7 +342,7 @@ Future development will continue through the project's roadmap, with potential w
 
 ---
 
-[1.0.0]: https://github.com/ethanlabs101/frlegends-skeleton-key/releases/tag/v1.0.0
+[1.0.0](https://github.com/ethanlabs101/frlegends-skeleton-key/releases/tag/v1.0.0)
 
 
 [→ Return to main menu](https://github.com/ethanlabs101/frlegends-skeleton-key)
