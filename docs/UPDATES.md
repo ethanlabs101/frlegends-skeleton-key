@@ -1027,3 +1027,5 @@ fr_legends_payloads/
 while replacing the application source with the latest repository version.
 
 Always exit Skeleton Key before updating, keep independent backups of important data, and allow the updater to complete its validation and cleanup process before launching the application again.
+
+**[← Skeleton Key Main Page](https://github.com/ethanlabs101/frlegends-skeleton-key/tree/main)**
