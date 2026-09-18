@@ -18,7 +18,7 @@ everything is designed to work together through the Vault.
 
 ---
 
-### Demo
+### Demo 🎥
 
 ![FR Legends Skeleton Key Demo](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-demo.gif)
 
