@@ -141,6 +141,12 @@ Allow the process to finish.
 
 This may take several minutes depending on your device and internet connection.
 
+If you get this message or simular:
+
+![]()
+
+Enter N for every instance, and let the update fully finish.
+
 ---
 
 ## 3.2 Install Git
