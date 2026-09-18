@@ -40,7 +40,7 @@ export async function runSplashScreen(rl) {
             box.drawCentered(" ");
             box.drawCentered(coloredLogo);
             box.drawCentered(" ");
-            box.drawCentered(`${theme.bwhite("Build: ")}${theme.bpurple("2026.08.24")}${theme.bwhite(" | github.com/")}${theme.bpurple("ethanlabs101")}`);
+            box.drawCentered(`${theme.bwhite("Build: ")}${theme.bpurple("2026.09.18")}${theme.bwhite(" | github.com/")}${theme.bpurple("ethanlabs101")}`);
             console.log(box.bottom());
 
             console.log(theme.warn("\n[!] WARNING: Vault Initialization Required."));
@@ -81,7 +81,7 @@ export async function runSplashScreen(rl) {
         box.drawCentered(" ");
         box.drawCentered(coloredLogo);
         box.drawCentered(" ");
-        box.drawCentered(`${theme.bwhite("Build: ")}${theme.bpurple("2026.08.24")}${theme.bwhite(" | github.com/")}${theme.bpurple("ethanlabs101")}`);
+        box.drawCentered(`${theme.bwhite("Build: ")}${theme.bpurple("2026.09.18")}${theme.bwhite(" | github.com/")}${theme.bpurple("ethanlabs101")}`);
         console.log(box.bottom());
         console.log(`${theme.bpurple("-- [")}${theme.bwhite("Z")}${theme.bpurple("] ")}${theme.bwhite("Recovery Mode ")}${theme.bpurple("| [")}${theme.bwhite("E")}${theme.bpurple("] ")}${theme.bwhite("GitHub ")}${theme.bpurple("| [")}${theme.bwhite("Enter")}${theme.bpurple("] ")}${theme.bwhite("Proceed To Auth")}${theme.bpurple(" --")}`);
 
