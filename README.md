@@ -65,6 +65,16 @@ Install Skeleton Key directly on your Linux system.
 
 ---
 
+## FRLMODS.com
+
+Skeleton Key's underlying systems are not limited to the command-line interface.
+
+Skeleton Key's engine is already powering community-facing FR Legends tooling on FRLMods, including the [Add Money & Gold](https://frlmods.com/add-money) tool.
+
+This demonstrates how Skeleton Key's underlying data-processing systems can be integrated into different interfaces and applications.
+
+---
+
 ## Disclaimer
 
 FR Legends Skeleton Key is an independent community-developed project and is not affiliated with, endorsed by, or sponsored by FR Legends or its developers.
