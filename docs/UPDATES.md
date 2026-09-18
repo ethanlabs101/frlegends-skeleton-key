@@ -452,8 +452,6 @@ If the script is executable:
 ./updaters/update-termux.sh
 ```
 
-Do not run the Termux updater directly from the normal Termux shell.
-
 ---
 
 # Termux Version Check
