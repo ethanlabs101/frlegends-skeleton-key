@@ -765,9 +765,7 @@ After that, continue into the Modding Sandbox:
 
 For updates and maintenance:
 
-[Linux Update Guide →](./linux-update.md)
-
-[Android Update Guide →](./android-update.md)
+[Update Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/UPDATES.md)
 
 To return to the documentation home:
 
