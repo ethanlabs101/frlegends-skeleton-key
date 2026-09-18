@@ -106,7 +106,7 @@ See the **[FR Legends Skeleton Key Asset Database](https://github.com/ethanlabs1
 
 Skeleton Key ships with update scripts for all supported platforms.
 
-[How To Update Skeleton Key](how-to-update.md)
+[How To Update Skeleton Key](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/UPDATES.md)
 
 ---
 
