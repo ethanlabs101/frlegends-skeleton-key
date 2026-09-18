@@ -175,13 +175,19 @@ frlegends-skeleton-key/
 └── skeleton-key-vault/
 ```
 
-Run the Linux updater:
+1. Navigate to the frlegends-skeleton-key directory
 
 ```bash
-bash updaters/update-linux.sh
+cd ~/frlegends-skeleton-key
 ```
 
-If the script is executable, you can also run:
+2. Make the updater executable
+
+```bash
+chmod +x updaters/update-linux.sh
+```
+
+3. Run the Linux updater:
 
 ```bash
 ./updaters/update-linux.sh
