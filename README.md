@@ -20,14 +20,14 @@ everything is designed to work together through the Vault.
 
 ### Demo
 
-![](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-demo.gif)
+![FR Legends Skeleton Key Demo](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-demo.gif)
 
 ---
 
 ### What can it do?
 
 - 🔐 Manage multiple FR Legends accounts
-- 💾 Securely store account data in your local Vault
+- 💾 Store account data in your local Vault
 - 🚗 Manage and inject vehicle assets
 - 🎨 Work with custom liveries
 - 📦 Browse and download assets from the Online Asset Manager
