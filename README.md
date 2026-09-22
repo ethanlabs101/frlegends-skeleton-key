@@ -67,6 +67,8 @@ Install Skeleton Key directly on your Linux system.
 
 ## 📈 v1.0.0 Release Stats
 
+Skeleton Key was officially released 09/18/2026.
+
 Over **1,000 repository clone events** were recorded during the first 14 days, including **300 clone events on release day**.
 
 *Source: GitHub repository traffic analytics*
