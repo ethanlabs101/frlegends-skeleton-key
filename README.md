@@ -65,6 +65,16 @@ Install Skeleton Key directly on your Linux system.
 
 ---
 
+## 📈 v1.0.0 Release Stats
+
+Over **1,000 repository clone events** were recorded during the first 14 days, including **300 clone events on release day**.
+
+*Source: GitHub repository traffic analytics*
+
+![Skeleton Key GitHub Traffic](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-traffic.png)
+
+---
+
 ## FRLMODS.com
 
 Skeleton Key's underlying systems are not limited to the command-line interface.
