@@ -43,6 +43,18 @@ everything is designed to work together through the Vault.
 
 ---
 
+## 📈 v1.0.0 Release Stats
+
+Skeleton Key was officially released 09/18/2026.
+
+Over **1,000 repository clone events** were recorded during the first 14 days, including **300 clone events on release day**.
+
+*Source: GitHub repository traffic analytics*
+
+![Skeleton Key GitHub Traffic](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-traffic.png)
+
+---
+
 ## Getting Started
 
 New to Skeleton Key?
@@ -62,18 +74,6 @@ Install Skeleton Key through the Termux installer.
 Install Skeleton Key directly on your Linux system.
 
 [View Linux Installation Guide →](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/docs/linux-installation/linux-installation.md)
-
----
-
-## 📈 v1.0.0 Release Stats
-
-Skeleton Key was officially released 09/18/2026.
-
-Over **1,000 repository clone events** were recorded during the first 14 days, including **300 clone events on release day**.
-
-*Source: GitHub repository traffic analytics*
-
-![Skeleton Key GitHub Traffic](https://github.com/ethanlabs101/frlegends-skeleton-key/blob/main/git-images/skeleton-key-traffic.png)
 
 ---
 
